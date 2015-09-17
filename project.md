@@ -18,13 +18,22 @@
 * company.project[.ver].app
 * company.project[.ver]
 
-### company.project[.ver]/.gitignore
+### .gitignore
+
+**company.project[.ver]/.gitignore**
 
 ```
 /resources
 /development/app
 /production/app
 /production/data
+```
+
+**company.project[.ver]/production/build/database/.gitignore**
+
+```
+*
+!.gitignore
 ```
 
 ## Backup folder Copy / Git annex / Cloud
