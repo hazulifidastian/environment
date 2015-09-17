@@ -16,15 +16,15 @@
 ## Git
 
 * company.project[.ver].app
-* company.project[.ver].docker
+* company.project[.ver]
 
-### docker company.project[.ver]/.ignore
+### docker company.project[.ver]/.gitignore
 
 ```
-resources
-development/app
-production/app
-production/data
+/resources
+/development/app
+/production/app
+/production/data
 ```
 
 ## Backup folder Copy / Git annex / Cloud
