@@ -18,6 +18,15 @@
 * company.project[.ver].app
 * company.project[.ver].docker
 
+### docker company.project[.ver]/.ignore
+
+```
+resources
+development/app
+production/app
+production/data
+```
+
 ## Backup folder Copy / Git annex / Cloud
 
 * company.project[.ver].resources
