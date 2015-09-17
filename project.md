@@ -18,7 +18,7 @@
 * company.project[.ver].app
 * company.project[.ver]
 
-### docker company.project[.ver]/.gitignore
+### company.project[.ver]/.gitignore
 
 ```
 /resources
