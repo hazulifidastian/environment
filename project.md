@@ -3,15 +3,15 @@
 ## Skeleton
 
 * company.project[.ver]
-        * development folder
-                * app folder
-                * Dockerfile
-                * docker-compose.yml
-        * production folder
-                * app folder
-                * Dockerfile
-                * docker-compose.yml
-        * resources
+  * development folder
+    * app folder
+    * Dockerfile
+    * docker-compose.yml
+  * production folder
+    * app folder
+    * Dockerfile
+    * docker-compose.yml
+  * resources
 
 ## Git
 
