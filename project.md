@@ -4,13 +4,38 @@
 
 * company.project[.ver]
   * development folder
-    * app folder
+    * app
+      * app
+      * app.2
+      * app.3
+    * build
+      * app
+      * database
+      * vm
+      * script
     * Dockerfile
     * docker-compose.yml
+    * data
+      * import
+      * database-data
+    * development.sh
   * production folder
-    * app folder
+    * app
+      * app
+      * app.2
+      * app.3
+    * build
+      * app
+      * database
+      * vm
+      * script
     * Dockerfile
     * docker-compose.yml
+    * data
+      * import
+      * database-data
+      * BACKUP
+    * production.sh
   * resources
 
 ## Git
@@ -27,13 +52,6 @@
 /development/app
 /production/app
 /production/data
-```
-
-**company.project[.ver]/production/build/database/.gitignore**
-
-```
-*
-!.gitignore
 ```
 
 ## Backup folder Copy / Git annex / Cloud

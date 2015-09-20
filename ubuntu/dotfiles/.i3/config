@@ -20,7 +20,7 @@ set $ws9 "9:PLAY"
 set $ws10 "10:TEMP"
 
 # set wallpaper
-exec --no-startup-id feh --bg-fill /home/efha/Pictures/aisha-hamza.jpg
+exec --no-startup-id feh --bg-fill /usr/share/backgrounds/danau.png
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -60,7 +60,7 @@ client.urgent                   #F26C4F #F26C4F  #FFFFFF
 
 # one bar on all screens
 bar {
-        position top
+        position bottom
         modifier $mod
         separator_symbol "."
         status_command i3status -c ~/.i3/i3status.conf
@@ -118,7 +118,7 @@ bindsym $mod+Shift+quotedbl kill
 # start j4-dmenu-desktop                                                                             background       text        box color     text in box
 # bindsym $mod+d exec --no-startup-id j4-dmenu-desktop --dmenu="dmenu -i -p 'Arch Linux' -fn '8x16' -nb '#222222' -nf '#888888' -sb '#1793D1' -sf '#FFFFFF'"
 #bindsym $mod+e exec "dmenu_run -i -p 'dmenu' -fn 'Roboto-12' -nb '#FFFFFF' -nf '#666666' -sb '#48B4FB' -sf '#FFFFFF'"
-bindsym $mod+e exec --no-startup-id j4-dmenu-desktop --dmenu="dmenu -i -b -p 'VOSTRO-EFHA' -fn 'Roboto' -nb '#FFFFFF' -nf '#666666' -sb '#F26C4F' -sf '#FFFFFF'" --term="i3-sensible-terminal"
+bindsym $mod+e exec --no-startup-id j4-dmenu-desktop --dmenu="dmenu -i -p 'VOSTRO-EFHA' -fn 'Roboto' -nb '#FFFFFF' -nf '#666666' -sb '#F26C4F' -sf '#FFFFFF'" --term="i3-sensible-terminal"
 
 
 # change focus (htns are the right-hand home row keys)
@@ -296,6 +296,6 @@ focus_follows_mouse no
 # for_window [class="Sublime Text$$"] move to scratchpad
 
 exec --no-startup-id i3-msg 'workspace $ws2; exec gnome-terminal'
-#exec --no-startup-id i3-msg 'workspace $ws1; exec subl'
+exec --no-startup-id i3-msg 'workspace $ws1;'
 
 bindsym $mod+r exec nautilus --no-desktop
