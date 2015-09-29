@@ -4,7 +4,7 @@
 
 * company.project[.ver]
   * development folder
-    * app
+    * apps
       * app
       * app.2
       * app.3
@@ -20,7 +20,7 @@
       * database-data
     * development.sh
   * production folder
-    * app
+    * apps
       * app
       * app.2
       * app.3
@@ -49,8 +49,8 @@
 
 ```
 /resources
-/development/app
-/production/app
+/development/apps
+/production/apps
 /production/data
 ```
 

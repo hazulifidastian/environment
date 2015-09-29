@@ -89,6 +89,9 @@ bindsym XF86AudioStop exec rhythmbox-client --pause
 bindsym XF86AudioPrev exec rhythmbox-client --previous
 bindsym XF86AudioNext exec rhythmbox-client --next
 
+bindsym $mod+v exec /usr/bin/pactl set-sink-volume @DEFAULT_SINK@ --     -5%; exec /usr/bin/killall -USR1 i3status
+bindsym $mod+Shift+V exec /usr/bin/pactl set-sink-volume @DEFAULT_SINK@ --     +5%; exec /usr/bin/killall -USR1 i3status
+
 # sebelumnya, install xbacklight apt-get install xbacklight
 bindsym XF86MonBrightnessUp exec /usr/bin/xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec /usr/bin/xbacklight -dec 10

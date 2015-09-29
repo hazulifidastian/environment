@@ -7,6 +7,7 @@
 * Git
 * VirtualBox
 * Docker
+* Docker Compose
 * LXC
 * SSH client
 * Git Annex
