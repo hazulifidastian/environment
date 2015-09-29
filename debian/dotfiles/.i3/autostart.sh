@@ -11,7 +11,7 @@ gnome-keyring-daemon
 pactl set-sink-volume @DEFAULT_SINK@ '30%' &
 
 # lcd brightness
-xbacklight -set 40 &
+xbacklight -set 30 &
 
 # disable beeps
 xset -b &
@@ -24,8 +24,8 @@ xset dpms 600 1200 2000 &
 
 # wifi manager
 LC_ALL=C nm-applet &
-LC_ALL=C /usr/sbin/CopyAgent &
-LC_ALL=C screencloud &
+#LC_ALL=C /usr/sbin/CopyAgent &
+#LC_ALL=C screencloud &
 
 # notifier
 dunst &
@@ -34,7 +34,7 @@ dunst &
 xrefresh &
 
 # special keys
-xmodmap /home/efha/.Xmodmap &
+#xmodmap /home/efha/.Xmodmap &
 
 # configure natural scrolling for touchpad
 # configure normal scrolling for mouse

@@ -275,7 +275,7 @@ bindsym $mod+Right workspace next
 
 #exec --no-startup-id nm-applet
 #exec --no-startup-id xrandr --dpi 143
-#exec --no-startup-id ~/.i3/autostart.sh
+exec --no-startup-id ~/.i3/autostart.sh
 exec --no-startup-id xinput set-prop "ETPS/2 Elantech Touchpad" "Synaptics Tap Time" 0
 
 # ganti keyboard ke dvorak programmer
