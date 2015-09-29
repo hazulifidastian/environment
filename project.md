@@ -10,8 +10,8 @@
       * app.3
     * build
       * app
-      * database
-      * vm
+      * mysql
+      * debian
       * script
     * Dockerfile
     * docker-compose.yml
@@ -26,8 +26,8 @@
       * app.3
     * build
       * app
-      * database
-      * vm
+      * mysql
+      * debian
       * script
     * Dockerfile
     * docker-compose.yml
@@ -58,3 +58,8 @@
 
 * company.project[.ver].resources
 * company.project[.ver].data
+
+## Editor Configurations
+
+* tab to space 8
+* 1tbs indentation style

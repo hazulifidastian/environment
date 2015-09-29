@@ -1,7 +1,8 @@
 #Requirement
 
-##Common OS
+##Common
 
+###Application
 * Vagrant
 * Git
 * VirtualBox
@@ -11,12 +12,29 @@
 * Git Annex
 * Sublime Text
 * Visual Paradigm
+* Chrome Browser
+* Firefox/Iceweasel
+* Opera
 
 ##Linux
-* VIM
+
+###Application
+* Vim
 * Ranger
+* Curl
+* gcc build-essential
+
+###Configuration
+
+* default editor
+
+````
+update-alternatives --config editor
+````
 
 ##Windows
+
+###Application
 * Console
 * Bash
 
