@@ -5,7 +5,7 @@ gnome-settings-daemon &
 gnome-keyring-daemon
 
 ## Merge Xresources
-#xrdb -merge ~/.Xresources &
+xrdb -merge ~/.Xresources &
 
 # default volume
 pactl set-sink-volume @DEFAULT_SINK@ '30%' &

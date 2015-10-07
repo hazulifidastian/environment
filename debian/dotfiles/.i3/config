@@ -277,6 +277,7 @@ workspace $ws10 output $secondscreen
 exec --no-startup-id ~/.i3/autostart.sh
 
 exec --no-startup-id xinput set-prop "ETPS/2 Elantech Touchpad" "Synaptics Tap Time" 0
+focus_follows_mouse no
 
 # ganti keyboard ke dvorak programmer
 exec --no-startup-id /usr/bin/setxkbmap -layout us -variant dvp
