@@ -185,10 +185,10 @@ font pango:Roboto 9
 # class                         border  backgr  text
 
 ##blue
-#client.focused                  #2980B9 #2980B9 #ECEEEF
+client.focused                  #2980B9 #2980B9 #ECEEEF
 
 ##new blue
-client.focused                  #48B4FB #48B4FB #FFFFFF
+#client.focused                  #48B4FB #48B4FB #FFFFFF
 
 ##purple
 #client.focused                  #8E44AD #8E44AD #ECEEEF
@@ -308,9 +308,6 @@ focus_follows_mouse no
 # ganti keyboard ke dvorak programmer
 exec --no-startup-id /usr/bin/setxkbmap -layout us -variant dvp
 bindsym $mod+Shift+A exec --no-startup-id /usr/bin/setxkbmap -layout us -variant dvp
-
-exec --no-startup-id i3-msg 'workspace $ws2; exec xterm'
-exec --no-startup-id i3-msg 'workspace $ws1;'
 
 bindsym $mod+r exec pcmanfm --no-desktop
 
