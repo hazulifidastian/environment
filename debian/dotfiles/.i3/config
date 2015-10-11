@@ -273,6 +273,32 @@ workspace $ws8 output $secondscreen
 workspace $ws9 output $secondscreen
 workspace $ws10 output $secondscreen
 
+# volume
+mode "volume" {
+
+        bindsym plus exec /usr/bin/pactl set-sink-volume @DEFAULT_SINK@ -- +5%; exec /usr/bin/killall -USR1 i3status
+        bindsym minus exec /usr/bin/pactl set-sink-volume @DEFAULT_SINK@ -- -5%; exec /usr/bin/killall -USR1 i3status
+        bindsym v exec pactl set-sink-mute @DEFAULT_SINK@ toggle; exec /usr/bin/killall -USR1 i3status
+        
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+v mode "volume"
+
+# backlight
+mode "backlight" {
+
+        bindsym plus exec /usr/bin/xbacklight -inc 10
+        bindsym minus exec /usr/bin/xbacklight -dec 10
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+b mode "backlight"
 
 exec --no-startup-id ~/.i3/autostart.sh
 
