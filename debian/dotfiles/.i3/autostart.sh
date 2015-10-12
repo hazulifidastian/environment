@@ -4,6 +4,8 @@
 gnome-settings-daemon &
 gnome-keyring-daemon
 
+feh --bg-fill /home/efha/Downloads/themes/coastline-night-city-light-106352.jpg
+
 ## Merge Xresources
 xrdb -merge ~/.Xresources &
 

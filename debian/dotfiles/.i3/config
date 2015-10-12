@@ -232,7 +232,7 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
 # start a terminal
-bindsym $mod+Return exec xterm
+bindsym $mod+Return exec x-terminal-emulator
 
 
 # switch to workspace
