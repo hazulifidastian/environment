@@ -20,16 +20,16 @@ set $mainscreen eDP1
 set $secondscreen HDMI1
 
 # workspace names
-set $ws1 "1:CODE"
-set $ws2 "2:SHELL"
-set $ws3 "3:DATABASE"
-set $ws4 "4:FILES"
-set $ws5 "5:VM"
+set $ws0 "0:CODE"
+set $ws1 "1:SHELL"
+set $ws2 "2:DATABASE"
+set $ws3 "3:FILES"
+set $ws4 "4:VM"
+set $ws5 "5:REMOTE"
 set $ws6 "6:WORLD"
-set $ws7 "7:REMOTE"
-set $ws8 "8:DESIGN"
-set $ws9 "9:PLAY"
-set $ws10 "10:TEMP"
+set $ws7 "7:DESIGN"
+set $ws8 "8:PLAY"
+set $ws9 "9:TEMP"
 
 
 # --------------------------------------------------- #
@@ -210,7 +210,7 @@ client.urgent                   #F26C4F #F26C4F  #FFFFFF
 bar {
         position bottom
         modifier $mod
-        #separator_symbol "."
+        separator_symbol "."
         status_command i3status -c ~/.i3/i3status.conf
         mode dock
 
@@ -236,6 +236,7 @@ bindsym $mod+Return exec x-terminal-emulator
 
 
 # switch to workspace
+bindsym $mod+0 workspace $ws0
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
@@ -245,9 +246,9 @@ bindsym $mod+6 workspace $ws6
 bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
-bindsym $mod+0 workspace $ws10
 
 # move focused window to workspace
+bindsym $mod+Shift+0 move window to workspace $ws0
 bindsym $mod+Shift+1 move window to workspace $ws1
 bindsym $mod+Shift+2 move window to workspace $ws2
 bindsym $mod+Shift+3 move window to workspace $ws3
@@ -257,11 +258,11 @@ bindsym $mod+Shift+6 move window to workspace $ws6
 bindsym $mod+Shift+7 move window to workspace $ws7
 bindsym $mod+Shift+8 move window to workspace $ws8
 bindsym $mod+Shift+9 move window to workspace $ws9
-bindsym $mod+Shift+0 move window to workspace $ws10
 
 # multi monitor render
 bindsym $mod+m exec "arandr"
 
+workspace $ws0 output $mainscreen
 workspace $ws1 output $mainscreen
 workspace $ws2 output $mainscreen
 workspace $ws3 output $mainscreen
@@ -271,24 +272,25 @@ workspace $ws6 output $secondscreen
 workspace $ws7 output $secondscreen
 workspace $ws8 output $secondscreen
 workspace $ws9 output $secondscreen
-workspace $ws10 output $secondscreen
 
 # volume
-mode "volume" {
+set $volume Volume (+) up, (-) down, (m) toggle mute
+mode "$volume" {
 
         bindsym plus exec /usr/bin/pactl set-sink-volume @DEFAULT_SINK@ -- +5%; exec /usr/bin/killall -USR1 i3status
         bindsym minus exec /usr/bin/pactl set-sink-volume @DEFAULT_SINK@ -- -5%; exec /usr/bin/killall -USR1 i3status
-        bindsym v exec pactl set-sink-mute @DEFAULT_SINK@ toggle; exec /usr/bin/killall -USR1 i3status
+        bindsym m exec pactl set-sink-mute @DEFAULT_SINK@ toggle; exec /usr/bin/killall -USR1 i3status
         
         # back to normal: Enter or Escape
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
 
-bindsym $mod+v mode "volume"
+bindsym $mod+v mode "$volume"
 
 # backlight
-mode "backlight" {
+set $backlight Screen backlight (+) light, (-) dark
+mode "$backlight" {
 
         bindsym plus exec /usr/bin/xbacklight -inc 10
         bindsym minus exec /usr/bin/xbacklight -dec 10
@@ -298,7 +300,24 @@ mode "backlight" {
         bindsym Escape mode "default"
 }
 
-bindsym $mod+b mode "backlight"
+bindsym $mod+b mode "$backlight"
+
+#exit
+set $exit System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (p) poweroff
+mode "$exit" {
+        bindsym l exec --no-startup-id i3lock, mode "default"
+        bindsym e exec --no-startup-id i3-msg exit, mode "default"
+        bindsym s exec --no-startup-id gksudo pm-suspend, mode "default"
+        bindsym h exec --no-startup-id gksudo pm-hibernate, mode "default"
+        bindsym r exec --no-startup-id gksudo reboot, mode "default"
+        bindsym p exec --no-startup-id gksudo poweroff, mode "default"
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+Escape mode "$exit"
 
 exec --no-startup-id ~/.i3/autostart.sh
 
@@ -310,6 +329,8 @@ exec --no-startup-id /usr/bin/setxkbmap -layout us -variant dvp
 bindsym $mod+Shift+A exec --no-startup-id /usr/bin/setxkbmap -layout us -variant dvp
 
 bindsym $mod+r exec pcmanfm --no-desktop
+
+exec --no-startup-id i3-msg "workspace $ws1"
 
 # --------------------------------------------------- #
 
