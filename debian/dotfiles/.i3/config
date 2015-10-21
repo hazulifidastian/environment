@@ -182,25 +182,25 @@ bindsym $mod+p mode "resize"
 
 font pango:Roboto 9
 
-# class                         border  backgr  text
+# class                          border  backgr  text    indicator
 
 ##blue
-client.focused                  #2980B9 #2980B9 #ECEEEF
+#client.focused                  #2980B9 #2980B9 #ECEEEF #F26C4F
 
 ##new blue
-#client.focused                  #48B4FB #48B4FB #FFFFFF
+client.focused                  #48B4FB #48B4FB #FFFFFF #F26C4F
 
 ##purple
-#client.focused                  #8E44AD #8E44AD #ECEEEF
+#client.focused                  #8E44AD #8E44AD #ECEEEF #F26C4F
 
 ##orange
-#client.focused                  #D35400 #D35400 #ECEEEF
+#client.focused                  #D35400 #D35400 #ECEEEF #F26C4F
 
 ##red
-#client.focused                  #C0392B #C0392B #ECEEEF
+#client.focused                  #C0392B #C0392B #ECEEEF #F26C4F
 
 ##green
-#client.focused                  #27AE60 #27AE60 #ECEEEF
+#client.focused                  #27AE60 #27AE60 #ECEEEF #F26C4F
 
 client.unfocused                #E9E9E9 #E9E9E9  #666666
 client.focused_inactive         #DBF1FF #DBF1FF  #666666
@@ -268,10 +268,10 @@ workspace $ws2 output $mainscreen
 workspace $ws3 output $mainscreen
 workspace $ws4 output $mainscreen
 workspace $ws5 output $mainscreen
-workspace $ws6 output $secondscreen
-workspace $ws7 output $secondscreen
-workspace $ws8 output $secondscreen
-workspace $ws9 output $secondscreen
+workspace $ws6 output $mainscreen
+workspace $ws7 output $mainscreen
+workspace $ws8 output $mainscreen
+workspace $ws9 output $mainscreen
 
 # volume
 set $volume Volume (+) up, (-) down, (m) toggle mute
