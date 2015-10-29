@@ -76,7 +76,8 @@
 * tab to space 8
 * 1tbs indentation style
 * Editor Config (http://editorconfig.org/)
-* ```
+
+```
 # editorconfig.org
 root = true
 
