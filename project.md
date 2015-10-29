@@ -75,3 +75,27 @@
 
 * tab to space 8
 * 1tbs indentation style
+* Editor Config (http://editorconfig.org/)
+
+```
+# editorconfig.org
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_style = tab
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.{php,js}]
+indent_style = space
+indent_size = 8
+
+
+[*.{css,html}]
+indent_size = 8
+
+[*.md]
+trim_trailing_whitespace = false
+```
