@@ -20,6 +20,7 @@
       * dev.sh
     * data
       * volumes
+      * extra (link to dev/build/extra)
   * production folder
     * apps
       * app
@@ -37,6 +38,7 @@
       * pro.sh
     * data
       * volumes
+      * * extra (link to pro/build/extra)
       * BACKUP
 
 ## Git
