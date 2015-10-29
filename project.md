@@ -41,6 +41,12 @@
       * extra (link to pro/build/extra)
       * BACKUP
 
+## Vagrant
+
+* company.project[.ver].vagrant
+  * company.project[.ver]
+  * ...
+
 ## Git
 
 * company.project[.ver].app
