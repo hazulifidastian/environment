@@ -8,35 +8,36 @@
       * app
       * app.2
       * app.3
-    * build
-      * app
-      * mysql
-      * debian
-      * script
-    * Dockerfile
-    * docker-compose.yml
+    * dev
+      * build
+        * app
+        * mysql
+        * debian
+        * script
+        * extra
+      * Dockerfile
+      * docker-compose.yml
+      * dev.sh
     * data
-      * import
-      * database-data
-    * development.sh
+      * volumes
   * production folder
     * apps
       * app
       * app.2
       * app.3
-    * build
-      * app
-      * mysql
-      * debian
-      * script
-    * Dockerfile
-    * docker-compose.yml
+    * pro
+      * build
+        * app
+        * mysql
+        * debian
+        * script
+        * extra
+      * Dockerfile
+      * docker-compose.yml
+      * pro.sh
     * data
-      * import
-      * database-data
+      * volumes
       * BACKUP
-    * production.sh
-  * resources
 
 ## Git
 
@@ -50,8 +51,11 @@
 ```
 /resources
 /development/apps
+/development/data
+/development/dev/build/extra
 /production/apps
 /production/data
+/production/pro/build/extra
 ```
 
 ## Backup folder Copy / Git annex / Cloud
