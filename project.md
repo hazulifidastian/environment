@@ -38,7 +38,7 @@
       * pro.sh
     * data
       * volumes
-      * * extra (link to pro/build/extra)
+      * extra (link to pro/build/extra)
       * BACKUP
 
 ## Git
