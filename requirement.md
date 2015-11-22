@@ -6,9 +6,6 @@
 * Vagrant
 * Git
 * VirtualBox
-* Docker
-* Docker Compose
-* LXC
 * SSH client
 * Git Annex
 * Sublime Text
@@ -20,6 +17,9 @@
 ##Linux
 
 ###Application
+* Docker
+* Docker Compose
+* LXC
 * Vim
 * Ranger
 * Curl
@@ -36,7 +36,5 @@ update-alternatives --config editor
 ##Windows
 
 ###Application
-* Console
-* Bash
-
+* cygwin
 
