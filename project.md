@@ -1,7 +1,9 @@
 # Project
 
 ## Skeleton
-
+* resources
+  * company.project[.ver]
+  *
 * company.project[.ver]
   * development folder
     * apps
@@ -21,6 +23,8 @@
     * data
       * volumes
       * extra (link to dev/build/extra)
+    * vagrant
+      * Vagrantfile
   * production folder
     * apps
       * app
@@ -41,12 +45,6 @@
       * extra (link to pro/build/extra)
       * BACKUP
 
-## Vagrant
-
-* company.project[.ver].vagrant
-  * company.project[.ver]
-  * ...
-
 ## Git
 
 * company.project[.ver].app
@@ -65,11 +63,6 @@
 /production/data
 /production/pro/build/extra
 ```
-
-## Backup folder Copy / Git annex / Cloud
-
-* company.project[.ver].resources
-* company.project[.ver].data
 
 ## Editor Configurations
 
