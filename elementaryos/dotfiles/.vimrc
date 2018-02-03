@@ -6,7 +6,10 @@ if has('nvim')
     tnoremap <Esc> <C-\><C-n>
 endif
 
+set mouse=a
+
 set nocompatible
+set autoread
 syntax on
 filetype off
 
@@ -14,22 +17,44 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
-Bundle 'tpope/vim-endwise'
-Bundle 'tpope/vim-git'
-Bundle 'tpope/vim-surround'
-Plugin 'kien/ctrlp.vim'
-Plugin 'tomasr/molokai'
+Plugin 'ctrlpvim/ctrlp.vim'
+" Plugin 'kien/ctrlp.vim'
 Plugin 'yggdroot/indentline'
 Plugin 'majutsushi/tagbar'
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/nerdtree'
-Plugin 'itchyny/lightline.vim'
-Plugin 'scrooloose/syntastic'
-Plugin 'shougo/unite.vim'
-Plugin 'shougo/vimfiler.vim'
-Plugin 'shougo/vimshell.vim'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'airblade/vim-gitgutter'
+Plugin 'scrooloose/syntastic'
+" Plugin 'valloric/youcompleteme'
+Plugin 'pangloss/vim-javascript'
+"Plugin 'terryma/vim-multiple-cursors'
+Plugin 'othree/html5.vim'
+Plugin 'stanangeloff/php.vim'
+Plugin 'matchit.zip'
+Plugin 'mattn/emmet-vim'
+Plugin 'mxw/vim-jsx'
+Plugin 'fatih/vim-go'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'drewtempelmeyer/palenight.vim'
+Plugin 'brooth/far.vim'
+Plugin 'Shougo/denite.nvim'
+" Plugin 'bagrat/vim-workspace'
+" Plugin 'ryanoasis/vim-devicons'
+
+if has('nvim')
+  Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plugin 'Shougo/deoplete.nvim'
+  Plugin 'roxma/nvim-yarp'
+  Plugin 'roxma/vim-hug-neovim-rpc'
+endif
+
+Plugin 'zchee/deoplete-go', { 'do': 'make'}
+Plugin 'mhartington/nvim-typescript'
+Plugin 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 
 filetype plugin indent on
 set ignorecase
@@ -38,6 +63,7 @@ set number
 set encoding=utf-8
 scriptencoding utf-8
 set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
+set breakindent
 
 set laststatus=2
 set noshowmode
@@ -45,158 +71,169 @@ set noshowmode
 "Indent line
 let g:indentLine_color_term = 239
 
-"Light line
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ], ['ctrlpmark'] ],
-      \   'right': [ [ 'syntastic', 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
-      \ },
-      \ 'component_function': {
-      \   'fugitive': 'LightLineFugitive',
-      \   'filename': 'LightLineFilename',
-      \   'fileformat': 'LightLineFileformat',
-      \   'filetype': 'LightLineFiletype',
-      \   'fileencoding': 'LightLineFileencoding',
-      \   'mode': 'LightLineMode',
-      \   'ctrlpmark': 'CtrlPMark',
-      \ },
-      \ 'component_expand': {
-      \   'syntastic': 'SyntasticStatuslineFlag',
-      \ },
-      \ 'component_type': {
-      \   'syntastic': 'error',
-      \ },
-      \ 'subseparator': { 'left': '|', 'right': '|' }
-      \ }
+" Airline config
+let g:airline_theme='jellybeans'
 
-function! LightLineModified()
-  return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
-endfunction
+if has("gui_running")
+    let g:airline_theme='jellybeans'
+endif
 
-function! LightLineReadonly()
-  return &ft !~? 'help' && &readonly ? 'RO' : ''
-endfunction
+let g:airline_powerline_fonts = 1
 
-function! LightLineFilename()
-  let fname = expand('%:t')
-  return fname == 'ControlP' && has_key(g:lightline, 'ctrlp_item') ? g:lightline.ctrlp_item :
-        \ fname == '__Tagbar__' ? g:lightline.fname :
-        \ fname =~ '__Gundo\|NERD_tree' ? '' :
-        \ &ft == 'vimfiler' ? vimfiler#get_status_string() :
-        \ &ft == 'unite' ? unite#get_status_string() :
-        \ &ft == 'vimshell' ? vimshell#get_status_string() :
-        \ ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
-        \ ('' != fname ? fname : '[No Name]') .
-        \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
-endfunction
+"Backslash separator
+let g:airline_left_sep = "\uE0B8"
+let g:airline_right_sep = "\uE0BE"
+let g:airline_left_alt_sep = "\uE0B9"
+let g:airline_right_alt_sep = "\uE0BF"
 
-function! LightLineFugitive()
-  try
-    if expand('%:t') !~? 'Tagbar\|Gundo\|NERD' && &ft !~? 'vimfiler' && exists('*fugitive#head')
-      let mark = ''  " edit here for cool mark
-      let branch = fugitive#head()
-      return branch !=# '' ? mark.branch : ''
-    endif
-  catch
-  endtry
-  return ''
-endfunction
+"Fire separator
+" let g:airline_left_sep = "\uE0C0"
+" let g:airline_right_sep = "\uE0C2"
+" let g:airline_left_alt_sep = "\uE0C1"
+" let g:airline_right_alt_sep = "\uE0C3"
 
-function! LightLineFileformat()
-  return winwidth(0) > 70 ? &fileformat : ''
-endfunction
+"Rounded separator
+" let g:airline_left_sep = "\uE0B4"
+" let g:airline_right_sep = "\uE0B6"
+" let g:airline_left_alt_sep = "\uE0B5"
+" let g:airline_right_alt_sep = "\uE0B7"
 
-function! LightLineFiletype()
-  return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
-endfunction
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_buffers = 0
+let g:airline#extensions#tabline#tab_min_count = 2
 
-function! LightLineFileencoding()
-  return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
-endfunction
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = ''
+let g:airline#extensions#tabline#right_sep = ' '
+let g:airline#extensions#tabline#right_alt_sep = ''
 
-function! LightLineMode()
-  let fname = expand('%:t')
-  return fname == '__Tagbar__' ? 'Tagbar' :
-        \ fname == 'ControlP' ? 'CtrlP' :
-        \ fname == '__Gundo__' ? 'Gundo' :
-        \ fname == '__Gundo_Preview__' ? 'Gundo Preview' :
-        \ fname =~ 'NERD_tree' ? 'NERDTree' :
-        \ &ft == 'unite' ? 'Unite' :
-        \ &ft == 'vimfiler' ? 'VimFiler' :
-        \ &ft == 'vimshell' ? 'VimShell' :
-        \ winwidth(0) > 60 ? lightline#mode() : ''
-endfunction
-
-function! CtrlPMark()
-  if expand('%:t') =~ 'ControlP' && has_key(g:lightline, 'ctrlp_item')
-    call lightline#link('iR'[g:lightline.ctrlp_regex])
-    return lightline#concatenate([g:lightline.ctrlp_prev, g:lightline.ctrlp_item
-          \ , g:lightline.ctrlp_next], 0)
-  else
-    return ''
-  endif
-endfunction
-
-let g:ctrlp_status_func = {
-  \ 'main': 'CtrlPStatusFunc_1',
-  \ 'prog': 'CtrlPStatusFunc_2',
-  \ }
-
-function! CtrlPStatusFunc_1(focus, byfname, regex, prev, item, next, marked)
-  let g:lightline.ctrlp_regex = a:regex
-  let g:lightline.ctrlp_prev = a:prev
-  let g:lightline.ctrlp_item = a:item
-  let g:lightline.ctrlp_next = a:next
-  return lightline#statusline(0)
-endfunction
-
-function! CtrlPStatusFunc_2(str)
-  return lightline#statusline(0)
-endfunction
-
-let g:tagbar_status_func = 'TagbarStatusFunc'
-
-function! TagbarStatusFunc(current, sort, fname, ...) abort
-    let g:lightline.fname = a:fname
-  return lightline#statusline(0)
-endfunction
-
-augroup AutoSyntastic
-  autocmd!
-  autocmd BufWritePost *.c,*.cpp call s:syntastic()
-augroup END
-function! s:syntastic()
-  SyntasticCheck
-  call lightline#update()
-endfunction
-
-let g:unite_force_overwrite_statusline = 0
-let g:vimfiler_force_overwrite_statusline = 0
-let g:vimshell_force_overwrite_statusline = 0
+"Workspace
+let g:workspace_powerline_separators = 1
 
 "Syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
+let g:syntastic_mode_map = {
+  \ "mode": "passive",
+  \ "active_filetypes": [],
+  \ "passive_filetypes": [] }
+
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute " ,"trimming empty <", "unescaped &" , "lacks \"action", "is not recognized!", "discarding unexpected"]
+" let g:syntastic_html_tidy_quiet_messages = { "level" : "warnings" }
+" let syntastic_mode_map = { 'passive_filetypes': ['html'] }
+
+"NerdTree
+let g:netrw_liststyle=0         " thin (change to 3 for tree)
+let g:netrw_banner=0            " no banner
+let g:netrw_altv=1              " open files on right
+let g:netrw_preview=1           " open previews vertically<Paste>
+
+"NerdCommenter
+let g:NERDSpaceDelims = 1
+let g:NERDCompactSexyComs = 1
+
+"Emmet
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
+let g:user_emmet_leader_key='<C-Y>'
+
+"Deoplet
+let g:deoplete#enable_at_startup = 1
+
 "Keymap
 nmap <F8> :TagbarToggle<CR>
 map <C-n> :NERDTreeToggle<CR>
 
+"Folding
+set foldmethod=indent
+set foldnestmax=10
+set nofoldenable        "dont fold by default
+set foldlevel=1
+
+"Vim-jsx
+let g:jsx_ext_required = 0
+
+let g:one_allow_italics = 1
+
+"vim-go
+" format with goimports instead of gofmt
+let g:go_fmt_command = "goimports"
+
 "Look&Feel
 "set gfn=M+2m:h10:cANSI
+set fillchars=""
 if has('nvim')
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 end
 set t_Co=256
-colorscheme molokai
-let g:molokai_original = 1
-let g:rehash256 = 1
-set background=dark
 
+"palenight themes
+set background=dark
+colorscheme palenight
+let g:palenight_terminal_italics=1
+
+"set gui
+"hide toolbar, right, left, bottom scrollbar
+set go=m
+set go-=r
+set go-=l
+set go-=b
+
+"let g:molokai_original = 1
+"let g:rehash256 = 1
+"colorscheme solarized
+"let g:solarized_termcolors=256
+
+let g:fnt_types = ['FuraCode\ Nerd\ Font\ Mono']
+let g:fnt_sizes = [ 15 ]
+
+
+let g:fnt_index = 0
+let g:fnt_size  = g:fnt_sizes[g:fnt_index]
+
+function! CycleFont()
+  let g:fnt_index = (g:fnt_index + 1) % len(g:fnt_types)
+  let g:fnt_size  = g:fnt_sizes[g:fnt_index]
+  call ResetFont()
+endfunction
+
+function! ResetFont ()
+  if has('gui_running')
+    exe ':set guifont=' . g:fnt_types[g:fnt_index] . '\ ' . string(g:fnt_size)
+  endif
+endfunction
+
+call ResetFont()
+
+function! FontSizePlus ()
+  let g:fnt_size = g:fnt_size + 0.5
+  call ResetFont()
+endfunction
+
+function! FontSizeMinus ()
+  let g:fnt_size = g:fnt_size - 0.5
+  call ResetFont()
+endfunction
+
+nnoremap <leader>+ :call FontSizePlus()<cr>
+nnoremap <leader>- :call FontSizeMinus()<cr>
+nnoremap cot :call CycleFont()<cr>
+
+" Transparent background
+" hi Normal guibg=NONE ctermbg=NONE
+" hi Normal ctermbg=NONE
+
+if has("gui_running")
+    set lines=29 columns=120
+endif
+
+"Change cursor
+autocmd InsertEnter * set cul
+autocmd InsertLeave * set nocul
