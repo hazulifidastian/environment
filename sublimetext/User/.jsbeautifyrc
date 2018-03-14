@@ -1,0 +1,8 @@
+{
+    "indent_size": 2,
+    "*.sublime-@(settings|keymap|commands|menu)":
+    {
+        "indent_size": 2,
+        "brace_style": "expand"
+    }
+}

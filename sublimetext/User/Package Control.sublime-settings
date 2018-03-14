@@ -1,0 +1,48 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"A File Icon",
+		"Agila Theme",
+		"ayu",
+		"Babel",
+		"Babel Snippets",
+		"Case Conversion",
+		"Clipboard Manager",
+		"Color Highlighter",
+		"DocBlockr",
+		"EasyDiff",
+		"EditorConfig",
+		"Emmet",
+		"Function Name Display",
+		"GitGutter",
+		"GoSublime",
+		"HTML-CSS-JS Prettify",
+		"Laravel Blade Highlighter",
+		"LESS",
+		"Material Theme",
+		"Material Theme - Appbar",
+		"Package Control",
+		"PHP Companion",
+		"Phpcs",
+		"Random Everything",
+		"React Templates",
+		"Requester",
+		"Sass",
+		"ScopeHunter",
+		"Six",
+		"SublimeCodeIntel",
+		"SublimeLinter",
+		"SublimeLinter-eslint",
+		"SublimeLinter-flow",
+		"SublimeLinter-php",
+		"SublimeLinter-pylint",
+		"Terminal",
+		"Theme - Spacegray",
+		"TypeScript",
+		"W3CValidators"
+	]
+}

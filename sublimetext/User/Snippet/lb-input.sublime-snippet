@@ -1,0 +1,15 @@
+<snippet>
+	<content><![CDATA[
+<label for="${1:id}">${2:label}</label>
+  <input type="text" class="form-control {{ \$errors->has('${3:name}') ? ' is-invalid' : '' }}" id="${1:id}" name="${3:name}" placeholder="" value="{{ \$${4:model}->${3:name} or old('${3:name}') }}" >
+  @if (\$errors->has('${3:name}'))
+      <span class="invalid-feedback">
+          <strong>{{ \$errors->first('${3:name}') }}</strong>
+      </span>
+  @endif
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<!-- <tabTrigger>hello</tabTrigger> -->
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

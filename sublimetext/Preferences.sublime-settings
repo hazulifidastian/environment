@@ -1,0 +1,50 @@
+{
+	"always_show_minimap_viewport": true,
+	"bold_folder_labels": true,
+	"caret_style": "blink",
+	"color_scheme": "Packages/ayu/ayu-mirage.tmTheme",
+	"default_enconding": "UTF-8",
+	"default_line_ending": "unix",
+	"draw_white_space": "selection",
+	"fade_fold_buttons": false,
+	"folder_exclude_patterns":
+	[
+		"node_modules",
+		".git"
+	],
+	"font_face": "M+ 1mn",
+	"font_size": 18,
+	"highlight_line": true,
+	"ignored_packages":
+	[
+		"GoSublime",
+		"SublimeCodeIntel",
+		"Vintage"
+	],
+	"indent_guide_options":
+	[
+		"draw_normal",
+		"draw_active"
+	],
+	"line_padding_bottom": 3,
+	"line_padding_top": 3,
+	"material_theme_arrow_folders": true,
+	"material_theme_bullet_tree_indicator": true,
+	"material_theme_disable_fileicons": true,
+	"material_theme_small_statusbar": true,
+	"material_theme_small_tab": true,
+	"material_theme_tree_headings": true,
+	"overlay_scroll_bars": "enabled",
+	"rulers":
+	[
+		80,
+		120
+	],
+	"tab_size": 4,
+	"theme": "ayu-mirage.sublime-theme",
+	"theme_sidebar_file_icons_hidden": true,
+	"theme_sidebar_folder_arrow": true,
+	"theme_sidebar_size_md": true,
+	"wide_caret": true,
+	"word_wrap": "always"
+}

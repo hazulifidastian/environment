@@ -1,0 +1,4 @@
+{
+	"terminal": "io.elementary.terminal",
+	"parameters": ["-w", "open_terminal"]
+}

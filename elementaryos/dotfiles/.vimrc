@@ -41,6 +41,10 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'drewtempelmeyer/palenight.vim'
 Plugin 'brooth/far.vim'
 Plugin 'Shougo/denite.nvim'
+Plugin 'mileszs/ack.vim'
+Plugin 'jwalton512/vim-blade'
+Plugin 'tpope/vim-repeat'
+" Plugin 'svermeulen/vim-easyclip'
 " Plugin 'bagrat/vim-workspace'
 " Plugin 'ryanoasis/vim-devicons'
 
@@ -117,7 +121,7 @@ set statusline+=%*
 
 let g:syntastic_mode_map = {
   \ "mode": "passive",
-  \ "active_filetypes": [],
+  \ "active_filetypes": ["php"],
   \ "passive_filetypes": [] }
 
 let g:syntastic_always_populate_loc_list = 1
@@ -133,15 +137,21 @@ let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute " ,"trimming em
 let g:netrw_liststyle=0         " thin (change to 3 for tree)
 let g:netrw_banner=0            " no banner
 let g:netrw_altv=1              " open files on right
-let g:netrw_preview=1           " open previews vertically<Paste>
+let g:netrw_preview=1           " open previews vertically
+let g:NERDTreeIgnore=['\~$', 'vendor', 'node_modules', '.git']
 
 "NerdCommenter
 let g:NERDSpaceDelims = 1
 let g:NERDCompactSexyComs = 1
 
+" CTRL-P
+" Excluding version control directories
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/vendor/*,*/node_modules/*
+
+
 "Emmet
-let g:user_emmet_install_global = 0
-autocmd FileType html,css EmmetInstall
+" let g:user_emmet_install_global = 0
+" autocmd FileType html,css EmmetInstall
 let g:user_emmet_leader_key='<C-Y>'
 
 "Deoplet
@@ -192,7 +202,7 @@ set go-=b
 "let g:solarized_termcolors=256
 
 let g:fnt_types = ['FuraCode\ Nerd\ Font\ Mono']
-let g:fnt_sizes = [ 15 ]
+let g:fnt_sizes = [ 14 ]
 
 
 let g:fnt_index = 0
@@ -226,14 +236,51 @@ nnoremap <leader>+ :call FontSizePlus()<cr>
 nnoremap <leader>- :call FontSizeMinus()<cr>
 nnoremap cot :call CycleFont()<cr>
 
+" Save shortcut
+nnoremap <C-s> :update<CR>
+inoremap <C-s> <Esc>:update<CR>l
+
+" Close shortcut
+nnoremap <C><Esc> :q<CR>
+inoremap <C><Esc> :q<CR>
+
+" Esc shortcut
+imap jj <Esc>
+
 " Transparent background
 " hi Normal guibg=NONE ctermbg=NONE
-" hi Normal ctermbg=NONE
+hi Normal ctermbg=NONE
 
 if has("gui_running")
     set lines=29 columns=120
 endif
 
 "Change cursor
-autocmd InsertEnter * set cul
-autocmd InsertLeave * set nocul
+set cul
+" autocmd InsertEnter * set cul
+" autocmd InsertLeave * set nocul
+"
+
+" Clipboard
+set clipboard=unnamed,unnamedplus
+
+" Ack use ag
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
+" Camelcase move
+" Use one of the following to define the camel characters.
+" Stop on capital letters.
+let g:camelchar = "A-Z"
+" Also stop on numbers.
+let g:camelchar = "A-Z0-9"
+" Include '.' for class member, ',' for separator, ';' end-statement,
+" and <[< bracket starts and "'` quotes.
+let g:camelchar = "A-Z0-9.,;:{([`'\""
+nnoremap <silent><C-Left> :<C-u>call search('\C\<\<Bar>\%(^\<Bar>[^'.g:camelchar.']\@<=\)['.g:camelchar.']\<Bar>['.g:camelchar.']\ze\%([^'.g:camelchar.']\&\>\@!\)\<Bar>\%^','bW')<CR>
+nnoremap <silent><C-Right> :<C-u>call search('\C\<\<Bar>\%(^\<Bar>[^'.g:camelchar.']\@<=\)['.g:camelchar.']\<Bar>['.g:camelchar.']\ze\%([^'.g:camelchar.']\&\>\@!\)\<Bar>\%$','W')<CR>
+inoremap <silent><C-Left> <C-o>:call search('\C\<\<Bar>\%(^\<Bar>[^'.g:camelchar.']\@<=\)['.g:camelchar.']\<Bar>['.g:camelchar.']\ze\%([^'.g:camelchar.']\&\>\@!\)\<Bar>\%^','bW')<CR>
+inoremap <silent><C-Right> <C-o>:call search('\C\<\<Bar>\%(^\<Bar>[^'.g:camelchar.']\@<=\)['.g:camelchar.']\<Bar>['.g:camelchar.']\ze\%([^'.g:camelchar.']\&\>\@!\)\<Bar>\%$','W')<CR>
+vnoremap <silent><C-Left> :<C-U>call search('\C\<\<Bar>\%(^\<Bar>[^'.g:camelchar.']\@<=\)['.g:camelchar.']\<Bar>['.g:camelchar.']\ze\%([^'.g:camelchar.']\&\>\@!\)\<Bar>\%^','bW')<CR>v`>o
+vnoremap <silent><C-Right> <Esc>`>:<C-U>call search('\C\<\<Bar>\%(^\<Bar>[^'.g:camelchar.']\@<=\)['.g:camelchar.']\<Bar>['.g:camelchar.']\ze\%([^'.g:camelchar.']\&\>\@!\)\<Bar>\%$','W')<CR>v`<o
