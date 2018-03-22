@@ -13,12 +13,15 @@
 		".git"
 	],
 	"font_face": "M+ 1mn",
-	"font_size": 18,
+	"font_size": 19,
 	"highlight_line": true,
 	"ignored_packages":
 	[
 		"GoSublime",
+		"Phpcs",
 		"SublimeCodeIntel",
+		"SublimeLinter-phpcs",
+		"SublimeLinter-phpmd",
 		"Vintage"
 	],
 	"indent_guide_options":
