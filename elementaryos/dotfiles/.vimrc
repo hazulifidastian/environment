@@ -16,38 +16,15 @@ filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-Bundle 'gmarik/vundle'
-Plugin 'ctrlpvim/ctrlp.vim'
-" Plugin 'kien/ctrlp.vim'
-Plugin 'yggdroot/indentline'
-Plugin 'majutsushi/tagbar'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/syntastic'
-" Plugin 'valloric/youcompleteme'
-Plugin 'pangloss/vim-javascript'
-"Plugin 'terryma/vim-multiple-cursors'
-Plugin 'othree/html5.vim'
-Plugin 'stanangeloff/php.vim'
-Plugin 'matchit.zip'
-Plugin 'mattn/emmet-vim'
-Plugin 'mxw/vim-jsx'
-Plugin 'fatih/vim-go'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'drewtempelmeyer/palenight.vim'
-Plugin 'brooth/far.vim'
-Plugin 'Shougo/denite.nvim'
-Plugin 'mileszs/ack.vim'
-Plugin 'jwalton512/vim-blade'
-Plugin 'tpope/vim-repeat'
-" Plugin 'svermeulen/vim-easyclip'
-" Plugin 'bagrat/vim-workspace'
-" Plugin 'ryanoasis/vim-devicons'
+" themes
+Plugin 'ayu-theme/ayu-vim'
 
+Plugin 'brooth/far.vim'
+
+" ctrl-p find anyfile
+Plugin 'ctrlpvim/ctrlp.vim'
+
+" deoplete
 if has('nvim')
   Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
@@ -59,6 +36,57 @@ endif
 Plugin 'zchee/deoplete-go', { 'do': 'make'}
 Plugin 'mhartington/nvim-typescript'
 Plugin 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+" deoplete end
+
+" themes
+Plugin 'drewtempelmeyer/palenight.vim'
+
+" editor config
+Plugin 'editorconfig/editorconfig-vim'
+
+" go programming functionality
+Plugin 'fatih/vim-go'
+
+Bundle 'gmarik/vundle'
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
+Plugin 'jwalton512/vim-blade'
+" Plugin 'kien/ctrlp.vim'
+Plugin 'ludovicchabant/vim-gutentags'
+Plugin 'majutsushi/tagbar'
+Plugin 'matchit.zip'
+Plugin 'mattn/emmet-vim'
+Plugin 'mileszs/ack.vim'
+Plugin 'mxw/vim-jsx'
+Plugin 'othree/html5.vim'
+Plugin 'pangloss/vim-javascript'
+" Plugin 'ryanoasis/vim-devicons'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+Plugin 'Shougo/denite.nvim'
+Plugin 'stanangeloff/php.vim'
+" Plugin 'svermeulen/vim-easyclip'
+"Plugin 'terryma/vim-multiple-cursors'
+
+" extend search and subtitute using Subvert
+Plugin 'tpope/vim-abolish'
+
+Plugin 'tpope/vim-fugitive'
+
+" repeat anything supported plugin using . (dot)
+Plugin 'tpope/vim-repeat'
+
+Plugin 'tpope/vim-surround'
+
+" move line
+Plugin 'tpope/vim-unimpaired'
+
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+" Plugin 'valloric/youcompleteme'
+Plugin 'yggdroot/indentline'
+
 
 filetype plugin indent on
 set ignorecase
@@ -191,6 +219,10 @@ set background=dark
 colorscheme palenight
 let g:palenight_terminal_italics=1
 
+" Ayu theme light
+" let ayucolor="light"
+" colorscheme ayu
+
 "set gui
 "hide toolbar, right, left, bottom scrollbar
 set go=m
@@ -249,6 +281,15 @@ inoremap <C><Esc> :q<CR>
 " Esc shortcut
 imap jj <Esc>
 
+" Move text shortcut
+" this using tpop/unimpaired
+" just move one line on normal mode
+nmap <C-S-Up> [e
+nmap <C-S-Down> ]e
+" visual mode, when selected
+vmap <C-S-Up> [egv
+vmap <C-S-Down> ]egv
+
 " Transparent background
 " hi Normal guibg=NONE ctermbg=NONE
 hi Normal ctermbg=NONE
@@ -258,7 +299,7 @@ if has("gui_running")
 endif
 
 "Change cursor
-set cul
+" set cul
 " autocmd InsertEnter * set cul
 " autocmd InsertLeave * set nocul
 "
@@ -286,3 +327,10 @@ inoremap <silent><C-Left> <C-o>:call search('\C\<\<Bar>\%(^\<Bar>[^'.g:camelchar
 inoremap <silent><C-Right> <C-o>:call search('\C\<\<Bar>\%(^\<Bar>[^'.g:camelchar.']\@<=\)['.g:camelchar.']\<Bar>['.g:camelchar.']\ze\%([^'.g:camelchar.']\&\>\@!\)\<Bar>\%$','W')<CR>
 vnoremap <silent><C-Left> :<C-U>call search('\C\<\<Bar>\%(^\<Bar>[^'.g:camelchar.']\@<=\)['.g:camelchar.']\<Bar>['.g:camelchar.']\ze\%([^'.g:camelchar.']\&\>\@!\)\<Bar>\%^','bW')<CR>v`>o
 vnoremap <silent><C-Right> <Esc>`>:<C-U>call search('\C\<\<Bar>\%(^\<Bar>[^'.g:camelchar.']\@<=\)['.g:camelchar.']\<Bar>['.g:camelchar.']\ze\%([^'.g:camelchar.']\&\>\@!\)\<Bar>\%$','W')<CR>v`<o
+
+"vim-gutentags
+let g:gutentags_ctags_exclude = ['*.css', '*.html', '*.js', '*.json', '*.xml',
+\ '*.phar', '*.ini', '*.rst', '*.md','*/vendor/*',
+\ '*vendor/*/test*', '*vendor/*/Test*',
+\ '*vendor/*/fixture*', '*vendor/*/Fixture*',
+\ '*var/cache*', '*var/log*']

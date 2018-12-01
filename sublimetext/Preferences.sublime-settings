@@ -12,16 +12,17 @@
 		"node_modules",
 		".git"
 	],
-	"font_face": "M+ 1mn",
-	"font_size": 19,
+	"font_face": "Fira Code",
+	"font_size": 14,
 	"highlight_line": true,
 	"ignored_packages":
 	[
 		"GoSublime",
+		"HTML5",
 		"Phpcs",
-		"SublimeCodeIntel",
 		"SublimeLinter-phpcs",
 		"SublimeLinter-phpmd",
+		"SyncedSideBar",
 		"Vintage"
 	],
 	"indent_guide_options":

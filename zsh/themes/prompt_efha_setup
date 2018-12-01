@@ -72,8 +72,8 @@ function prompt_efha_setup {
 
   # Define prompts.
   PROMPT="
-%B%F{green}%~%f%b "'${vcs_info_msg_0_}'" ⌚ %B%F{blue}%T%b ""
-"'$python_info[virtualenv]'"$ "
+%B%F{green}%~%f%b "'${vcs_info_msg_0_}'" ☀  %B%F{blue}%T%b ""
+"'$python_info[virtualenv]'"⇢  "
   RPROMPT=''
 }
 

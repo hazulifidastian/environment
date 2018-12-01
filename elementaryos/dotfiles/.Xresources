@@ -1,0 +1,4 @@
+XTerm*faceName: mplus Nerd font Mono
+XTerm*faceSize: 15
+xterm*locale: true
+xterm*utf8: 1
