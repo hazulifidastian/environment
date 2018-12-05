@@ -16,9 +16,6 @@ filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" themes
-Plugin 'ayu-theme/ayu-vim'
-
 Plugin 'brooth/far.vim'
 
 " ctrl-p find anyfile
@@ -38,34 +35,36 @@ Plugin 'mhartington/nvim-typescript'
 Plugin 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 " deoplete end
 
-" themes
-Plugin 'drewtempelmeyer/palenight.vim'
-
 " editor config
 Plugin 'editorconfig/editorconfig-vim'
+Plugin 'ervandew/supertab'
 
 " go programming functionality
 Plugin 'fatih/vim-go'
 
 Bundle 'gmarik/vundle'
+Plugin 'honza/vim-snippets'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'joshdick/onedark.vim'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'jwalton512/vim-blade'
-" Plugin 'kien/ctrlp.vim'
 Plugin 'ludovicchabant/vim-gutentags'
 Plugin 'majutsushi/tagbar'
 Plugin 'matchit.zip'
-Plugin 'mattn/emmet-vim'
 Plugin 'mileszs/ack.vim'
+Plugin 'morhetz/gruvbox'
+Plugin 'moll/vim-bbye'
+Plugin 'mattn/emmet-vim'
 Plugin 'mxw/vim-jsx'
 Plugin 'othree/html5.vim'
 Plugin 'pangloss/vim-javascript'
+
 " Plugin 'ryanoasis/vim-devicons'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
+" Plugin 'scrooloose/syntastic'
 Plugin 'Shougo/denite.nvim'
-Plugin 'stanangeloff/php.vim'
 " Plugin 'svermeulen/vim-easyclip'
 "Plugin 'terryma/vim-multiple-cursors'
 
@@ -87,6 +86,30 @@ Plugin 'vim-airline/vim-airline-themes'
 " Plugin 'valloric/youcompleteme'
 Plugin 'yggdroot/indentline'
 
+" php
+Plugin 'joonty/vdebug'
+Plugin 'StanAngeloff/php.vim', {'for': 'php'}
+Plugin 'stephpy/vim-php-cs-fixer', {'for': 'php'}
+Plugin 'nishigori/vim-php-dictionary', {'for': 'php'}
+
+" php refactoring options
+Plugin 'adoy/vim-php-refactoring-toolbox', {'for': 'php'}
+Plugin 'phpactor/phpactor', {'for': 'php', 'do': 'composer install'}
+Plugin '2072/php-indenting-for-vim', {'for': 'php'}
+
+" php doc autocompletion
+Plugin 'tobyS/vmustache' | Plugin 'tobyS/pdv', {'for': 'php'}
+
+" autocompletion
+" Plugin 'ncm2/ncm2'
+" Plugin 'ncm2/ncm2-ultisnips'
+" Plugin 'phpactor/ncm2-phpactor'
+" Plugin 'prabirshrestha/async.vim'
+" Plugin 'prabirshrestha/vim-lsp'
+" Plugin 'ncm2/ncm2-vim-lsp'
+
+" general quality tools 
+Plugin 'neomake/neomake'
 
 filetype plugin indent on
 set ignorecase
@@ -103,44 +126,66 @@ set noshowmode
 "Indent line
 let g:indentLine_color_term = 239
 
-" Airline config
-let g:airline_theme='jellybeans'
+"palenight themes
+" set background=dark
+" colorscheme palenight
+" let g:palenight_terminal_italics=1
 
 if has("gui_running")
-    let g:airline_theme='jellybeans'
+    "gruvbox themes
+    set background=dark
+    let g:gruvbox_italic=1
+    let g:gruvbox_contrast_dark="medium"
+    colorscheme gruvbox
+else
+    "onedark themes
+    set background=dark
+    colorscheme onedark
 endif
 
-let g:airline_powerline_fonts = 1
 
-"Backslash separator
-let g:airline_left_sep = "\uE0B8"
-let g:airline_right_sep = "\uE0BE"
-let g:airline_left_alt_sep = "\uE0B9"
-let g:airline_right_alt_sep = "\uE0BF"
+" Airline config
+if has("gui_running")
+    let g:airline_theme='gruvbox'
+    let g:airline_powerline_fonts = 1
+    
+    "Arrow
+    let g:airline_left_sep = "\uE0B0"
+    let g:airline_right_sep = "\uE0B2"
+    let g:airline_left_alt_sep = "\uE0B1"
+    let g:airline_right_alt_sep = "\uE0B3"
+    
+    "Workspace
+    let g:workspace_powerline_separators = 1
+else
+    let g:airline_theme='onedark'
 
-"Fire separator
-" let g:airline_left_sep = "\uE0C0"
-" let g:airline_right_sep = "\uE0C2"
-" let g:airline_left_alt_sep = "\uE0C1"
-" let g:airline_right_alt_sep = "\uE0C3"
+    "enable tabline
+    let g:airline#extensions#tabline#enabled = 1
+    let g:ine#extensions#tabline#show_buffers = 0
+    let g:airline#extensions#tabline#tab_min_count = 1
+    let g:airline#extensions#tabline#show_splits = 0
+endif
 
-"Rounded separator
-" let g:airline_left_sep = "\uE0B4"
-" let g:airline_right_sep = "\uE0B6"
-" let g:airline_left_alt_sep = "\uE0B5"
-" let g:airline_right_alt_sep = "\uE0B7"
 
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_buffers = 0
-let g:airline#extensions#tabline#tab_min_count = 2
+"Arrow
+let g:airline_left_sep = "\uE0B0"
+let g:airline_right_sep = "\uE0B2"
+let g:airline_left_alt_sep = "\uE0B1"
+let g:airline_right_alt_sep = "\uE0B3"
 
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = ''
-let g:airline#extensions#tabline#right_sep = ' '
-let g:airline#extensions#tabline#right_alt_sep = ''
+let g:airline#extensions#branch#enabled = 0
+" let g:airline#extensions#branch#format = 1
+let g:airline_section_y = ''
+let g:airline_skip_empty_sections = 1
+let g:airline#extensions#whitespace#enabled = 0
 
-"Workspace
-let g:workspace_powerline_separators = 1
+"Arrow
+let g:airline#extensions#tabline#left_sep = "\uE0B0"
+let g:airline#extensions#tabline#right_sep = "\uE0B2"
+let g:airline#extensions#tabline#left_alt_sep = "\uE0B1"
+let g:airline#extensions#tabline#right_alt_sep = "\uE0B3"
+
 
 "Syntastic
 set statusline+=%#warningmsg#
@@ -164,11 +209,12 @@ let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute " ,"trimming em
 " let syntastic_mode_map = { 'passive_filetypes': ['html'] }
 
 "NerdTree
-let g:netrw_liststyle=0         " thin (change to 3 for tree)
+let g:netrw_liststyle=3         " thin (change to 3 for tree)
 let g:netrw_banner=0            " no banner
 let g:netrw_altv=1              " open files on right
 let g:netrw_preview=1           " open previews vertically
 let g:NERDTreeIgnore=['\~$', 'vendor', 'node_modules', '.git']
+let NERDTreeHijackNetrw=1
 
 "NerdCommenter
 let g:NERDSpaceDelims = 1
@@ -214,19 +260,13 @@ if has('nvim')
 end
 set t_Co=256
 
-"palenight themes
-set background=dark
-colorscheme palenight
-let g:palenight_terminal_italics=1
-
-" Ayu theme light
-" let ayucolor="light"
-" colorscheme ayu
 
 "set gui
 "hide toolbar, right, left, bottom scrollbar
-set go=m
+" set go-=m
+set go-=T
 set go-=r
+set go-=L
 set go-=l
 set go-=b
 
@@ -235,7 +275,7 @@ set go-=b
 "colorscheme solarized
 "let g:solarized_termcolors=256
 
-let g:fnt_types = ['FuraCode\ Nerd\ Font\ Mono']
+let g:fnt_types = ['mplus\ Nerd\ Font']
 let g:fnt_sizes = [ 14 ]
 
 
@@ -279,7 +319,7 @@ nnoremap <C><Esc> :q<CR>
 inoremap <C><Esc> :q<CR>
 
 " Esc shortcut
-imap jj <Esc>
+imap hh <Esc>
 
 " Move text shortcut
 " this using tpop/unimpaired
@@ -295,7 +335,7 @@ vmap <C-S-Down> ]egv
 hi Normal ctermbg=NONE
 
 if has("gui_running")
-    set lines=29 columns=120
+    set lines=47 columns=120
 endif
 
 "Change cursor
@@ -334,3 +374,29 @@ let g:gutentags_ctags_exclude = ['*.css', '*.html', '*.js', '*.json', '*.xml',
 \ '*vendor/*/test*', '*vendor/*/Test*',
 \ '*vendor/*/fixture*', '*vendor/*/Fixture*',
 \ '*var/cache*', '*var/log*']
+
+"confirm quit vim
+function! ConfirmQuit(writeFile)
+    if (a:writeFile)
+        if (expand('%:t')=="")
+            echo "Can't save a file with no name."
+            return
+        endif
+        :write
+    endif
+
+    if (winnr('$')==1 && tabpagenr('$')==1)
+        if (confirm("Do you really want to quit?", "&Yes\n&No", 2)==1)
+            :quit
+        endif
+    else
+        :quit
+    endif
+endfu
+
+cnoremap <silent> q<CR>  :call ConfirmQuit(0)<CR>
+cnoremap <silent> x<CR>  :call ConfirmQuit(1)<CR>
+"end confirm quit vim
+
+"remove version warning
+let g:go_version_warning = 0
