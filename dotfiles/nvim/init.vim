@@ -2,10 +2,11 @@
 " * Declare the general config group for autocommand
 " * Install plugins
 " * Plugin config
+" * General binding
+" * General config
 " Shortcut
 " Additional script
-" Themes
-" Plugin configurations
+
 
 " * Skip initialization for vim-tiny or vim-small
 " -----------------------------------------------
@@ -16,12 +17,14 @@ if &compatible
     set nocompatible
 endif
 
+
 " * Declare the general config group for autocommand
 " --------------------------------------------------
 
 augroup vimrc
   autocmd!
 augroup END
+
 
 " * Install plugins
 " -----------------
@@ -202,6 +205,7 @@ Plug 'joshdick/onedark.vim'
 
 call plug#end()
 
+
 " * Plugin config
 " ---------------
 
@@ -245,3 +249,209 @@ autocmd vimrc BufNewFile,BufRead *.twig set filetype=html.twig
 
 " Yaml
 autocmd vimrc BufNewFile,BufRead *.yml.dist set filetype=yaml.
+
+
+" * General binding
+" -----------------
+
+syntax on
+
+" Weird hack for NERDTree to work
+let mapleader = "\\"
+map <SPACE> <leader>
+
+" un-highlight when esc is pressed
+map <silent><esc> :noh<cr>
+
+" surround by quotes - frequently use cases of vim-surround
+map <leader>" ysiw"<cr>
+map <leader>' ysiw'<cr>
+
+" Act like D and C
+nnoremap Y y$
+
+" indent without kill the selection in vmode
+vmap < <gv
+vmap > >gv
+
+" remap the annoying u in visual mode
+vmap u y
+
+" shortcut to substitute current word under cursor
+nnoremap <leader>[ :%s/<c-r><c-w>//g<left><left>
+
+" Change in next bracket
+nmap cinb cib
+
+" Visual mode pressing * or # searches for the current selection
+" Super useful! From an idea by Michael Naumann
+vnoremap <silent> * :<C-u>call general#VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
+vnoremap <silent> # :<C-u>call general#VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
+
+" location & quickfix window
+nnoremap <silent> <leader>l :call general#ToggleList("Location List", 'l')<CR>
+nnoremap <silent> <leader>q :call general#ToggleList("Quickfix List", 'c')<CR>
+
+"Toggle between absolute -> relative line number
+nnoremap <C-n> :let [&nu, &rnu] = [&nu, &nu+&rnu==1]<CR>
+
+" delete character after cursor in insert mode
+inoremap <C-d> <Del>
+
+" highlight the line which is longer than the defined margin (120 character)
+highlight ColorColumn ctermbg=red
+autocmd vimrc FileType php,js,vue,go call matchadd('ColorColumn', '\%120v', 100)
+
+" open devdocs.io with firefox and search the word under the cursor
+command! -nargs=? DevDocs :call system('type -p open >/dev/null 2>&1 && open https://devdocs.io/#q=<args> || firefox -url https://devdocs.io/#q=<args>')
+autocmd vimrc FileType python,ruby,rspec,javascript,go,html,php,eruby,coffee,haml nmap <buffer> <leader>D :exec "DevDocs " . fnameescape(expand('<cword>'))<CR>
+
+" arrow keys resize windows
+nnoremap <Left> :vertical resize -10<CR>
+nnoremap <Right> :vertical resize +10<CR>
+nnoremap <Up> :resize -10<CR>
+nnoremap <Down> :resize +10<CR>
+imap <up> <nop>
+imap <down> <nop>
+imap <left> <nop>
+imap <right> <nop>
+
+" Keep the cursor in place while joining lines
+nnoremap J mzJ`z
+
+" Quit neovim termial
+tnoremap <C-\> <C-\><C-n>
+
+" buffer cleanup - delete every buffer except the one open
+command! Ball :silent call general#Bdeleteonly()
+
+" restore the position of the last cursor when you open a file
+autocmd vimrc BufReadPost * call general#RestorePosition()
+
+" edit vimrc with f5 and source it with f6
+nmap <silent> <leader><f5> :e $MYVIMRC<CR>
+nmap <silent> <leader><f6> :so $MYVIMRC<CR>
+
+" delete trailing space when saving files
+autocmd vimrc BufWrite *.php,*.js,*.jsx,*.vue,*.twig,*.html,*.sh,*.yaml,*.yml :call general#DeleteTrailingWS()
+
+" Simple Zoom / Restore window (like Tmux)
+nnoremap <silent> <Leader>z :call general#ZoomToggle()<CR>
+
+" Open images with feh
+autocmd vimrc BufEnter *.png,*.jpg,*gif silent! exec "! feh ".expand("%") | :bw
+
+" A |Dict| specifies the matcher for filtering and sorting the completion candidates.
+let g:cm_matcher={'module': 'cm_matchers.abbrev_matcher', 'case': 'smartcase'}
+
+" Execute a macro for the all selection
+xnoremap @ :<C-u>call general#ExecuteMacroOverVisualRange()<CR>
+
+
+" * General config
+" ---------------
+
+" colorscheme
+if has("gui_running")
+    "gruvbox themes
+    set background=dark
+    let g:gruvbox_italic=1
+    let g:gruvbox_contrast_dark="medium"
+    colorscheme gruvbox
+else
+    "onedark themes
+    set background=dark
+    colorscheme onedark
+endif
+
+" set the directory where the swap file will be saved
+set backupdir=~/nvim/backup//
+set directory=~/nvim/swap//
+
+" save undo trees in files
+set undofile
+set undodir=~/nvim/undo//
+
+" set line number
+set number
+
+" the copy goes to the clipboard
+set clipboard+=unnamedplus
+
+" use 4 spaces instead of tab (to replace existing tab use :retab)
+" copy indent from current line when starting a new line
+set autoindent
+set expandtab
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+
+" Save session
+exec 'nnoremap <Leader>ss :mksession! ~/nvim/sessions/*.vim<C-D><BS><BS><BS><BS><BS>'
+" Reload session
+exec 'nnoremap <Leader>sl :so ~/nvim/sessions/*.vim<C-D><BS><BS><BS><BS><BS>'
+
+" when at 3 spaces, and I hit > ... go to 4, not 7
+set shiftround
+
+" number of undo saved in memory
+set undolevels=10000 " How many undos
+set undoreload=10000 " number of lines to save for undo
+
+" Use case insensitive search, except when using capital letters
+set ignorecase
+set smartcase
+
+" set list
+set list listchars=tab:\┆\ ,trail:·,nbsp:±
+
+" doesn't prompt a warning when opening a file and the current file was written but not saved 
+set hidden
+
+" doesn't display the mode status
+set noshowmode
+
+" Keep cursor more in middle when scrolling down / up
+set scrolloff=999
+
+" no swap file! This is just annoying
+"set noswapfile
+
+" write automatically when quitting buffer
+"set autowrite
+
+" Fold related
+set foldlevelstart=0 " Start with all folds closed
+
+" Set foldtext
+set foldtext=general#FoldText()
+
+" Show the substitution LIVE
+set inccommand=nosplit
+
+" Better ex autocompletion
+set wildmenu
+set wildmode=list:longest,full
+
+" relative / hybrid line number switch
+set number relativenumber
+
+" for vertical pane in git diff tool
+set diffopt+=vertical
+
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
+
+autocmd vimrc FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+" enable the mouse
+" set mouse=a
+
+" No clue what it is :D
+" autocmd VimResized * wincmd =
+
+" hu?
+inoremap <expr> <c-y> matchstr(getline(line('.')-1), '\%' . virtcol('.') . 'v\%(\k\+\\|.\)')

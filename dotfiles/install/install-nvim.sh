@@ -20,7 +20,6 @@ ln -sf $DOTFILES/nvim/init.vim $HOME/nvim/init.vim
 
 # Install all mandatory folders if they don't exist already
 mkdir -p $HOME/nvim/plugged
-mkdir -p $HOME/nvim/colors
 mkdir -p $HOME/nvim/UltiSnips
 mkdir -p $HOME/nvim/autoload
 mkdir -p $HOME/nvim/backup
@@ -42,9 +41,6 @@ fi
 
 # configuration of different plugins
 ln -sf $DOTFILES/nvim/pluggedconf/ $HOME/nvim/pluggedconf
-
-# color schemes
-ln -sf $DOTFILES/nvim/colors/* $HOME/nvim/colors/
 
 # indentation
 ln -sf $DOTFILES/nvim/after/indent/* $HOME/nvim/after/indent/
