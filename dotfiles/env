@@ -1,0 +1,13 @@
+###############################
+# EXPORT ENVIRONMENT VARIABLE #
+###############################
+
+# Change this variable if your dotfiles are not in this path!!!
+# Useful for the install scripts
+export DOTFILES="$HOME/Projects/environment/dotfiles"
+
+export EDITOR="nvim"
+export VISUAL="nvim"
+
+export XDG_CONFIG_HOME=$HOME
+export TERM='rxvt-256color'

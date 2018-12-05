@@ -4,8 +4,6 @@
 " * Plugin config
 " * General binding
 " * General config
-" Shortcut
-" Additional script
 
 
 " * Skip initialization for vim-tiny or vim-small
@@ -29,7 +27,7 @@ augroup END
 " * Install plugins
 " -----------------
 
-call plug#begin('~/nvim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
 " display the result when searching
 Plug 'henrik/vim-indexed-search'
@@ -59,11 +57,13 @@ Plug 'tpope/vim-abolish'
 " http://vimcasts.org/episodes/creating-repeatable-mappings-with-repeat-vim/
 Plug 'tpope/vim-repeat'
 
+" comment automatically
+Plug 'tpope/vim-commentary'
 " Add sugar on top of Vim
 Plug 'tpope/vim-eunuch'
 
 " Move line
-Plugin 'tpope/vim-unimpaired'
+Plug 'tpope/vim-unimpaired'
 
 " Highlight briefly every yank text
 Plug 'machakann/vim-highlightedyank'
@@ -114,7 +114,7 @@ Plug '2072/php-indenting-for-vim', {'for': 'php'}
 Plug 'tobyS/vmustache' | Plug 'tobyS/pdv', {'for': 'php'}
 
 " create tags
-Plugin 'ludovicchabant/vim-gutentags'
+Plug 'ludovicchabant/vim-gutentags'
 
 " autocompletion
 Plug 'ncm2/ncm2'
@@ -146,7 +146,7 @@ Plug 'mxw/vim-jsx'
 Plug 'posva/vim-vue'
 
 " general quality tools 
-Plugin 'w0rp/ale'
+Plug 'w0rp/ale'
 
 " outliner
 Plug 'majutsushi/tagbar'
@@ -156,8 +156,8 @@ Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind']}
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " Status bar
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " undo tree
 Plug 'sjl/gundo.vim'
@@ -200,7 +200,7 @@ Plug 'chrisbra/csv.vim'
 " Plug 'dhruvasagar/vim-table-mode'
 
 " Themes
-Plugin 'morhetz/gruvbox'
+Plug 'morhetz/gruvbox'
 Plug 'joshdick/onedark.vim'
 
 call plug#end()
@@ -239,7 +239,7 @@ inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " project config - is not on my git repository
-source ~/nvim/projects.nvimrc
+source ~/.config/nvim/projects.nvimrc
 
 " close the buffer
 nmap <leader>db :Bdelete!<cr>
@@ -261,7 +261,11 @@ let mapleader = "\\"
 map <SPACE> <leader>
 
 " un-highlight when esc is pressed
-map <silent><esc> :noh<cr>
+" XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+" This setting cause error when startup vim.
+" vim jump open file, and not showing startify
+" and open last-file? in replace mode
+"map <silent><esc> :noh<cr>
 
 " surround by quotes - frequently use cases of vim-surround
 map <leader>" ysiw"<cr>
@@ -303,14 +307,14 @@ highlight ColorColumn ctermbg=red
 autocmd vimrc FileType php,js,vue,go call matchadd('ColorColumn', '\%120v', 100)
 
 " open devdocs.io with firefox and search the word under the cursor
-command! -nargs=? DevDocs :call system('type -p open >/dev/null 2>&1 && open https://devdocs.io/#q=<args> || firefox -url https://devdocs.io/#q=<args>')
+command! -nargs=? DevDocs :call system('type -p open >/dev/null 2>&1 && open https://devdocs.io/#q=<args> || google-chrome -url https://devdocs.io/#q=<args>')
 autocmd vimrc FileType python,ruby,rspec,javascript,go,html,php,eruby,coffee,haml nmap <buffer> <leader>D :exec "DevDocs " . fnameescape(expand('<cword>'))<CR>
 
 " arrow keys resize windows
-nnoremap <Left> :vertical resize -10<CR>
-nnoremap <Right> :vertical resize +10<CR>
-nnoremap <Up> :resize -10<CR>
-nnoremap <Down> :resize +10<CR>
+nnoremap <Left> :vertical resize -5<CR>
+nnoremap <Right> :vertical resize +5<CR>
+nnoremap <Up> :resize -5<CR>
+nnoremap <Down> :resize +5<CR>
 imap <up> <nop>
 imap <down> <nop>
 imap <left> <nop>
@@ -319,7 +323,7 @@ imap <right> <nop>
 " Keep the cursor in place while joining lines
 nnoremap J mzJ`z
 
-" Quit neovim termial
+" Quit neovim terminal
 tnoremap <C-\> <C-\><C-n>
 
 " buffer cleanup - delete every buffer except the one open
@@ -364,9 +368,32 @@ else
     colorscheme onedark
 endif
 
+" gvim config
+if has("gui_running")
+    set lines=20 columns=120
+	
+	" font
+	set guifont=mplus\ Nerd\ Font\ 14
+
+	" custom border
+	set go-=T
+	set go-=r
+	set go-=L
+	set go-=l
+	set go-=b
+endif
+
+if !has('nvim')
+    set ttymouse=xterm2
+endif
+
+if has('nvim')
+    tnoremap <Esc> <C-\><C-n>
+endif
+
 " set the directory where the swap file will be saved
-set backupdir=~/nvim/backup//
-set directory=~/nvim/swap//
+set backupdir=~/.config/nvim/backup//
+set directory=~/.config/nvim/swap//
 
 " save undo trees in files
 set undofile
@@ -412,7 +439,7 @@ set hidden
 set noshowmode
 
 " Keep cursor more in middle when scrolling down / up
-set scrolloff=999
+"set scrolloff=999
 
 " no swap file! This is just annoying
 "set noswapfile
@@ -427,7 +454,9 @@ set foldlevelstart=0 " Start with all folds closed
 set foldtext=general#FoldText()
 
 " Show the substitution LIVE
-set inccommand=nosplit
+if has('nvim')
+	set inccommand=nosplit
+endif
 
 " Better ex autocompletion
 set wildmenu
