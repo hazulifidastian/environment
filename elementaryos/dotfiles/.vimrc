@@ -1,3 +1,22 @@
+" * Skip initialization for vim-tiny or vim-small 
+" * Declare the general config group for autocommand
+" * Install plugins
+" Shortcut
+" Additional script
+" Plugin configurations
+
+" * Skip initialization for vim-tiny or vim-small.
+if !1 | finish | endif
+
+if &compatible
+    set nocompatible
+endif
+
+" * Declare the general config group for autocommand
+augroup vimrc
+  autocmd!
+augroup END
+
 if !has('nvim')
     set ttymouse=xterm2
 endif
@@ -63,7 +82,6 @@ Plugin 'pangloss/vim-javascript'
 " Plugin 'ryanoasis/vim-devicons'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
-" Plugin 'scrooloose/syntastic'
 Plugin 'Shougo/denite.nvim'
 " Plugin 'svermeulen/vim-easyclip'
 "Plugin 'terryma/vim-multiple-cursors'
@@ -109,7 +127,7 @@ Plugin 'tobyS/vmustache' | Plugin 'tobyS/pdv', {'for': 'php'}
 " Plugin 'ncm2/ncm2-vim-lsp'
 
 " general quality tools 
-Plugin 'neomake/neomake'
+Plugin 'w0rp/ale'
 
 filetype plugin indent on
 set ignorecase
@@ -186,27 +204,6 @@ let g:airline#extensions#tabline#right_sep = "\uE0B2"
 let g:airline#extensions#tabline#left_alt_sep = "\uE0B1"
 let g:airline#extensions#tabline#right_alt_sep = "\uE0B3"
 
-
-"Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_mode_map = {
-  \ "mode": "passive",
-  \ "active_filetypes": ["php"],
-  \ "passive_filetypes": [] }
-
-let g:syntastic_php_checkers = ["php"]
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute " ,"trimming empty <", "unescaped &" , "lacks \"action", "is not recognized!", "discarding unexpected"]
-" let g:syntastic_html_tidy_quiet_messages = { "level" : "warnings" }
-" let syntastic_mode_map = { 'passive_filetypes': ['html'] }
 
 "NerdTree
 let g:netrw_liststyle=3         " thin (change to 3 for tree)
@@ -330,13 +327,15 @@ nmap <C-S-Down> ]e
 vmap <C-S-Up> [egv
 vmap <C-S-Down> ]egv
 
+" ----------
 " Transparent background
 " hi Normal guibg=NONE ctermbg=NONE
 hi Normal ctermbg=NONE
+" ----------
 
-if has("gui_running")
-    set lines=47 columns=120
-endif
+" if has("gui_running")
+    " set lines=47 columns=120
+" endif
 
 "Change cursor
 " set cul
@@ -344,15 +343,20 @@ endif
 " autocmd InsertLeave * set nocul
 "
 
-" Clipboard
+" #Clipboard
 set clipboard=unnamed,unnamedplus
 
-" Ack use ag
+"----------
+" Ack
+" ack using ag
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
+" Endof Ack
+"----------
 
-" Camelcase move
+" ----------
+" CamelCaseMove
 " Use one of the following to define the camel characters.
 " Stop on capital letters.
 let g:camelchar = "A-Z"
@@ -367,15 +371,21 @@ inoremap <silent><C-Left> <C-o>:call search('\C\<\<Bar>\%(^\<Bar>[^'.g:camelchar
 inoremap <silent><C-Right> <C-o>:call search('\C\<\<Bar>\%(^\<Bar>[^'.g:camelchar.']\@<=\)['.g:camelchar.']\<Bar>['.g:camelchar.']\ze\%([^'.g:camelchar.']\&\>\@!\)\<Bar>\%$','W')<CR>
 vnoremap <silent><C-Left> :<C-U>call search('\C\<\<Bar>\%(^\<Bar>[^'.g:camelchar.']\@<=\)['.g:camelchar.']\<Bar>['.g:camelchar.']\ze\%([^'.g:camelchar.']\&\>\@!\)\<Bar>\%^','bW')<CR>v`>o
 vnoremap <silent><C-Right> <Esc>`>:<C-U>call search('\C\<\<Bar>\%(^\<Bar>[^'.g:camelchar.']\@<=\)['.g:camelchar.']\<Bar>['.g:camelchar.']\ze\%([^'.g:camelchar.']\&\>\@!\)\<Bar>\%$','W')<CR>v`<o
+" Endof CamelCaseMove
+"----------
 
-"vim-gutentags
+"----------
+" Vim-gutentags
 let g:gutentags_ctags_exclude = ['*.css', '*.html', '*.js', '*.json', '*.xml',
 \ '*.phar', '*.ini', '*.rst', '*.md','*/vendor/*',
 \ '*vendor/*/test*', '*vendor/*/Test*',
 \ '*vendor/*/fixture*', '*vendor/*/Fixture*',
 \ '*var/cache*', '*var/log*']
+" Endof Vim-gutentags
+"----------
 
-"confirm quit vim
+"----------
+" ConfirmQuit
 function! ConfirmQuit(writeFile)
     if (a:writeFile)
         if (expand('%:t')=="")
@@ -396,7 +406,20 @@ endfu
 
 cnoremap <silent> q<CR>  :call ConfirmQuit(0)<CR>
 cnoremap <silent> x<CR>  :call ConfirmQuit(1)<CR>
-"end confirm quit vim
+" Endof ConfirmQuit
+"----------
 
 "remove version warning
 let g:go_version_warning = 0
+
+"----------
+" Ale
+" Error and warning signs.
+let g:ale_sign_error = '⤫'
+let g:ale_sign_warning = '⚠'
+
+" Enable integration with airline.
+let g:airline#extensions#ale#enabled = 1
+" Endof Ale
+"----------
+
