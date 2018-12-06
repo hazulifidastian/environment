@@ -27,6 +27,7 @@ let g:NERDTreeCascadeSingleChildDir = 0
 let g:NERDTreeQuitOnOpen = 1
 
 " change the arrows
+let NERDTreeDirArrows = 1
 "let g:NERDTreeDirArrowExpandable = ''
 "let g:NERDTreeDirArrowCollapsible = ''
 

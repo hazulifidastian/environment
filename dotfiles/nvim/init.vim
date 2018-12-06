@@ -88,7 +88,7 @@ Plug 'amiorin/vim-project'
 Plug 'mhinz/vim-startify'
 
 " snippets
-"Plug 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 " markdown - writing
@@ -131,7 +131,12 @@ if has('nvim')
 	"Plug 'ncm2/ncm2-tern'
 	"Plug 'ncm2/ncm2-cssomni'
 	Plug 'fgrsnau/ncm2-otherbuf', { 'branch': 'ncm2' }
-	"Plug 'ncm2/ncm2-ultisnips'
+	Plug 'ncm2/ncm2-ultisnips'
+else
+	Plug 'Shougo/deoplete.nvim'
+	Plug 'roxma/nvim-yarp'
+	Plug 'roxma/vim-hug-neovim-rpc'
+	Plug 'kristijanhusak/deoplete-phpactor'
 endif
 
 
@@ -371,6 +376,10 @@ vmap <C-S-Down> ]egv
 " Confirm quit
 cnoremap <silent> q<CR>  :call general#ConfirmQuit(0)<CR>
 cnoremap <silent> x<CR>  :call general#ConfirmQuit(1)<CR>
+
+" Save file
+nnoremap <C-w> :update<CR>
+inoremap <C-w> <Esc>:update<CR>
 
 
 " ------------------ "
