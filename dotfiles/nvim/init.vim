@@ -6,8 +6,9 @@
 " * General config
 
 
-" * Skip initialization for vim-tiny or vim-small
-" -----------------------------------------------
+" ------------------------------------------------- "
+" * Skip initialization for vim-tiny or vim-small * "
+" ------------------------------------------------- "
 
 if !1 | finish | endif
 
@@ -16,16 +17,18 @@ if &compatible
 endif
 
 
-" * Declare the general config group for autocommand
-" --------------------------------------------------
+" ---------------------------------------------------- "
+" * Declare the general config group for autocommand * "
+" ---------------------------------------------------- "
 
 augroup vimrc
   autocmd!
 augroup END
 
 
-" * Install plugins
-" -----------------
+" ------------------- "
+" * Install plugins * "
+" ------------------- "
 
 call plug#begin('~/.config/nvim/plugged')
 
@@ -206,8 +209,9 @@ Plug 'joshdick/onedark.vim'
 call plug#end()
 
 
-" * Plugin config
-" ---------------
+" ----------------- "
+" * Plugin config * "
+" ----------------- "
 
 " source every plugin configs
 for file in split(glob("~/nvim/pluggedconf/*.nvimrc"), '\n')
@@ -251,8 +255,9 @@ autocmd vimrc BufNewFile,BufRead *.twig set filetype=html.twig
 autocmd vimrc BufNewFile,BufRead *.yml.dist set filetype=yaml.
 
 
-" * General binding
-" -----------------
+" ------------------- "
+" * General binding * "
+" ------------------- "
 
 syntax on
 
@@ -352,8 +357,9 @@ let g:cm_matcher={'module': 'cm_matchers.abbrev_matcher', 'case': 'smartcase'}
 xnoremap @ :<C-u>call general#ExecuteMacroOverVisualRange()<CR>
 
 
-" * General config
-" ---------------
+" ------------------ "
+" * General config * "
+" ------------------ "
 
 " colorscheme
 if has("gui_running")
