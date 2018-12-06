@@ -5,21 +5,21 @@ augroup END
 " Key mapping
 
 " History of file opened
-nnoremap <leader>h :History<cr>
+nnoremap <Leader>h :History<cr>
 
 " Buffers opens
-nnoremap <leader>b :Buffers<cr>
+nnoremap <Leader>b :Buffers<cr>
 
 " Files recursively from pwd
-nnoremap <leader>f :Files<cr>
+nnoremap <Leader>f :Files<cr>
 
 " Ex commands
-nnoremap <leader>c :Commands<cr>
+nnoremap <Leader>c :Commands<cr>
 " Ex command history. <C-e> to modify the command
-nnoremap <leader>: :History:<cr>
+nnoremap <Leader>: :History:<cr>
 
-nnoremap <leader>a :Rgi<space>
-nnoremap <leader>A :exec "Rgi ".expand("<cword>")<cr>
+nnoremap <Leader>a :Rgi<space>
+nnoremap <Leader>A :exec "Rgi ".expand("<cword>")<cr>
 
 "" --column: Show column number
 " --line-number: Show line number

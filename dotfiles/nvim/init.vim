@@ -88,7 +88,7 @@ Plug 'amiorin/vim-project'
 Plug 'mhinz/vim-startify'
 
 " snippets
-Plug 'SirVer/ultisnips'
+"Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 " markdown - writing
@@ -99,7 +99,7 @@ Plug 'junegunn/goyo.vim', { 'for': 'markdown' } " Distraction-free
 Plug 'junegunn/limelight.vim', { 'for': 'markdown' } " Hyperfocus-writing
 
 Plug 'rhysd/vim-grammarous', { 'for': 'markdown' } " show grammar mistakes
-Plug 'reedes/vim-wordy' "veridy quality of writting (see :Wordy)
+Plug 'reedes/vim-wordy', { 'for': 'markdown' } "veridy quality of writting (see :Wordy)
 Plug 'reedes/vim-lexical' " dictionnary, thesaurus...
 
 " php
@@ -110,7 +110,7 @@ Plug 'nishigori/vim-php-dictionary', {'for': 'php'}
 
 " php refactoring options
 Plug 'adoy/vim-php-refactoring-toolbox', {'for': 'php'}
-Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install'}
+Plug 'phpactor/phpactor', {'do': 'composer install', 'for': 'php'}
 Plug '2072/php-indenting-for-vim', {'for': 'php'}
 
 " php doc autocompletion
@@ -118,19 +118,22 @@ Plug 'tobyS/vmustache' | Plug 'tobyS/pdv', {'for': 'php'}
 
 " create tags
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'skywind3000/gutentags_plus'
 
 " autocompletion
-Plug 'ncm2/ncm2'
-Plug 'roxma/nvim-yarp'
-Plug 'ncm2/ncm2-bufword'
-Plug 'ncm2/ncm2-tmux'
-Plug 'ncm2/ncm2-path'
-Plug 'ncm2/ncm2-ultisnips'
-Plug 'phpactor/ncm2-phpactor'
-Plug 'ncm2/ncm2-go'
-Plug 'ncm2/ncm2-tern'
-Plug 'ncm2/ncm2-cssomni'
-Plug 'fgrsnau/ncm2-otherbuf', { 'branch': 'ncm2' }
+if has('nvim')
+	Plug 'ncm2/ncm2'
+	Plug 'roxma/nvim-yarp'
+	Plug 'ncm2/ncm2-bufword'
+	Plug 'ncm2/ncm2-path'
+	Plug 'phpactor/ncm2-phpactor'
+	"Plug 'ncm2/ncm2-go'
+	"Plug 'ncm2/ncm2-tern'
+	"Plug 'ncm2/ncm2-cssomni'
+	Plug 'fgrsnau/ncm2-otherbuf', { 'branch': 'ncm2' }
+	"Plug 'ncm2/ncm2-ultisnips'
+endif
+
 
 " twig
 Plug 'lumiliet/vim-twig', {'for': 'twig'}
@@ -191,7 +194,7 @@ Plug 'ap/vim-css-color'
 Plug 'simeji/winresizer'
 
 " replace f F t T to target easily the motion
-Plug 'yangmillstheory/vim-snipe'
+"Plug 'yangmillstheory/vim-snipe'
 
 " Split arrays in PHP / struct in Go
 Plug 'AndrewRadev/splitjoin.vim'
@@ -214,7 +217,7 @@ call plug#end()
 " ----------------- "
 
 " source every plugin configs
-for file in split(glob("~/nvim/pluggedconf/*.nvimrc"), '\n')
+for file in split(glob("~/.config/nvim/pluggedconf/*.nvimrc"), '\n')
     exe 'source' file
 endfor
 
@@ -224,7 +227,7 @@ for file in split(glob("~/nvim/pluggedconf/*.nvimrc"), '\n')
 endfor
 
 " for nuuid
-let g:nuuid_no_mappings = 1
+"let g:nuuid_no_mappings = 1
 
 if exists("g:did_load_filetypes")
   filetype off
@@ -246,7 +249,7 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 source ~/.config/nvim/projects.nvimrc
 
 " close the buffer
-nmap <leader>db :Bdelete!<cr>
+nmap <Leader>db :Bdelete!<cr>
 
 " Twig
 autocmd vimrc BufNewFile,BufRead *.twig set filetype=html.twig
@@ -262,8 +265,8 @@ autocmd vimrc BufNewFile,BufRead *.yml.dist set filetype=yaml.
 syntax on
 
 " Weird hack for NERDTree to work
-let mapleader = "\\"
-map <SPACE> <leader>
+let mapLeader = "\\"
+map <SPACE> <Leader>
 
 " un-highlight when esc is pressed
 " XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -273,8 +276,8 @@ map <SPACE> <leader>
 "map <silent><esc> :noh<cr>
 
 " surround by quotes - frequently use cases of vim-surround
-map <leader>" ysiw"<cr>
-map <leader>' ysiw'<cr>
+map <Leader>" ysiw"<cr>
+map <Leader>' ysiw'<cr>
 
 " Act like D and C
 nnoremap Y y$
@@ -287,7 +290,7 @@ vmap > >gv
 vmap u y
 
 " shortcut to substitute current word under cursor
-nnoremap <leader>[ :%s/<c-r><c-w>//g<left><left>
+nnoremap <Leader>[ :%s/<c-r><c-w>//g<left><left>
 
 " Change in next bracket
 nmap cinb cib
@@ -298,8 +301,8 @@ vnoremap <silent> * :<C-u>call general#VisualSelection('', '')<CR>/<C-R>=@/<CR><
 vnoremap <silent> # :<C-u>call general#VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 
 " location & quickfix window
-nnoremap <silent> <leader>l :call general#ToggleList("Location List", 'l')<CR>
-nnoremap <silent> <leader>q :call general#ToggleList("Quickfix List", 'c')<CR>
+nnoremap <silent> <Leader>l :call general#ToggleList("Location List", 'l')<CR>
+nnoremap <silent> <Leader>q :call general#ToggleList("Quickfix List", 'c')<CR>
 
 "Toggle between absolute -> relative line number
 nnoremap <C-n> :let [&nu, &rnu] = [&nu, &nu+&rnu==1]<CR>
@@ -313,7 +316,7 @@ autocmd vimrc FileType php,js,vue,go call matchadd('ColorColumn', '\%120v', 100)
 
 " open devdocs.io with firefox and search the word under the cursor
 command! -nargs=? DevDocs :call system('type -p open >/dev/null 2>&1 && open https://devdocs.io/#q=<args> || google-chrome -url https://devdocs.io/#q=<args>')
-autocmd vimrc FileType python,ruby,rspec,javascript,go,html,php,eruby,coffee,haml nmap <buffer> <leader>D :exec "DevDocs " . fnameescape(expand('<cword>'))<CR>
+autocmd vimrc FileType python,ruby,rspec,javascript,go,html,php,eruby,coffee,haml nmap <buffer> <Leader>D :exec "DevDocs " . fnameescape(expand('<cword>'))<CR>
 
 " arrow keys resize windows
 nnoremap <Left> :vertical resize -5<CR>
@@ -328,9 +331,6 @@ imap <right> <nop>
 " Keep the cursor in place while joining lines
 nnoremap J mzJ`z
 
-" Quit neovim terminal
-tnoremap <C-\> <C-\><C-n>
-
 " buffer cleanup - delete every buffer except the one open
 command! Ball :silent call general#Bdeleteonly()
 
@@ -338,8 +338,8 @@ command! Ball :silent call general#Bdeleteonly()
 autocmd vimrc BufReadPost * call general#RestorePosition()
 
 " edit vimrc with f5 and source it with f6
-nmap <silent> <leader><f5> :e $MYVIMRC<CR>
-nmap <silent> <leader><f6> :so $MYVIMRC<CR>
+nmap <silent> <Leader><f5> :e $MYVIMRC<CR>
+nmap <silent> <Leader><f6> :so $MYVIMRC<CR>
 
 " delete trailing space when saving files
 autocmd vimrc BufWrite *.php,*.js,*.jsx,*.vue,*.twig,*.html,*.sh,*.yaml,*.yml :call general#DeleteTrailingWS()
@@ -355,6 +355,22 @@ let g:cm_matcher={'module': 'cm_matchers.abbrev_matcher', 'case': 'smartcase'}
 
 " Execute a macro for the all selection
 xnoremap @ :<C-u>call general#ExecuteMacroOverVisualRange()<CR>
+
+" Esc shortcut
+imap hh <Esc>
+
+" Move text shortcut
+" this using tpop/unimpaired
+" just move one line on normal mode
+nmap <C-S-Up> [e
+nmap <C-S-Down> ]e
+" visual mode, when selected
+vmap <C-S-Up> [egv
+vmap <C-S-Down> ]egv
+
+" Confirm quit
+cnoremap <silent> q<CR>  :call general#ConfirmQuit(0)<CR>
+cnoremap <silent> x<CR>  :call general#ConfirmQuit(1)<CR>
 
 
 " ------------------ "

@@ -119,3 +119,22 @@ function! general#ToggleList(bufname, pfx)
     wincmd p
   endif
 endfunction
+
+" confirm quit vim
+function! general#ConfirmQuit(writeFile)
+    if (a:writeFile)
+        if (expand('%:t')=="")
+            echo "Can't save a file with no name."
+            return
+        endif
+        :write
+    endif
+
+    if (winnr('$')==1 && tabpagenr('$')==1)
+        if (confirm("Do you really want to quit?", "&Yes\n&No", 2)==1)
+            :quit
+        endif
+    else
+        :quit
+    endif
+endfu
