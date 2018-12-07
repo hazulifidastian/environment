@@ -32,7 +32,10 @@ if [ $# -ne 1 ] || [ "$1" != "-y" ];
         read key;
 fi
 
-command -v "nvim" >/dev/null && . $DOTFILES/install/install-nvim.sh
+$DOTFILES/install/install-aliases.sh
+# $DOTFILES/install/install-php.sh
+# $DOTFILES/install/install-composer.sh
+# command -v "nvim" >/dev/null && . $DOTFILES/install/install-nvim.sh
 
 # Source startup
 #source $DOTFILES/startup

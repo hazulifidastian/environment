@@ -98,9 +98,11 @@ Plug 'SidOfc/mkdx', { 'for': 'markdown' } " lot of keystroke for markdown
 Plug 'junegunn/goyo.vim', { 'for': 'markdown' } " Distraction-free
 Plug 'junegunn/limelight.vim', { 'for': 'markdown' } " Hyperfocus-writing
 
-Plug 'rhysd/vim-grammarous', { 'for': 'markdown' } " show grammar mistakes
-Plug 'reedes/vim-wordy', { 'for': 'markdown' } "veridy quality of writting (see :Wordy)
-Plug 'reedes/vim-lexical' " dictionnary, thesaurus...
+" Plug 'rhysd/vim-grammarous', { 'for': 'markdown' } " show grammar mistakes
+
+" Plug 'rhysd/vim-grammarous', { 'for': 'markdown' } " show grammar mistakes
+" Plug 'reedes/vim-wordy', { 'for': 'markdown' } "veridy quality of writting (see :Wordy)
+" Plug 'reedes/vim-lexical' " dictionnary, thesaurus...
 
 " php
 Plug 'joonty/vdebug'
@@ -161,6 +163,9 @@ Plug 'w0rp/ale'
 
 " outliner
 Plug 'majutsushi/tagbar'
+
+" collections of filetypeplugins
+" Plug 'sheerun/vim-polyglot'
 
 " Nerdtree + modifications 
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind']}
@@ -223,11 +228,6 @@ call plug#end()
 
 " source every plugin configs
 for file in split(glob("~/.config/nvim/pluggedconf/*.nvimrc"), '\n')
-    exe 'source' file
-endfor
-
-" source every plugin configs
-for file in split(glob("~/nvim/pluggedconf/*.nvimrc"), '\n')
     exe 'source' file
 endfor
 
@@ -378,8 +378,8 @@ cnoremap <silent> q<CR>  :call general#ConfirmQuit(0)<CR>
 cnoremap <silent> x<CR>  :call general#ConfirmQuit(1)<CR>
 
 " Save file
-nnoremap <C-w> :update<CR>
-inoremap <C-w> <Esc>:update<CR>
+nnoremap <C-s> :update<CR>
+inoremap <C-s> <Esc>:update<CR>
 
 
 " ------------------ "
@@ -404,7 +404,7 @@ if has("gui_running")
     set lines=20 columns=120
 	
 	" font
-	set guifont=mplus\ Nerd\ Font\ 14
+	set guifont=mplus\ Nerd\ Font\ 12
 
 	" custom border
 	set go-=T
@@ -412,6 +412,25 @@ if has("gui_running")
 	set go-=L
 	set go-=l
 	set go-=b
+
+    " To enable the saving and restoring of screen positions.
+    " let g:screen_size_restore_pos = 1
+
+    " " To save and restore screen for each Vim instance.
+    " " This is useful if you routinely run more than one Vim instance.
+    " " For all Vim to use the same settings, change this to 0.
+    " let g:screen_size_by_vim_instance = 1
+    if has("gui_running")
+
+        if !exists('g:screen_size_restore_pos')
+            let g:screen_size_restore_pos = 1
+        endif
+        if !exists('g:screen_size_by_vim_instance')
+            let g:screen_size_by_vim_instance = 1
+        endif
+        autocmd VimEnter * if g:screen_size_restore_pos == 1 | call general#ScreenRestore() | endif
+        autocmd VimLeavePre * if g:screen_size_restore_pos == 1 | call general#ScreenSave() | endif
+    endif
 endif
 
 if !has('nvim')
@@ -515,3 +534,4 @@ autocmd vimrc FileType * setlocal formatoptions-=c formatoptions-=r formatoption
 
 " hu?
 inoremap <expr> <c-y> matchstr(getline(line('.')-1), '\%' . virtcol('.') . 'v\%(\k\+\\|.\)')
+
