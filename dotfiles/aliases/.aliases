@@ -1,8 +1,0 @@
-alias e='nvim'
-alias dock='docker'
-alias docke='dock exec'
-alias dockr='dock run'
-alias docki='dock images'
-alias doco='docker-compose'
-alias docoe="doco exec"
-

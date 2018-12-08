@@ -18,24 +18,19 @@
 ################
 
 #!/bin/bash
-echo -e "${green}####################################"
-echo -e "${green}# Welcome                          #"
-echo -e "${green}####################################\n"
-
-echo -e "${yellow}!!! ${red}WARNING${yellow} !!!"
-echo -e "${light_red}This script will delete all your configuration!"
-echo -e "${light_red}Use it for a fresh install or if you only use this set of dotfiles.\n"
+echo "This will install your configuration"
 
 if [ $# -ne 1 ] || [ "$1" != "-y" ];
     then
-        echo -e "${yellow}Press a key to continue...\n"
+        echo "${yellow}Press a key to continue...\n"
         read key;
 fi
 
-$DOTFILES/install/install-aliases.sh
 # $DOTFILES/install/install-php.sh
 # $DOTFILES/install/install-composer.sh
 # command -v "nvim" >/dev/null && . $DOTFILES/install/install-nvim.sh
+# $DOTFILES/install/install-bashit.sh
+$DOTFILES/install/install-my-bashrc.sh
 
 # Source startup
 #source $DOTFILES/startup
