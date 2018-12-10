@@ -104,6 +104,9 @@ Plug 'junegunn/limelight.vim', { 'for': 'markdown' } " Hyperfocus-writing
 " Plug 'reedes/vim-wordy', { 'for': 'markdown' } "veridy quality of writting (see :Wordy)
 " Plug 'reedes/vim-lexical' " dictionnary, thesaurus...
 
+" phython
+Plug 'davidhalter/jedi-vim'
+
 " php
 Plug 'joonty/vdebug'
 Plug 'StanAngeloff/php.vim', {'for': 'php'}
@@ -128,6 +131,7 @@ if has('nvim')
 	Plug 'roxma/nvim-yarp'
 	Plug 'ncm2/ncm2-bufword'
 	Plug 'ncm2/ncm2-path'
+    Plug 'HansPinckaers/ncm2-jedi'
 	Plug 'phpactor/ncm2-phpactor'
 	"Plug 'ncm2/ncm2-go'
 	"Plug 'ncm2/ncm2-tern'
@@ -138,6 +142,7 @@ else
 	Plug 'Shougo/deoplete.nvim'
 	Plug 'roxma/nvim-yarp'
 	Plug 'roxma/vim-hug-neovim-rpc'
+    Plug 'zchee/deoplete-jedi'
 	Plug 'kristijanhusak/deoplete-phpactor'
 endif
 
@@ -392,12 +397,23 @@ if has("gui_running")
     set background=dark
     let g:gruvbox_italic=1
     let g:gruvbox_contrast_dark="medium"
+    let g:gruvbox_termcolors=256
     colorscheme gruvbox
 else
     "onedark themes
     set background=dark
     colorscheme onedark
 endif
+
+" True colors setting
+set termguicolors
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
+" Change cursor shape based on mode
+let &t_SI = "\<Esc>[6 q"
+let &t_SR = "\<Esc>[4 q"
+let &t_EI = "\<Esc>[2 q"
 
 " gvim config
 if has("gui_running")
@@ -420,17 +436,15 @@ if has("gui_running")
     " " This is useful if you routinely run more than one Vim instance.
     " " For all Vim to use the same settings, change this to 0.
     " let g:screen_size_by_vim_instance = 1
-    if has("gui_running")
 
-        if !exists('g:screen_size_restore_pos')
-            let g:screen_size_restore_pos = 1
-        endif
-        if !exists('g:screen_size_by_vim_instance')
-            let g:screen_size_by_vim_instance = 1
-        endif
-        autocmd VimEnter * if g:screen_size_restore_pos == 1 | call general#ScreenRestore() | endif
-        autocmd VimLeavePre * if g:screen_size_restore_pos == 1 | call general#ScreenSave() | endif
+    if !exists('g:screen_size_restore_pos')
+        let g:screen_size_restore_pos = 1
     endif
+    if !exists('g:screen_size_by_vim_instance')
+        let g:screen_size_by_vim_instance = 1
+    endif
+    autocmd VimEnter * if g:screen_size_restore_pos == 1 | call general#ScreenRestore() | endif
+    autocmd VimLeavePre * if g:screen_size_restore_pos == 1 | call general#ScreenSave() | endif
 endif
 
 if !has('nvim')
@@ -527,7 +541,7 @@ augroup END
 autocmd vimrc FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " enable the mouse
-" set mouse=a
+set mouse=a
 
 " No clue what it is :D
 " autocmd VimResized * wincmd =
@@ -535,3 +549,9 @@ autocmd vimrc FileType * setlocal formatoptions-=c formatoptions-=r formatoption
 " hu?
 inoremap <expr> <c-y> matchstr(getline(line('.')-1), '\%' . virtcol('.') . 'v\%(\k\+\\|.\)')
 
+" load aliases
+let $BASH_ENV = "~/.aliases"
+
+" path to your python 
+let g:python3_host_prog = '/usr/bin/python3'
+let g:python_host_prog = '/usr/bin/python2'
