@@ -1,5 +1,6 @@
 if !has('nvim')
 	let g:deoplete#enable_at_startup = 1
+    let g:deoplete#enable_yarp = 1
 	"let g:deoplete#sources = {}
 	"let g:deoplete#sources.php = ['omni', 'phpactor', 'ultisnips', 'buffer']
 	call deoplete#custom#option('auto_complete_delay', 10)

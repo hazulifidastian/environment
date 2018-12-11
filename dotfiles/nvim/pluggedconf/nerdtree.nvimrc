@@ -1,19 +1,22 @@
 " nerdtree configuration
 
-function! NERDTreeToggleInCurDir()
-  " If NERDTree is open in the current buffer
-  if (exists("t:NERDTreeBufName") && bufwinnr(t:NERDTreeBufName) != -1)
-    exe ":NERDTreeClose"
-  else
-    if (expand("%:t") != '')
-      exe ":NERDTreeFind"
-    else
-      exe ":NERDTreeToggle"
-    endif
-  endif
-endfunction
+" function! NERDTreeToggleInCurDir()
+"   " If NERDTree is open in the current buffer
+"   if (exists("t:NERDTreeBufName") && bufwinnr(t:NERDTreeBufName) != -1)
+"     exe ":NERDTreeClose"
+"   else
+"     if (expand("%:t") != '')
+"       exe ":NERDTreeFind"
+"     else
+"       exe ":NERDTreeToggle"
+"     endif
+"   endif
+" endfunction
 
-nmap <leader>n :call NERDTreeToggleInCurDir()<CR>
+nnoremap <silent><F4> :call NERDTreeToggle<CR>
+nnoremap <silent><F4> <ESC> :NERDTreeToggle<CR>
+nnoremap <silent><Leader>ft :NERDTreeToggle<CR>
+nnoremap <silent><Leader>fd :NERDTreeFind<CR>
 
 " don't display informations (type ? for help and so on)
 let g:NERDTreeMinimalUI = 1
@@ -32,9 +35,9 @@ let NERDTreeDirArrows = 1
 "let g:NERDTreeDirArrowCollapsible = ''
 
 " remapping - see nerdtree.txt and search for "NERDTreeMappings"
-let NERDTreeMapOpenSplit = 'b'
-let NERDTreeMapPreviewSplit='gb'
+" let NERDTreeMapOpenSplit = 'b'
+" let NERDTreeMapPreviewSplit='gb'
 
-let NERDTreeMapOpenVSplit = 'v'
-let NERDTreeMapPreviewVSplit='gv'
-let g:NERDTreeMouseMode=3
+" let NERDTreeMapOpenVSplit = 'v'
+" let NERDTreeMapPreviewVSplit='gv'
+" let g:NERDTreeMouseMode=3

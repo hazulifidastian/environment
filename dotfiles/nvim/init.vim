@@ -274,100 +274,83 @@ autocmd vimrc BufNewFile,BufRead *.yml.dist set filetype=yaml.
 
 syntax on
 
+" ** Block Misc ** "
+
 " Weird hack for NERDTree to work
 let mapLeader = "\\"
 map <SPACE> <Leader>
 
-" un-highlight when esc is pressed
-" XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-" This setting cause error when startup vim.
-" vim jump open file, and not showing startify
-" and open last-file? in replace mode
-"map <silent><esc> :noh<cr>
+" Move tab
+nnoremap <Tab> gt
+nnoremap <S-Tab> gT
 
-" surround by quotes - frequently use cases of vim-surround
-map <Leader>" ysiw"<cr>
-map <Leader>' ysiw'<cr>
+" ctrl-arrow keys move windows
+nnoremap <M-Left> <C-w>h<CR>
+nnoremap <M-Right> <C-w>l<CR>
+nnoremap <M-Up> <C-w>k<CR>
+nnoremap <M-Down> <C-w>j<CR>
 
-" Act like D and C
-nnoremap Y y$
+" ** EndBlock Misc ** "
+
+" ** Block SpecialCharacter
 
 " indent without kill the selection in vmode
 vmap < <gv
 vmap > >gv
-
-" remap the annoying u in visual mode
-vmap u y
-
-" shortcut to substitute current word under cursor
-nnoremap <Leader>[ :%s/<c-r><c-w>//g<left><left>
-
-" Change in next bracket
-nmap cinb cib
 
 " Visual mode pressing * or # searches for the current selection
 " Super useful! From an idea by Michael Naumann
 vnoremap <silent> * :<C-u>call general#VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
 vnoremap <silent> # :<C-u>call general#VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 
-" location & quickfix window
-nnoremap <silent> <Leader>l :call general#ToggleList("Location List", 'l')<CR>
-nnoremap <silent> <Leader>q :call general#ToggleList("Quickfix List", 'c')<CR>
+" Execute a macro for the all selection
+xnoremap @ :<C-u>call general#ExecuteMacroOverVisualRange()<CR>
 
-"Toggle between absolute -> relative line number
-nnoremap <C-n> :let [&nu, &rnu] = [&nu, &nu+&rnu==1]<CR>
 
-" delete character after cursor in insert mode
-inoremap <C-d> <Del>
+" ** EndBlock SpecialCharacter ** "
 
-" highlight the line which is longer than the defined margin (120 character)
-highlight ColorColumn ctermbg=red
-autocmd vimrc FileType php,js,vue,go call matchadd('ColorColumn', '\%120v', 100)
+" ** Block Word ** "
 
-" open devdocs.io with firefox and search the word under the cursor
-command! -nargs=? DevDocs :call system('type -p open >/dev/null 2>&1 && open https://devdocs.io/#q=<args> || google-chrome -url https://devdocs.io/#q=<args>')
-autocmd vimrc FileType python,ruby,rspec,javascript,go,html,php,eruby,coffee,haml nmap <buffer> <Leader>D :exec "DevDocs " . fnameescape(expand('<cword>'))<CR>
+" Act like D and C
+nnoremap Y y$
 
-" arrow keys resize windows
-nnoremap <Left> :vertical resize -5<CR>
-nnoremap <Right> :vertical resize +5<CR>
-nnoremap <Up> :resize -5<CR>
-nnoremap <Down> :resize +5<CR>
-imap <up> <nop>
-imap <down> <nop>
-imap <left> <nop>
-imap <right> <nop>
+" remap the annoying u in visual mode
+vmap u y
+
+" Change in next bracket
+nmap cinb cib
 
 " Keep the cursor in place while joining lines
 nnoremap J mzJ`z
 
-" buffer cleanup - delete every buffer except the one open
-command! Ball :silent call general#Bdeleteonly()
-
-" restore the position of the last cursor when you open a file
-autocmd vimrc BufReadPost * call general#RestorePosition()
-
-" edit vimrc with f5 and source it with f6
-nmap <silent> <Leader><f5> :e $MYVIMRC<CR>
-nmap <silent> <Leader><f6> :so $MYVIMRC<CR>
-
-" delete trailing space when saving files
-autocmd vimrc BufWrite *.php,*.js,*.jsx,*.vue,*.twig,*.html,*.sh,*.yaml,*.yml :call general#DeleteTrailingWS()
-
-" Simple Zoom / Restore window (like Tmux)
-nnoremap <silent> <Leader>z :call general#ZoomToggle()<CR>
-
-" Open images with feh
-autocmd vimrc BufEnter *.png,*.jpg,*gif silent! exec "! feh ".expand("%") | :bw
-
-" A |Dict| specifies the matcher for filtering and sorting the completion candidates.
-let g:cm_matcher={'module': 'cm_matchers.abbrev_matcher', 'case': 'smartcase'}
-
-" Execute a macro for the all selection
-xnoremap @ :<C-u>call general#ExecuteMacroOverVisualRange()<CR>
-
 " Esc shortcut
 imap hh <Esc>
+
+" Confirm quit
+cnoremap <silent> q<CR>  :call general#ConfirmQuit(0)<CR>
+cnoremap <silent> x<CR>  :call general#ConfirmQuit(1)<CR>
+
+" ** EndBlock Word ** "
+
+" ** Block Ctrl ** "
+" Save file
+nnoremap <C-s> :update<CR>
+inoremap <C-s> <Esc>:update<CR>
+
+" Toggle comment using Ctrl-/
+nmap <C-_> gcc
+vmap <C-_> gcc<Esc>
+imap <C-_> <Esc>gcc i
+
+" ctrl-arrow keys resize windows
+nnoremap <C-Left> :vertical resize -5<CR>
+nnoremap <C-Right> :vertical resize +5<CR>
+nnoremap <C-Up> :resize -5<CR>
+nnoremap <C-Down> :resize +5<CR>
+imap <up> <nop>
+imap <down> <nop>
+imap <left> <nop>
+imap <right> <nop>
 
 " Move text shortcut
 " this using tpop/unimpaired
@@ -378,13 +361,84 @@ nmap <C-S-Down> ]e
 vmap <C-S-Up> [egv
 vmap <C-S-Down> ]egv
 
-" Confirm quit
-cnoremap <silent> q<CR>  :call general#ConfirmQuit(0)<CR>
-cnoremap <silent> x<CR>  :call general#ConfirmQuit(1)<CR>
+"Toggle between absolute -> relative line number
+nnoremap <C-n> :let [&nu, &rnu] = [&nu, &nu+&rnu==1]<CR>
 
-" Save file
-nnoremap <C-s> :update<CR>
-inoremap <C-s> <Esc>:update<CR>
+" delete character after cursor in insert mode
+inoremap <C-d> <Del>
+
+" ** EndBlock Ctrl ** "
+
+
+" ** Block Leader ** "
+
+" Move to windows 1-9
+" Move to tab 1-9
+" Move to buffer 1-9
+for s:i in range(1, 9)
+  " <Leader>[1-9] move to window [1-9]
+  execute 'nnoremap <Leader>w' . s:i . ' :' . s:i . 'wincmd w<CR>'
+  " <Leader><leader>[1-9] move to tab [1-9]
+  execute 'nnoremap <Leader>t' . s:i . ' ' . s:i . 'gt'
+  " <Leader>b[1-9] move to buffer [1-9]
+  execute 'nnoremap <Leader>b' . s:i . ' :b' . s:i . '<CR>'
+endfor
+unlet s:i
+
+" edit vimrc with cO and source it with cR
+nnoremap <Leader>cO :e $MYVIMRC<CR>
+nnoremap <Leader>cR :source $MYVIMRC<CR>
+
+" location & quickfix window
+nnoremap <silent> <Leader>l :call general#ToggleList("Location List", 'l')<CR>
+nnoremap <silent> <Leader>q :call general#ToggleList("Quickfix List", 'c')<CR>
+
+" shortcut to substitute current word under cursor
+nnoremap <Leader>[ :%s/<c-r><c-w>//g<left><left>
+
+" surround by quotes - frequently use cases of vim-surround
+map <Leader>" ysiw"<cr>
+map <Leader>' ysiw'<cr>
+
+" Simple Zoom / Restore window (like Tmux)
+" nnoremap <silent> <Leader>z :call general#ZoomToggle()<CR>
+
+" move buffer
+nnoremap <Leader>bb :bn<CR>
+nnoremap <Leader>B :bp<CR>
+nnoremap <Leader>b# :b#<CR>
+nnoremap <Leader>bf :bfirst<CR>
+nnoremap <Leader>bl :blast<CR>
+
+" move buffer
+nnoremap <Leader>tt :tabn<CR>
+nnoremap <Leader>T :tabp<CR>
+nnoremap <Leader>tf :tabfirst<CR>
+nnoremap <Leader>tl :tablast<CR>
+
+" ** EndBlock Leader ** "
+
+" ** Block Command/Autocommand ** "
+
+autocmd vimrc FileType php,js,vue,go call matchadd('ColorColumn', '\%120v', 100)
+
+" open devdocs.io with googel chrome and search the word under the cursor
+command! -nargs=? DevDocs :call system('type -p open >/dev/null 2>&1 && open https://devdocs.io/#q=<args> || google-chrome -url https://devdocs.io/#q=<args>')
+autocmd vimrc FileType python,ruby,rspec,javascript,go,html,php,eruby,coffee,haml nmap <buffer> <Leader>D :exec "DevDocs " . fnameescape(expand('<cword>'))<CR>
+
+" buffer cleanup - delete every buffer except the one open
+command! Ball :silent call general#Bdeleteonly()
+
+" restore the position of the last cursor when you open a file
+autocmd vimrc BufReadPost * call general#RestorePosition()
+
+" delete trailing space when saving files
+autocmd vimrc BufWrite *.php,*.js,*.jsx,*.vue,*.twig,*.html,*.sh,*.yaml,*.yml :call general#DeleteTrailingWS()
+
+" Open images with feh
+autocmd vimrc BufEnter *.png,*.jpg,*gif silent! exec "! feh ".expand("%") | :bw
+
+" ** EndBlock Command/Autocommand ** "
 
 
 " ------------------ "
@@ -555,3 +609,7 @@ let $BASH_ENV = "~/.aliases"
 " path to your python 
 let g:python3_host_prog = '/usr/bin/python3'
 let g:python_host_prog = '/usr/bin/python2'
+
+" highlight the line which is longer than the defined margin (120 character)
+highlight ColorColumn ctermbg=red
+

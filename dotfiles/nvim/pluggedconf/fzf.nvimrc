@@ -5,21 +5,22 @@ augroup END
 " Key mapping
 
 " History of file opened
-nnoremap <Leader>h :History<cr>
+nnoremap <Leader>fh :History<cr>
 
 " Buffers opens
-nnoremap <Leader>b :Buffers<cr>
+nnoremap <Leader>fb :Buffers<cr>
 
 " Files recursively from pwd
-nnoremap <Leader>f :Files<cr>
+nnoremap <Leader>ff :Files<cr>
 
 " Ex commands
-nnoremap <Leader>c :Commands<cr>
-" Ex command history. <C-e> to modify the command
-nnoremap <Leader>: :History:<cr>
+nnoremap <Leader>fc :Commands<cr>
 
-nnoremap <Leader>a :Rgi<space>
-nnoremap <Leader>A :exec "Rgi ".expand("<cword>")<cr>
+" Ex command history. <C-e> to modify the command
+nnoremap <Leader>f: :History:<cr>
+
+" Search history
+nnoremap <Leader>fs :History/<cr>
 
 "" --column: Show column number
 " --line-number: Show line number
@@ -71,6 +72,22 @@ autocmd fzf VimEnter * command! -nargs=* Rgr
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
 
+" Augmenting Ag command using fzf#vim#with_preview function
+"   * fzf#vim#with_preview([[options], [preview window], [toggle keys...]])
+"     * For syntax-highlighting, Ruby and any of the following tools are required:
+"       - Bat: https://github.com/sharkdp/bat
+"       - Highlight: http://www.andre-simon.de/doku/highlight/en/highlight.php
+"       - CodeRay: http://coderay.rubychan.de/
+"       - Rouge: https://github.com/jneen/rouge
+"
+"   :Ag  - Start fzf with hidden preview window that can be enabled with "?" key
+"   :Ag! - Start fzf in fullscreen and display the preview window above
+command! -bang -nargs=* Ag
+  \ call fzf#vim#ag(<q-args>,
+  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \                 <bang>0)
+
 " Customize fzf colors to match your color scheme
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
@@ -89,6 +106,6 @@ let g:fzf_colors =
 
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
-  \ 'ctrl-b': 'split',
+  \ 'ctrl-s': 'split',
   \ 'ctrl-v': 'vsplit' 
   \ }
