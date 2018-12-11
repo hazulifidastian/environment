@@ -13,8 +13,9 @@
 "   endif
 " endfunction
 
-nnoremap <silent><F4> :call NERDTreeToggle<CR>
-nnoremap <silent><F4> <ESC> :NERDTreeToggle<CR>
+nnoremap <silent><F4> :RERDTreeToggle<CR>
+nnoremap <silent><F3> :NERDTreeFind<CR>
+nnoremap <silent><F4><ESC> :NERDTreeToggle<CR>
 nnoremap <silent><Leader>ft :NERDTreeToggle<CR>
 nnoremap <silent><Leader>fd :NERDTreeFind<CR>
 
