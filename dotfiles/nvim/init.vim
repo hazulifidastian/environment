@@ -121,6 +121,9 @@ Plug '2072/php-indenting-for-vim', {'for': 'php'}
 " php doc autocompletion
 Plug 'tobyS/vmustache' | Plug 'tobyS/pdv', {'for': 'php'}
 
+" dart
+Plug 'dart-lang/dart-vim-plugin'
+
 " create tags
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'skywind3000/gutentags_plus'
@@ -258,9 +261,6 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " project config - is not on my git repository
 source ~/.config/nvim/projects.nvimrc
 
-" close the buffer
-nmap <Leader>db :Bdelete!<cr>
-
 " Twig
 autocmd vimrc BufNewFile,BufRead *.twig set filetype=html.twig
 
@@ -285,10 +285,10 @@ nnoremap <Tab> gt
 nnoremap <S-Tab> gT
 
 " ctrl-arrow keys move windows
-nnoremap <M-Left> <C-w>h<CR>
-nnoremap <M-Right> <C-w>l<CR>
-nnoremap <M-Up> <C-w>k<CR>
-nnoremap <M-Down> <C-w>j<CR>
+nnoremap <C-Left> <C-w>h<CR>
+nnoremap <C-Right> <C-w>l<CR>
+nnoremap <C-Up> <C-w>k<CR>
+nnoremap <C-Down> <C-w>j<CR>
 
 " ** EndBlock Misc ** "
 
@@ -343,10 +343,10 @@ vmap <C-_> gcc<Esc>
 imap <C-_> <Esc>gcc i
 
 " ctrl-arrow keys resize windows
-nnoremap <C-Left> :vertical resize -5<CR>
-nnoremap <C-Right> :vertical resize +5<CR>
-nnoremap <C-Up> :resize -5<CR>
-nnoremap <C-Down> :resize +5<CR>
+nnoremap <M-Left> :vertical resize -5<CR>
+nnoremap <M-Right> :vertical resize +5<CR>
+nnoremap <M-Up> :resize -5<CR>
+nnoremap <M-Down> :resize +5<CR>
 imap <up> <nop>
 imap <down> <nop>
 imap <left> <nop>
@@ -363,6 +363,7 @@ vmap <C-S-Down> ]egv
 
 "Toggle between absolute -> relative line number
 nnoremap <C-n> :let [&nu, &rnu] = [&nu, &nu+&rnu==1]<CR>
+nnoremap <C-n>o :set nonu nornu<CR>
 
 " delete character after cursor in insert mode
 inoremap <C-d> <Del>
@@ -390,8 +391,8 @@ nnoremap <Leader>cO :e $MYVIMRC<CR>
 nnoremap <Leader>cR :source $MYVIMRC<CR>
 
 " location & quickfix window
-nnoremap <silent> <Leader>l :call general#ToggleList("Location List", 'l')<CR>
-nnoremap <silent> <Leader>q :call general#ToggleList("Quickfix List", 'c')<CR>
+nnoremap <silent> <Leader>ll :call general#ToggleList("Location List", 'l')<CR>
+nnoremap <silent> <Leader>lq :call general#ToggleList("Quickfix List", 'c')<CR>
 
 " shortcut to substitute current word under cursor
 nnoremap <Leader>[ :%s/<c-r><c-w>//g<left><left>
@@ -409,12 +410,32 @@ nnoremap <Leader>B :bp<CR>
 nnoremap <Leader>b# :b#<CR>
 nnoremap <Leader>bf :bfirst<CR>
 nnoremap <Leader>bl :blast<CR>
+nmap <Leader>bd :bd<cr>
+nmap <Leader>bd! :bd!<cr>
+
+" close the buffer
+nmap <Leader>bda :Bdelete!<cr>
 
 " move buffer
-nnoremap <Leader>tt :tabn<CR>
-nnoremap <Leader>T :tabp<CR>
+nnoremap <Leader>tn :tabnew<CR>
+nnoremap <Leader>t :tabnext<CR>
+nnoremap <Leader>T :tabprevious<CR>
 nnoremap <Leader>tf :tabfirst<CR>
 nnoremap <Leader>tl :tablast<CR>
+nnoremap <Leader>tq :tabclose<CR>
+nnoremap <Leader>to :tabonly<CR>
+
+" window
+nnoremap <Leader>ws :sp<CR>
+nnoremap <Leader>wv :vsp<CR>
+nnoremap <Leader>wq :q<CR>
+nnoremap <Leader>wqa :qa<CR>
+
+" help
+nnoremap <Leader>h :h<Space>
+
+" quit
+" nmap <Leader>qq :q<CR>
 
 " ** EndBlock Leader ** "
 
@@ -531,6 +552,9 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 
+" break and indent
+set breakindent
+
 " Save session
 exec 'nnoremap <Leader>ss :mksession! ~/nvim/sessions/*.vim<C-D><BS><BS><BS><BS><BS>'
 " Reload session
@@ -588,8 +612,13 @@ set diffopt+=vertical
 
 augroup numbertoggle
   autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+  " autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  " autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+  
+  "set number except on nerdtree and taglist
+  let blacklist = ['nerdtree', 'tagbar']
+  autocmd BufEnter,FocusGained,InsertLeave * if index(blacklist, &ft) < 0 | set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter * if index(blacklist, &ft) < 0 | set norelativenumber
 augroup END
 
 autocmd vimrc FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o

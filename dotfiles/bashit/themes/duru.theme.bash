@@ -2,7 +2,7 @@
 
 SCM_THEME_PROMPT_PREFIX="${cyan} on ${green}"
 SCM_THEME_PROMPT_SUFFIX=""
-SCM_THEME_PROMPT_DIRTY=" ${red}with changes"
+SCM_THEME_PROMPT_DIRTY="${red}*"
 SCM_THEME_PROMPT_CLEAN=""
 
 venv() {
@@ -23,7 +23,7 @@ dir() {
 
 prompt() {
   # PS1="${yellow}# ${reset_color}$(dir)$(scm_prompt_info)${reset_color}$(venv)${reset_color} ${cyan}\n> ${reset_color}"
-  PS1="\n${yellow}# ${reset_color}$(dir)$(scm_prompt_info)${reset_color}$(venv)${reset_color} ${cyan}\n> ${reset_color}"
+  PS1="${yellow}# ${reset_color}$(dir)$(scm_prompt_info)${reset_color}$(venv)${reset_color} ${cyan}\n> ${reset_color}"
 }
 
 safe_append_prompt_command prompt

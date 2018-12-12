@@ -13,7 +13,7 @@
 "   endif
 " endfunction
 
-nnoremap <silent><F4> :RERDTreeToggle<CR>
+nnoremap <silent><F4> :NERDTreeToggle<CR>
 nnoremap <silent><F3> :NERDTreeFind<CR>
 nnoremap <silent><F4><ESC> :NERDTreeToggle<CR>
 nnoremap <silent><Leader>ft :NERDTreeToggle<CR>
@@ -29,6 +29,7 @@ let g:NERDTreeShowBookmarks = 0
 let g:NERDTreeCascadeOpenSingleChildDir = 1
 let g:NERDTreeCascadeSingleChildDir = 0
 let g:NERDTreeQuitOnOpen = 1
+let NERDTreeShowLineNumbers=0
 
 " change the arrows
 let NERDTreeDirArrows = 1
@@ -36,9 +37,10 @@ let NERDTreeDirArrows = 1
 "let g:NERDTreeDirArrowCollapsible = ''
 
 " remapping - see nerdtree.txt and search for "NERDTreeMappings"
-" let NERDTreeMapOpenSplit = 'b'
-" let NERDTreeMapPreviewSplit='gb'
+let NERDTreeMapPreview = 'wp'
+let NERDTreeMapOpenSplit = 'ws'
+let NERDTreeMapPreviewSplit='wsp'
 
-" let NERDTreeMapOpenVSplit = 'v'
-" let NERDTreeMapPreviewVSplit='gv'
-" let g:NERDTreeMouseMode=3
+let NERDTreeMapOpenVSplit = 'wv'
+let NERDTreeMapPreviewVSplit='wvp'
+let g:NERDTreeMouseMode=1

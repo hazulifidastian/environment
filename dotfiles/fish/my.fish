@@ -32,9 +32,7 @@ alias scripts='cd $PROJECTS/scripts'
 
 # edit
 alias einitnvim='e $DOTFILES/nvim/init.vim'
-alias emybashrc='e $DOTFILES/fish/.setter'
-alias ealiases='e $DOTFILES/fish/.aliases'
-alias reload='source ~/.my.bashrc'
+alias emyfish='e $DOTFILES/fish/my.fish'
 
 alias oldrek='cd $PROJECTS/KementerianPUPR/old.erekomtek.web.dev/src'
 
