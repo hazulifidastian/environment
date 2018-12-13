@@ -413,9 +413,6 @@ nnoremap <Leader>bl :blast<CR>
 nmap <Leader>bd :bd<cr>
 nmap <Leader>bd! :bd!<cr>
 
-" close the buffer
-nmap <Leader>bda :Bdelete!<cr>
-
 " move buffer
 nnoremap <Leader>tn :tabnew<CR>
 nnoremap <Leader>t :tabnext<CR>

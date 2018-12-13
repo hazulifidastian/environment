@@ -9,12 +9,19 @@ set WORKON_HOME $HOME/.virtualenvs
 set export PROJECT_HOME $HOME/Projects/Python
 # . /usr/local/bin/virtualenvwrapper.sh
 
+# java
+set JAVA_HOME /snap/android-studio/69/android-studio/jre/bin
+set ANDROID_SDK $HOME/Android/Sdk
+set ANDROID_SDK_TOOLS $ANDROID_SDK/tools/bin
+set ANDROID_SDK_PLATFORM_TOOLS $ANDROID_SDK/platform-tools
+set PATH $JAVA_HOME $ANDROID_SDK_PLATFORM_TOOLS $ANDROID_SDK_TOOLS $PATH
+
 # ** Virtualfish ** #
 eval (python -m virtualfish)
 
 # ** Aliases ** #
 
-alias bd='. bd -si'
+# alias bd='. bd -si'
 
 # app shortcut
 alias e='nvim'
