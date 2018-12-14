@@ -16,6 +16,10 @@ set ANDROID_SDK_TOOLS $ANDROID_SDK/tools/bin
 set ANDROID_SDK_PLATFORM_TOOLS $ANDROID_SDK/platform-tools
 set PATH $JAVA_HOME $ANDROID_SDK_PLATFORM_TOOLS $ANDROID_SDK_TOOLS $PATH
 
+# flutter
+set FLUTTER_HOME $HOME/Applications/flutter/bin
+set PATH $FLUTTER_HOME $PATH
+
 # ** Virtualfish ** #
 eval (python -m virtualfish)
 

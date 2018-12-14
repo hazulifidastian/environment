@@ -227,6 +227,9 @@ Plug 'chrisbra/csv.vim'
 Plug 'morhetz/gruvbox'
 Plug 'joshdick/onedark.vim'
 
+" Indent line
+Plug 'Yggdroot/indentLine'
+
 call plug#end()
 
 
@@ -405,7 +408,8 @@ map <Leader>' ysiw'<cr>
 " nnoremap <silent> <Leader>z :call general#ZoomToggle()<CR>
 
 " move buffer
-nnoremap <Leader>bb :bn<CR>
+nnoremap <Leader>bb :Buffer<CR>
+nnoremap <Leader>b :bn<CR>
 nnoremap <Leader>B :bp<CR>
 nnoremap <Leader>b# :b#<CR>
 nnoremap <Leader>bf :bfirst<CR>
@@ -414,6 +418,7 @@ nmap <Leader>bd :bd<cr>
 nmap <Leader>bd! :bd!<cr>
 
 " move buffer
+nnoremap <Leader>tt :tabs<CR>:tabn<Space>
 nnoremap <Leader>tn :tabnew<CR>
 nnoremap <Leader>t :tabnext<CR>
 nnoremap <Leader>T :tabprevious<CR>
@@ -423,6 +428,7 @@ nnoremap <Leader>tq :tabclose<CR>
 nnoremap <Leader>to :tabonly<CR>
 
 " window
+nnoremap <Leader>ww :Windows<CR>
 nnoremap <Leader>ws :sp<CR>
 nnoremap <Leader>wv :vsp<CR>
 nnoremap <Leader>wq :q<CR>
@@ -639,3 +645,8 @@ let g:python_host_prog = '/usr/bin/python2'
 " highlight the line which is longer than the defined margin (120 character)
 highlight ColorColumn ctermbg=red
 
+" split below and right
+set splitbelow splitright
+
+" waiting for key
+set timeout timeoutlen=1000 ttimeoutlen=10
