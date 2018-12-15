@@ -84,8 +84,8 @@ Plug 'chaoren/vim-wordmotion'
 Plug 'andymass/vim-matchup'
 
 " vim project for one specific vimrc / project + startify for startup cow
-Plug 'amiorin/vim-project'
-Plug 'mhinz/vim-startify'
+" Plug 'amiorin/vim-project'
+" Plug 'mhinz/vim-startify'
 
 " snippets
 Plug 'SirVer/ultisnips'
@@ -180,8 +180,9 @@ Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind']}
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " Status bar
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
 
 " undo tree
 Plug 'sjl/gundo.vim'
@@ -634,9 +635,6 @@ set mouse=a
 
 " hu?
 inoremap <expr> <c-y> matchstr(getline(line('.')-1), '\%' . virtcol('.') . 'v\%(\k\+\\|.\)')
-
-" load aliases
-let $BASH_ENV = "~/.aliases"
 
 " path to your python 
 let g:python3_host_prog = '/usr/bin/python3'
