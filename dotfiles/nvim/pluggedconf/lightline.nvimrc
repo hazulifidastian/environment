@@ -1,11 +1,17 @@
+if has("gui_running")
+    let g:lightline = { 'colorscheme': 'gruvbox' }
+else
+    let g:lightline = { 'colorscheme': 'one' }
+endif
+
 let g:lightline = {
-    \   'colorscheme': 'one',
     \   'active': {
     \     'left':[ [ 'mode', 'paste' ],
-    \              [ 'gitbranch', 'readonly', 'filename', 'modified' ]
+    \              [ 'readonly', 'filename', 'modified', 'tagbar']
     \     ]
     \   },
     \   'component': {
+    \     'tagbar': '%{tagbar#currenttag("%s", "", "f")}',
     \     'lineinfo': ' %3l:%-2v',
     \   },
     \   'component_function': {
@@ -29,12 +35,17 @@ endfunction
 let g:lightline.separator = {
     \   'left': '', 'right': ''
     \ }
+
 let g:lightline.subseparator = {
 	\   'left': '', 'right': '' 
     \ }
-let g:lightline.tabline = {
-    \ 'left': [ [ 'tabs' ] ],
-    \ 'right': [ [ 'close' ] ] }
+
+if !has("gui_running")
+    let g:lightline.tabline = {
+        \ 'left': [ [ 'tabs' ] ],
+        \ 'right': [ [ 'close' ] ] }
+endif
+
 let g:lightline.mode_map = {
     \ 'n' : 'N',
     \ 'i' : 'I',

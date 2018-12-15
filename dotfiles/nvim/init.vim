@@ -62,6 +62,7 @@ Plug 'tpope/vim-repeat'
 
 " comment automatically
 Plug 'tpope/vim-commentary'
+
 " Add sugar on top of Vim
 Plug 'tpope/vim-eunuch'
 
@@ -89,7 +90,7 @@ Plug 'andymass/vim-matchup'
 
 " snippets
 Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+" Plug 'honza/vim-snippets'
 
 " markdown - writing
 Plug 'gabrielelana/vim-markdown' " markdown plugin
@@ -105,7 +106,7 @@ Plug 'junegunn/limelight.vim', { 'for': 'markdown' } " Hyperfocus-writing
 " Plug 'reedes/vim-lexical' " dictionnary, thesaurus...
 
 " phython
-Plug 'davidhalter/jedi-vim'
+Plug 'davidhalter/jedi-vim', {'for': 'py'}
 
 " php
 Plug 'joonty/vdebug'
@@ -122,7 +123,7 @@ Plug '2072/php-indenting-for-vim', {'for': 'php'}
 Plug 'tobyS/vmustache' | Plug 'tobyS/pdv', {'for': 'php'}
 
 " dart
-Plug 'dart-lang/dart-vim-plugin'
+Plug 'dart-lang/dart-vim-plugin', {'for': 'dart'}
 
 " create tags
 Plug 'ludovicchabant/vim-gutentags'
@@ -134,8 +135,8 @@ if has('nvim')
 	Plug 'roxma/nvim-yarp'
 	Plug 'ncm2/ncm2-bufword'
 	Plug 'ncm2/ncm2-path'
-    Plug 'HansPinckaers/ncm2-jedi'
-	Plug 'phpactor/ncm2-phpactor'
+    Plug 'HansPinckaers/ncm2-jedi', {'for': 'py'}
+	Plug 'phpactor/ncm2-phpactor', {'for': 'php'}
 	"Plug 'ncm2/ncm2-go'
 	"Plug 'ncm2/ncm2-tern'
 	"Plug 'ncm2/ncm2-cssomni'
@@ -145,8 +146,8 @@ else
 	Plug 'Shougo/deoplete.nvim'
 	Plug 'roxma/nvim-yarp'
 	Plug 'roxma/vim-hug-neovim-rpc'
-    Plug 'zchee/deoplete-jedi'
-	Plug 'kristijanhusak/deoplete-phpactor'
+    Plug 'zchee/deoplete-jedi', {'for': 'py'}
+	Plug 'kristijanhusak/deoplete-phpactor', {'for': 'php'}
 endif
 
 
@@ -154,17 +155,17 @@ endif
 Plug 'lumiliet/vim-twig', {'for': 'twig'}
 
 " javascript plugins
-Plug 'pangloss/vim-javascript'
+Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx']}
 Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx', 'vue'], 'do': 'npm install'}
 
-Plug 'leafgarland/typescript-vim'
+Plug 'leafgarland/typescript-vim', {'for': 'ts'}
 " Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 
 " For react
-Plug 'mxw/vim-jsx'
+Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx']}
 
 " For Vue
-Plug 'posva/vim-vue'
+Plug 'posva/vim-vue', {'for': 'vue'}
 
 " general quality tools 
 Plug 'w0rp/ale'
@@ -219,7 +220,7 @@ Plug 'simeji/winresizer'
 Plug 'AndrewRadev/splitjoin.vim'
 
 " CSV plugin
-Plug 'chrisbra/csv.vim'
+" Plug 'chrisbra/csv.vim'
 
 " Table plugin
 " Plug 'dhruvasagar/vim-table-mode'
@@ -289,10 +290,10 @@ nnoremap <Tab> gt
 nnoremap <S-Tab> gT
 
 " ctrl-arrow keys move windows
-nnoremap <C-Left> <C-w>h<CR>
-nnoremap <C-Right> <C-w>l<CR>
-nnoremap <C-Up> <C-w>k<CR>
-nnoremap <C-Down> <C-w>j<CR>
+" nnoremap <C-Left> <C-w>h<CR>
+" nnoremap <C-Right> <C-w>l<CR>
+" nnoremap <C-Up> <C-w>k<CR>
+" nnoremap <C-Down> <C-w>j<CR>
 
 " ** EndBlock Misc ** "
 
@@ -347,10 +348,10 @@ vmap <C-_> gcc<Esc>
 imap <C-_> <Esc>gcc i
 
 " ctrl-arrow keys resize windows
-nnoremap <M-Left> :vertical resize -5<CR>
-nnoremap <M-Right> :vertical resize +5<CR>
-nnoremap <M-Up> :resize -5<CR>
-nnoremap <M-Down> :resize +5<CR>
+" nnoremap <M-Left> :vertical resize -5<CR>
+" nnoremap <M-Right> :vertical resize +5<CR>
+" nnoremap <M-Up> :resize -5<CR>
+" nnoremap <M-Down> :resize +5<CR>
 imap <up> <nop>
 imap <down> <nop>
 imap <left> <nop>
@@ -647,4 +648,7 @@ highlight ColorColumn ctermbg=red
 set splitbelow splitright
 
 " waiting for key
-set timeout timeoutlen=1000 ttimeoutlen=10
+set timeout timeoutlen=1000 ttimeoutlen=5
+
+" show status on vim/gvim
+set laststatus=2
