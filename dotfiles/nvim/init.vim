@@ -87,6 +87,8 @@ Plug 'andymass/vim-matchup'
 " vim project for one specific vimrc / project + startify for startup cow
 " Plug 'amiorin/vim-project'
 " Plug 'mhinz/vim-startify'
+Plug 'tpope/vim-projectionist'
+Plug 'airblade/vim-rooter'
 
 " snippets
 Plug 'SirVer/ultisnips'
@@ -264,7 +266,7 @@ inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " project config - is not on my git repository
-source ~/.config/nvim/projects.nvimrc
+" source ~/.config/nvim/projects.nvimrc
 
 " Twig
 autocmd vimrc BufNewFile,BufRead *.twig set filetype=html.twig
@@ -289,11 +291,6 @@ map <SPACE> <Leader>
 nnoremap <Tab> gt
 nnoremap <S-Tab> gT
 
-" ctrl-arrow keys move windows
-" nnoremap <C-Left> <C-w>h<CR>
-" nnoremap <C-Right> <C-w>l<CR>
-" nnoremap <C-Up> <C-w>k<CR>
-" nnoremap <C-Down> <C-w>j<CR>
 
 " ** EndBlock Misc ** "
 
@@ -347,11 +344,16 @@ nmap <C-_> gcc
 vmap <C-_> gcc<Esc>
 imap <C-_> <Esc>gcc i
 
-" ctrl-arrow keys resize windows
-" nnoremap <M-Left> :vertical resize -5<CR>
-" nnoremap <M-Right> :vertical resize +5<CR>
-" nnoremap <M-Up> :resize -5<CR>
-" nnoremap <M-Down> :resize +5<CR>
+" ctrl-arrow keys move windows
+nnoremap <C-Left> <C-w>h<CR>
+nnoremap <C-Right> <C-w>l<CR>
+nnoremap <C-Up> <C-w>k<CR>
+nnoremap <C-Down> <C-w>j<CR>
+" ctrl-alt-arrow keys resize windows
+nnoremap <C-M-Left> :vertical resize -5<CR>
+nnoremap <C-M-Right> :vertical resize +5<CR>
+nnoremap <C-M-Up> :resize -5<CR>
+nnoremap <C-M-Down> :resize +5<CR>
 imap <up> <nop>
 imap <down> <nop>
 imap <left> <nop>
@@ -435,6 +437,12 @@ nnoremap <Leader>ws :sp<CR>
 nnoremap <Leader>wv :vsp<CR>
 nnoremap <Leader>wq :q<CR>
 nnoremap <Leader>wqa :qa<CR>
+
+" project
+nnoremap <Leader>pf :Rooter<Cr> :Files<Cr>
+nnoremap <Leader>p/ :Rooter<Cr> :Rgic<Space>
+nnoremap <Leader>p' :Rooter<Cr> :terminal<Cr> 
+nnoremap <Leader>pt :Rooter<Cr> :pwd<Cr>
 
 " help
 nnoremap <Leader>h :h<Space>
