@@ -4,23 +4,6 @@ augroup END
 
 " Key mapping
 
-" History of file opened
-nnoremap <Leader>fh :History<cr>
-
-" Buffers opens
-nnoremap <Leader>fb :Buffers<cr>
-
-" Files recursively from pwd
-nnoremap <Leader>ff :Files<cr>
-
-" Ex commands
-nnoremap <Leader>fc :Commands<cr>
-
-" Ex command history. <C-e> to modify the command
-nnoremap <Leader>f: :History:<cr>
-
-" Search history
-nnoremap <Leader>fs :History/<cr>
 
 "" --column: Show column number
 " --line-number: Show line number

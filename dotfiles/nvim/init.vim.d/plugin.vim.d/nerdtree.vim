@@ -13,12 +13,6 @@
 "   endif
 " endfunction
 
-nnoremap <silent><F4> :NERDTreeToggle<CR>
-nnoremap <silent><F3> :NERDTreeFind<CR>
-nnoremap <silent><F4><ESC> :NERDTreeToggle<CR>
-nnoremap <silent><Leader>we :NERDTreeToggle<CR>
-nnoremap <silent><Leader>wf :NERDTreeFind<CR>
-
 " don't display informations (type ? for help and so on)
 let g:NERDTreeMinimalUI = 1
 " don't replace the native vim file explorer
