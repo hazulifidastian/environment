@@ -52,6 +52,7 @@ imap hh <Esc>
 " ** EndBlock Word ** "
 
 " ** Block Ctrl ** "
+
 " Save file
 nnoremap <C-s> :update<CR>
 inoremap <C-s> <Esc>:update<CR>
@@ -67,10 +68,10 @@ nnoremap <C-Right> <C-w>l<CR>
 nnoremap <C-Up> <C-w>k<CR>
 nnoremap <C-Down> <C-w>j<CR>
 " ctrl-alt-arrow keys resize windows
-nnoremap <C-M-Left> :vertical resize -5<CR>
-nnoremap <C-M-Right> :vertical resize +5<CR>
-nnoremap <C-M-Up> :resize -5<CR>
-nnoremap <C-M-Down> :resize +5<CR>
+nmap <C-M-Left> :vertical resize -5<CR>
+nmap <C-M-Right> :vertical resize +5<CR>
+nmap <C-M-Up> :resize -5<CR>
+nmap <C-M-Down> :resize +5<CR>
 imap <up> <nop>
 imap <down> <nop>
 imap <left> <nop>
@@ -110,9 +111,6 @@ nnoremap <silent><F4><ESC> :NERDTreeToggle<CR>
 
 " * <Leader> <FunctionKeys> 
 
-" open nvim config folder, and search for files
-nnoremap <Leader><F5> :cd ~/Projects/environment/dotfiles/nvim<Cr> :Files<Cr>
-nnoremap <Leader><F5><F5> :source $MYVIMRC<CR>
 
 " setup key [1-9] for moving windows, tab, and buffer
 for s:i in range(1, 9)
@@ -131,54 +129,81 @@ unlet s:i
 map <Leader>" ysiw"<cr>
 map <Leader>' ysiw'<cr>
 
-" * <Leader> b 
+" * <Leader> b (buffer)
 
 " move buffer
-nnoremap <Leader>b :bn<CR>
-nnoremap <Leader>B :bp<CR>
+nnoremap <Leader>b++ :new<CR>
+nnoremap <Leader>b+s :new<CR>
+nnoremap <Leader>b+v :vnew<CR>
+nnoremap <Leader>bn :bn<CR>
+nnoremap <Leader>bp :bp<CR>
 nnoremap <Leader>b# :b#<CR>
 nnoremap <Leader>bf :bfirst<CR>
 nnoremap <Leader>bl :blast<CR>
+nmap <Leader>b- :bd<cr>
 nmap <Leader>bd :bd<cr>
-nmap <Leader>bd! :bd!<cr>
+nmap <Leader>b!d :bd!<cr>
+nmap <Leader>bs :update<cr>
+nmap <Leader>b!s :update!<cr>
+nnoremap <Leader>bS :saveas %:h/
 
-" * <Leader> f 
+" * <Leader> f  (find)
 
 nnoremap <Leader>fh :History<cr>
 nnoremap <Leader>fb :Buffers<cr>
 nnoremap <Leader>ff :Files<cr>
 nnoremap <Leader>fc :Commands<cr>
 nnoremap <Leader>f: :History:<cr>
-nnoremap <Leader>fs :History/<cr>
+nnoremap <Leader>f/ :History/<cr>
 nnoremap <Leader>ft :tabs<CR>:tabn<Space>
 nnoremap <Leader>fw :Windows<cr>
 
+nmap <leader>fr <Plug>(FerretAck)
+nmap <leader>fwr <Plug>(FerretAckWord)
+nmap <leader>fR <Plug>(FerretAcks)
 
-" * <Leader> h 
+" * <Leader> h (help)
 
 " help
 nnoremap <Leader>h :h<Space>
 
-" * <Leader> p 
+" * <Leader> p (project)
 
 " project
-nnoremap <Leader>pf :Rooter<Cr> :Files<Cr>
-nnoremap <Leader>p/ :Rooter<Cr> :Rgic<Space>
-nnoremap <Leader>p' :Rooter<Cr> :terminal<Cr> 
-nnoremap <Leader>pt :Rooter<Cr> :pwd<Cr>
+nnoremap <Leader>pf :Rooter<Cr>:Files<Cr>
+nnoremap <Leader>p/ :Rooter<Cr>:Rgic<Space>
+nnoremap <Leader>p' :Rooter<Cr>:terminal<Cr> 
+nnoremap <Leader>pR :Rooter<Cr>:pwd<Cr>
 
 " * <Leader> t 
 
 " move tab
-nnoremap <Leader>tn :tabnew<CR>
-nnoremap <Leader>t :tabnext<CR>
-nnoremap <Leader>T :tabprevious<CR>
+nnoremap <Leader>t+ :tabnew<CR>
+nnoremap <Leader>tn :tabnext<CR>
+nnoremap <Leader>tp :tabprevious<CR>
 nnoremap <Leader>tf :tabfirst<CR>
 nnoremap <Leader>tl :tablast<CR>
+nnoremap <Leader>t- :tabclose<CR>
 nnoremap <Leader>tq :tabclose<CR>
 nnoremap <Leader>to :tabonly<CR>
 
-" * <Leader> w 
+
+" * <Leader> v (vim)
+
+" open nvim config folder, and search for files
+nnoremap <Leader>vc :tabnew<Cr>:lcd ~/Projects/environment/dotfiles/nvim<Cr>:Files<Cr>
+nnoremap <Leader>vC :source $MYVIMRC<CR>
+
+" save and load session
+if has('gui_running')
+    nnoremap <Leader>vs :mksession! ~/.config/nvim/sessions/gui.vim<Cr>
+    nnoremap <Leader>vS :source ~/.config/nvim/sessions/gui.vim<Cr>
+else
+    nnoremap <Leader>vs :mksession! ~/.config/nvim/sessions/terminal.vim<Cr>
+    nnoremap <Leader>vS :source ~/.config/nvim/sessions/terminal.vim<Cr>
+endif
+
+" * <Leader> w  (window)
 
 nnoremap <silent><Leader>we :NERDTreeToggle<CR>
 nnoremap <silent><Leader>wf :NERDTreeFind<CR>
@@ -187,8 +212,8 @@ nnoremap <silent><Leader>wf :NERDTreeFind<CR>
 nnoremap <Leader>ws :sp<CR>
 nnoremap <Leader>wv :vsp<CR>
 nnoremap <Leader>wq :q<CR>
-nnoremap <Leader>wqa :qa<CR>
+nnoremap <Leader>wQ :qa<CR>
 
 " location & quickfix window
-nnoremap <silent> <Leader>wl :call general#ToggleList("Location List", 'l')<CR>
-nnoremap <silent> <Leader>wc :call general#ToggleList("Quickfix List", 'c')<CR>
+nnoremap <silent> <Leader>wll :call general#ToggleList("Location List", 'l')<CR>
+nnoremap <silent> <Leader>wlq :call general#ToggleList("Quickfix List", 'c')<CR>

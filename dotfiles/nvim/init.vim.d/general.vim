@@ -100,10 +100,6 @@ set shiftwidth=4
 " break and indent
 set breakindent
 
-" Save session
-exec 'nnoremap <Leader>ss :mksession! ~/nvim/sessions/*.vim<C-D><BS><BS><BS><BS><BS>'
-" Reload session
-exec 'nnoremap <Leader>sl :so ~/nvim/sessions/*.vim<C-D><BS><BS><BS><BS><BS>'
 
 " when at 3 spaces, and I hit > ... go to 4, not 7
 set shiftround
@@ -188,7 +184,7 @@ highlight ColorColumn ctermbg=red
 set splitbelow splitright
 
 " waiting for key
-set timeout timeoutlen=500 ttimeoutlen=5
+set timeout timeoutlen=1000 ttimeoutlen=10
 
 " show status on vim/gvim
 set laststatus=2
