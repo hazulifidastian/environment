@@ -36,24 +36,24 @@ if [ ! -d $HOME/.config/nvim/godoctor.vim ]
 fi
 
 # If no projects configured create an empty file
-if [ ! -f $HOME/.config/nvim/projects.nvimrc ]
-  then
-    touch $HOME/.config/nvim/projects.nvimrc
-fi
+# if [ ! -f $HOME/.config/nvim/projects.nvimrc ]
+#   then
+#     touch $HOME/.config/nvim/projects.nvimrc
+# fi
 
 # configuration of different plugins
-ln -sf $DOTFILES/nvim/pluggedconf/ $HOME/.config/nvim/pluggedconf
+ln -sf $DOTFILES/nvim/init.vim.d/ $HOME/.config/nvim/init.vim.d
 
 # indentation
-ln -sf $DOTFILES/nvim/after/indent/* $HOME/.config/nvim/after/indent/
+# ln -sf $DOTFILES/nvim/after/indent/* $HOME/.config/nvim/after/indent/
 
 # snippets
 ln -sf $DOTFILES/nvim/UltiSnips/ $HOME/.config/nvim/UltiSnips
 
 # see :help ftplugin
-ln -sf $DOTFILES/nvim/ftplugin/ $HOME/.config/nvim/ftplugin
+# ln -sf $DOTFILES/nvim/ftplugin/ $HOME/.config/nvim/ftplugin
 
 # see :help autoload
 ln -sf $DOTFILES/nvim/autoload/* $HOME/.config/nvim/autoload/
 
-echo -e "${green}...done\n"
+# echo -e "${green}...done\n"
