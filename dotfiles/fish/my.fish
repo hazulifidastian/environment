@@ -49,3 +49,4 @@ alias oldrek='cd $PROJECTS/KementerianPUPR/old.erekomtek.web.dev/src'
 
 # php
 alias phpunit='./vendor/bin/phpunit'
+

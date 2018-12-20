@@ -16,7 +16,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-fugitive' | Plug 'mhinz/vim-signify'
 
 " Display commits for project / file
-Plug 'junegunn/gv.vim'
+" Plug 'junegunn/gv.vim'
 
 " surrounding with whatever you want (paranthesis, quotes...)
 Plug 'tpope/vim-surround'
@@ -201,5 +201,8 @@ Plug 'joshdick/onedark.vim'
 
 " Indent line
 Plug 'Yggdroot/indentLine'
+
+" multiple cursor
+Plug 'terryma/vim-multiple-cursors'
 
 call plug#end()

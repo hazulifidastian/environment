@@ -2,6 +2,8 @@ augroup fzf
   autocmd!
 augroup END
 
+autocmd! FileType fzf tnoremap <buffer> <esc> <c-c>
+
 " Key mapping
 
 

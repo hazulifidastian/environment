@@ -57,6 +57,9 @@ imap hh <Esc>
 nnoremap <C-s> :update<CR>
 inoremap <C-s> <Esc>:update<CR>
 
+" override default gc
+vmap gcc gc
+
 " Toggle comment using Ctrl-/
 nmap <C-_> gcc
 vmap <C-_> gcc<Esc>
@@ -72,10 +75,10 @@ nmap <C-M-Left> :vertical resize -5<CR>
 nmap <C-M-Right> :vertical resize +5<CR>
 nmap <C-M-Up> :resize -5<CR>
 nmap <C-M-Down> :resize +5<CR>
-imap <up> <nop>
-imap <down> <nop>
-imap <left> <nop>
-imap <right> <nop>
+" imap <up> <nop>
+" imap <down> <nop>
+" imap <left> <nop>
+" imap <right> <nop>
 
 " Move text shortcut
 " this using tpop/unimpaired
@@ -87,8 +90,8 @@ vmap <C-S-Up> [egv
 vmap <C-S-Down> ]egv
 
 "Toggle between absolute -> relative line number
-nnoremap <C-n> :let [&nu, &rnu] = [&nu, &nu+&rnu==1]<CR>
-nnoremap <C-n>o :set nonu nornu<CR>
+" nnoremap <C-n> :let [&nu, &rnu] = [&nu, &nu+&rnu==1]<CR>
+" nnoremap <C-n>o :set nonu nornu<CR>
 
 " delete character after cursor in insert mode
 inoremap <C-d> <Del>
@@ -129,22 +132,27 @@ unlet s:i
 map <Leader>" ysiw"<cr>
 map <Leader>' ysiw'<cr>
 
+" * <Leader> / 
+nnoremap <Leader>_: gcc
+vnoremap <Leader>_: gcc
+
 " * <Leader> b (buffer)
 
 " move buffer
 nnoremap <Leader>b++ :new<CR>
 nnoremap <Leader>b+s :new<CR>
 nnoremap <Leader>b+v :vnew<CR>
-nnoremap <Leader>bn :bn<CR>
-nnoremap <Leader>bp :bp<CR>
+nnoremap <Leader>bl :bn<CR>
+nnoremap <Leader>bh :bp<CR>
 nnoremap <Leader>b# :b#<CR>
-nnoremap <Leader>bf :bfirst<CR>
-nnoremap <Leader>bl :blast<CR>
+nnoremap <Leader>bj :bfirst<CR>
+nnoremap <Leader>bk :blast<CR>
 nmap <Leader>b- :bd<cr>
-nmap <Leader>bd :bd<cr>
+nmap <Leader>bd :bp<bar>bd #<cr>
 nmap <Leader>b!d :bd!<cr>
 nmap <Leader>bs :update<cr>
 nmap <Leader>b!s :update!<cr>
+nmap <Leader>bD :Ball<cr>
 nnoremap <Leader>bS :saveas %:h/
 
 " * <Leader> f  (find)
@@ -174,15 +182,16 @@ nnoremap <Leader>pf :Rooter<Cr>:Files<Cr>
 nnoremap <Leader>p/ :Rooter<Cr>:Rgic<Space>
 nnoremap <Leader>p' :Rooter<Cr>:terminal<Cr> 
 nnoremap <Leader>pR :Rooter<Cr>:pwd<Cr>
+nnoremap <Leader>pA :A<Cr>
 
 " * <Leader> t 
 
 " move tab
 nnoremap <Leader>t+ :tabnew<CR>
-nnoremap <Leader>tn :tabnext<CR>
-nnoremap <Leader>tp :tabprevious<CR>
-nnoremap <Leader>tf :tabfirst<CR>
-nnoremap <Leader>tl :tablast<CR>
+nnoremap <Leader>tl :tabnext<CR>
+nnoremap <Leader>th :tabprevious<CR>
+nnoremap <Leader>tj :tabfirst<CR>
+nnoremap <Leader>tk :tablast<CR>
 nnoremap <Leader>t- :tabclose<CR>
 nnoremap <Leader>tq :tabclose<CR>
 nnoremap <Leader>to :tabonly<CR>
@@ -192,15 +201,15 @@ nnoremap <Leader>to :tabonly<CR>
 
 " open nvim config folder, and search for files
 nnoremap <Leader>vc :tabnew<Cr>:lcd ~/Projects/environment/dotfiles/nvim<Cr>:Files<Cr>
-nnoremap <Leader>vC :source $MYVIMRC<CR>
+nnoremap <silent><Leader>vC :source $MYVIMRC<CR>
 
 " save and load session
 if has('gui_running')
     nnoremap <Leader>vs :mksession! ~/.config/nvim/sessions/gui.vim<Cr>
-    nnoremap <Leader>vS :source ~/.config/nvim/sessions/gui.vim<Cr>
+    nnoremap <silent><Leader>vS :source ~/.config/nvim/sessions/gui.vim<Cr>
 else
     nnoremap <Leader>vs :mksession! ~/.config/nvim/sessions/terminal.vim<Cr>
-    nnoremap <Leader>vS :source ~/.config/nvim/sessions/terminal.vim<Cr>
+    nnoremap <silent><Leader>vS :source ~/.config/nvim/sessions/terminal.vim<Cr>
 endif
 
 " * <Leader> w  (window)
@@ -213,7 +222,24 @@ nnoremap <Leader>ws :sp<CR>
 nnoremap <Leader>wv :vsp<CR>
 nnoremap <Leader>wq :q<CR>
 nnoremap <Leader>wQ :qa<CR>
+nnoremap <Leader>w= <C-w>=
+
+" focus 
+nnoremap <Leader>wk <C-w>k
+nnoremap <Leader>wj <C-w>j
+nnoremap <Leader>wh <C-w>h
+nnoremap <Leader>wl <C-w>l
+
+" resize (using winresizer plugin)
+nmap <Leader>wwr <Leader>wwl
+" focus (using winresizer plugin)
+nmap <Leader>wwf <Leader>wwlf
+" move (using winresizer plugin)
+nmap <Leader>wwm <Leader>wwlm
+
+" maximize
+nmap <Leader>wm <C-w>_<C-w><bar>
 
 " location & quickfix window
-nnoremap <silent> <Leader>wll :call general#ToggleList("Location List", 'l')<CR>
-nnoremap <silent> <Leader>wlq :call general#ToggleList("Quickfix List", 'c')<CR>
+nnoremap <silent> <Leader>wol :call general#ToggleList("Location List", 'l')<CR>
+nnoremap <silent> <Leader>woc :call general#ToggleList("Quickfix List", 'c')<CR>

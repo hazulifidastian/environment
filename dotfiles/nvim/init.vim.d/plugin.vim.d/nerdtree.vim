@@ -31,10 +31,10 @@ let NERDTreeDirArrows = 1
 "let g:NERDTreeDirArrowCollapsible = ''
 
 " remapping - see nerdtree.txt and search for "NERDTreeMappings"
-let NERDTreeMapPreview = 'wp'
-let NERDTreeMapOpenSplit = 'ws'
-let NERDTreeMapPreviewSplit='wsp'
+let NERDTreeMapPreview = 'p'
+let NERDTreeMapOpenSplit = 's'
+let NERDTreeMapPreviewSplit='sp'
 
-let NERDTreeMapOpenVSplit = 'wv'
-let NERDTreeMapPreviewVSplit='wvp'
+let NERDTreeMapOpenVSplit = 'v'
+let NERDTreeMapPreviewVSplit='vp'
 let g:NERDTreeMouseMode=1
