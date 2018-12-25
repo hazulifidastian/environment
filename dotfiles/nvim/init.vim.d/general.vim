@@ -22,7 +22,10 @@ if has("gui_running")
 else
     "onedark themes
     set background=dark
-    colorscheme onedark
+    let g:gruvbox_italic=1
+    let g:gruvbox_contrast_dark="medium"
+    let g:gruvbox_termcolors=256
+    colorscheme gruvbox
 endif
 
 " True colors setting
@@ -81,7 +84,7 @@ set directory=~/.config/nvim/swap//
 
 " save undo trees in files
 set undofile
-set undodir=~/nvim/undo//
+set undodir=~/.config/nvim/undo//
 
 " set line number
 set number
@@ -194,3 +197,12 @@ autocmd vimrc BufNewFile,BufRead *.twig set filetype=html.twig
 
 " Yaml
 autocmd vimrc BufNewFile,BufRead *.yml.dist set filetype=yaml.
+
+" setup <C-n> vim-multiple-cursor to work on gvim
+if ("gui_running")
+    set selection=inclusive
+endif
+
+set sessionoptions-=help
+set sessionoptions-=buffers
+set sessionoptions-=options

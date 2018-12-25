@@ -58,23 +58,26 @@ nnoremap <C-s> :update<CR>
 inoremap <C-s> <Esc>:update<CR>
 
 " override default gc
-vmap gcc gc
+vmap gcc gc<Esc>
 
 " Toggle comment using Ctrl-/
 nmap <C-_> gcc
 vmap <C-_> gcc<Esc>
 imap <C-_> <Esc>gcc i
 
-" ctrl-arrow keys move windows
-nnoremap <C-Left> <C-w>h<CR>
-nnoremap <C-Right> <C-w>l<CR>
-nnoremap <C-Up> <C-w>k<CR>
-nnoremap <C-Down> <C-w>j<CR>
-" ctrl-alt-arrow keys resize windows
-nmap <C-M-Left> :vertical resize -5<CR>
-nmap <C-M-Right> :vertical resize +5<CR>
-nmap <C-M-Up> :resize -5<CR>
-nmap <C-M-Down> :resize +5<CR>
+" ctrl-hjkl keys move windows
+nnoremap <C-h> <C-w>h<CR>
+nnoremap <C-l> <C-w>l<CR>
+nnoremap <C-k> <C-w>k<CR>
+nnoremap <C-j> <C-w>j<CR>
+
+" ctrl-alt-hjkl keys resize windows
+nmap <C-M-h> :vertical resize -5<CR>
+nmap <C-M-l> :vertical resize +5<CR>
+nmap <C-M-k> :resize -5<CR>
+nmap <C-M-j> :resize +5<CR>
+
+" disable arrow key
 " imap <up> <nop>
 " imap <down> <nop>
 " imap <left> <nop>
@@ -88,10 +91,6 @@ nmap <C-S-Down> ]e
 " visual mode, when selected
 vmap <C-S-Up> [egv
 vmap <C-S-Down> ]egv
-
-"Toggle between absolute -> relative line number
-" nnoremap <C-n> :let [&nu, &rnu] = [&nu, &nu+&rnu==1]<CR>
-" nnoremap <C-n>o :set nonu nornu<CR>
 
 " delete character after cursor in insert mode
 inoremap <C-d> <Del>
@@ -139,15 +138,13 @@ vnoremap <Leader>_: gcc
 " * <Leader> b (buffer)
 
 " move buffer
-nnoremap <Leader>b++ :new<CR>
-nnoremap <Leader>b+s :new<CR>
-nnoremap <Leader>b+v :vnew<CR>
+nnoremap <Leader>bn :new<CR>
+nnoremap <Leader>bv :vnew<CR>
 nnoremap <Leader>bl :bn<CR>
 nnoremap <Leader>bh :bp<CR>
 nnoremap <Leader>b# :b#<CR>
 nnoremap <Leader>bj :bfirst<CR>
 nnoremap <Leader>bk :blast<CR>
-nmap <Leader>b- :bd<cr>
 nmap <Leader>bd :bp<bar>bd #<cr>
 nmap <Leader>b!d :bd!<cr>
 nmap <Leader>bs :update<cr>
@@ -155,25 +152,27 @@ nmap <Leader>b!s :update!<cr>
 nmap <Leader>bD :Ball<cr>
 nnoremap <Leader>bS :saveas %:h/
 
-" * <Leader> f  (find)
+"Toggle between absolute -> relative line number
+nnoremap <Leader>bm :let [&nu, &rnu] = [&nu, &nu+&rnu==1]<CR>
+nnoremap <Leader>bM :set nonu nornu<CR>
 
+" * <Leader> f  
+
+" fzf
 nnoremap <Leader>fh :History<cr>
 nnoremap <Leader>fb :Buffers<cr>
 nnoremap <Leader>ff :Files<cr>
 nnoremap <Leader>fc :Commands<cr>
 nnoremap <Leader>f: :History:<cr>
 nnoremap <Leader>f/ :History/<cr>
-nnoremap <Leader>ft :tabs<CR>:tabn<Space>
 nnoremap <Leader>fw :Windows<cr>
+nnoremap <Leader>fT :Tags<cr>
+nnoremap <Leader>ft :BTags<cr>
 
-nmap <leader>fr <Plug>(FerretAck)
-nmap <leader>fwr <Plug>(FerretAckWord)
-nmap <leader>fR <Plug>(FerretAcks)
-
-" * <Leader> h (help)
+" * <Leader> h
 
 " help
-nnoremap <Leader>h :h<Space>
+" nnoremap <Leader>h :h<Space>
 
 " * <Leader> p (project)
 
@@ -183,33 +182,60 @@ nnoremap <Leader>p/ :Rooter<Cr>:Rgic<Space>
 nnoremap <Leader>p' :Rooter<Cr>:terminal<Cr> 
 nnoremap <Leader>pR :Rooter<Cr>:pwd<Cr>
 nnoremap <Leader>pA :A<Cr>
+nnoremap <Leader>pas :AS<Cr>
+nnoremap <Leader>pav :AV<Cr>
+
+" current working directory
+nnoremap <Leader>pwd :echo getcwd()<Cr>
+
+" root directory
+nnoremap <Leader>pr :echo FindRootDirectory()<Cr>
+
+" save session on root directory
+nnoremap <Leader>ps :mksession! <C-r>=FindRootDirectory()<Cr>/session.vim "Save session to Project root
+nnoremap <Leader>pS :source <C-r>=FindRootDirectory()<Cr>/session.vim "Load session from Project root
+
+" * <Leader> s 
+
+nmap <leader>sr <Plug>(FerretAck)
+nmap <leader>swr <Plug>(FerretAckWord)
+nmap <leader>sR <Plug>(FerretAcks)
 
 " * <Leader> t 
 
 " move tab
-nnoremap <Leader>t+ :tabnew<CR>
+nnoremap <Leader>tn :tabnew<CR>
 nnoremap <Leader>tl :tabnext<CR>
 nnoremap <Leader>th :tabprevious<CR>
 nnoremap <Leader>tj :tabfirst<CR>
 nnoremap <Leader>tk :tablast<CR>
-nnoremap <Leader>t- :tabclose<CR>
 nnoremap <Leader>tq :tabclose<CR>
 nnoremap <Leader>to :tabonly<CR>
+nnoremap <Leader>tt :tabs<CR>:tabn<Space>
 
+nnoremap <Leader>t( 1gt
+nnoremap <Leader>t) 2gt
+nnoremap <Leader>t} 3gt
+nnoremap <Leader>t+ 4gt
+nnoremap <Leader>t{ 5gt
+nnoremap <Leader>t] 6gt
+nnoremap <Leader>t[ 7gt
+nnoremap <Leader>t! 8gt
+nnoremap <Leader>t= 9gt
 
 " * <Leader> v (vim)
 
 " open nvim config folder, and search for files
 nnoremap <Leader>vc :tabnew<Cr>:lcd ~/Projects/environment/dotfiles/nvim<Cr>:Files<Cr>
-nnoremap <silent><Leader>vC :source $MYVIMRC<CR>
+nnoremap <silent><Leader>vC :source $MYVIMRC<Cr>
 
 " save and load session
 if has('gui_running')
     nnoremap <Leader>vs :mksession! ~/.config/nvim/sessions/gui.vim<Cr>
-    nnoremap <silent><Leader>vS :source ~/.config/nvim/sessions/gui.vim<Cr>
+    nnoremap <Leader>vS :source ~/.config/nvim/sessions/gui.vim "Load GUI session
 else
     nnoremap <Leader>vs :mksession! ~/.config/nvim/sessions/terminal.vim<Cr>
-    nnoremap <silent><Leader>vS :source ~/.config/nvim/sessions/terminal.vim<Cr>
+    nnoremap <Leader>vS :source ~/.config/nvim/sessions/terminal.vim "Load Terminal session
 endif
 
 " * <Leader> w  (window)
@@ -230,6 +256,16 @@ nnoremap <Leader>wj <C-w>j
 nnoremap <Leader>wh <C-w>h
 nnoremap <Leader>wl <C-w>l
 
+nnoremap <Leader>w( :1wincmd w<Cr>
+nnoremap <Leader>w) :2wincmd w<Cr>
+nnoremap <Leader>w} :3wincmd w<Cr>
+nnoremap <Leader>w+ :4wincmd w<Cr>
+nnoremap <Leader>w{ :5wincmd w<Cr>
+nnoremap <Leader>w] :6wincmd w<Cr>
+nnoremap <Leader>w[ :7wincmd w<Cr>
+nnoremap <Leader>w! :8wincmd w<Cr>
+nnoremap <Leader>w= :9wincmd w<Cr>
+
 " resize (using winresizer plugin)
 nmap <Leader>wwr <Leader>wwl
 " focus (using winresizer plugin)
@@ -243,3 +279,11 @@ nmap <Leader>wm <C-w>_<C-w><bar>
 " location & quickfix window
 nnoremap <silent> <Leader>wol :call general#ToggleList("Location List", 'l')<CR>
 nnoremap <silent> <Leader>woc :call general#ToggleList("Quickfix List", 'c')<CR>
+
+" * Shortcut * "
+" ------------ "
+
+nnoremap <Leader>k <C-w>k
+nnoremap <Leader>j <C-w>j
+nnoremap <Leader>h <C-w>h
+nnoremap <Leader>l <C-w>l

@@ -63,11 +63,11 @@ Plug 'SirVer/ultisnips'
 " Plug 'honza/vim-snippets'
 
 " markdown - writing
-Plug 'gabrielelana/vim-markdown' " markdown plugin
-Plug 'SidOfc/mkdx', { 'for': 'markdown' } " lot of keystroke for markdown
+" Plug 'gabrielelana/vim-markdown' " markdown plugin
+" Plug 'SidOfc/mkdx', { 'for': 'markdown' } " lot of keystroke for markdown
 
-Plug 'junegunn/goyo.vim', { 'for': 'markdown' } " Distraction-free
-Plug 'junegunn/limelight.vim', { 'for': 'markdown' } " Hyperfocus-writing
+" Plug 'junegunn/goyo.vim', { 'for': 'markdown' } " Distraction-free
+" Plug 'junegunn/limelight.vim', { 'for': 'markdown' } " Hyperfocus-writing
 
 " Plug 'rhysd/vim-grammarous', { 'for': 'markdown' } " show grammar mistakes
 
@@ -75,11 +75,13 @@ Plug 'junegunn/limelight.vim', { 'for': 'markdown' } " Hyperfocus-writing
 " Plug 'reedes/vim-wordy', { 'for': 'markdown' } "veridy quality of writting (see :Wordy)
 " Plug 'reedes/vim-lexical' " dictionnary, thesaurus...
 
+" Debugging for multiple language
+" Plug 'joonty/vdebug'
+
 " phython
 Plug 'davidhalter/jedi-vim', {'for': 'py'}
 
 " php
-Plug 'joonty/vdebug'
 Plug 'StanAngeloff/php.vim', {'for': 'php'}
 Plug 'stephpy/vim-php-cs-fixer', {'for': 'php'}
 Plug 'nishigori/vim-php-dictionary', {'for': 'php'}

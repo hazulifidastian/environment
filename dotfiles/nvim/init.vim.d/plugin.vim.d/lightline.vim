@@ -1,18 +1,19 @@
 if has("gui_running")
     let g:lightline = { 'colorscheme': 'gruvbox' }
 else
-    let g:lightline = { 'colorscheme': 'one' }
+    let g:lightline = { 'colorscheme': 'gruvbox' }
 endif
 
 let g:lightline = {
     \   'active': {
     \     'left':[ [ 'mode', 'paste' ],
-    \              [ 'readonly', 'filename', 'modified', 'tagbar']
+    \              [ 'readonly', 'relativepath', 'modified', 'tagbar']
     \     ]
     \   },
     \   'component': {
     \     'tagbar': '%{tagbar#currenttag("%s", "", "f")}',
     \     'lineinfo': ' %3l:%-2v',
+    \     'relativepath': '%<%f',
     \   },
     \   'component_function': {
     \     'readonly': 'LightlineReadonly',

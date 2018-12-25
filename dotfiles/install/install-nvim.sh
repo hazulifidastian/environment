@@ -23,11 +23,11 @@ ln -sf $DOTFILES/nvim/init.vim $HOME/.vimrc
 
 # Install all mandatory folders if they don't exist already
 mkdir -p $HOME/.config/nvim/plugged
-mkdir -p $HOME/.config/nvim/autoload
-mkdir -p $HOME/.config/nvim/backup
-mkdir -p $HOME/.config/nvim/undo
-mkdir -p $HOME/.config/nvim/swap
-mkdir -p $HOME/.config/nvim/after/indent
+# mkdir -p $HOME/.config/nvim/autoload
+# mkdir -p $HOME/.config/nvim/backup
+# mkdir -p $HOME/.config/nvim/undo
+# mkdir -p $HOME/.config/nvim/swap
+# mkdir -p $HOME/.config/nvim/after/indent
 
 # Install Godoctor for vim
 if [ ! -d $HOME/.config/nvim/godoctor.vim ]
