@@ -206,3 +206,31 @@ endif
 set sessionoptions-=help
 set sessionoptions-=buffers
 set sessionoptions-=options
+
+if !has('nvim')
+    set termguicolors
+    set t_Co=256
+    let g:terminal_ansi_colors = [
+    \ '#4d5057',
+    \ '#cb817c',
+    \ '#83ac75',
+    \ '#f6e5af',
+    \ '#83afe5',
+    \ '#9a93e1',
+    \ '#80c1ca',
+    \ '#c5c8c6',
+    \ '#4d5057',
+    \ '#da4e4a',
+    \ '#9dcf8d',
+    \ '#ff9a54',
+    \ '#83afe5',
+    \ '#d08ec2',
+    \ '#85def4',
+    \ '#c5c8c6'
+    \ ]
+    set t_AB=^[[48;5;%dm
+    set t_AF=^[[38;5;%dm
+endif
+
+" hide enter ...
+set shortmess=a

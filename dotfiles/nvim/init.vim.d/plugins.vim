@@ -160,8 +160,10 @@ Plug 'itchyny/lightline.vim'
 " undo tree
 Plug 'sjl/gundo.vim'
 
-" registers
-Plug 'bfredl/nvim-miniyank'
+if has('nvim')
+    " registers
+    Plug 'bfredl/nvim-miniyank'
+endif
 
 " close the current buffer
 Plug 'moll/vim-bbye'
@@ -206,5 +208,11 @@ Plug 'Yggdroot/indentLine'
 
 " multiple cursor
 Plug 'terryma/vim-multiple-cursors'
+
+" dispatch
+Plug 'tpope/vim-dispatch'
+
+" tests
+Plug 'janko-m/vim-test'
 
 call plug#end()

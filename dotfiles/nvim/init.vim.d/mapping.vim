@@ -44,6 +44,7 @@ nnoremap J mzJ`z
 
 " Esc shortcut
 imap hh <Esc>
+imap ll <Esc>
 
 " Confirm quit
 " cnoremap <silent> q<CR>  :call general#ConfirmQuit(0)<CR>
@@ -130,10 +131,15 @@ unlet s:i
 " surround by quotes - frequently use cases of vim-surround
 map <Leader>" ysiw"<cr>
 map <Leader>' ysiw'<cr>
+vmap <Leader>' S'
+vmap <Leader>" S"
 
-" * <Leader> / 
-nnoremap <Leader>_: gcc
-vnoremap <Leader>_: gcc
+" * <Leader> ?
+map <Leader>? :h<Space>
+
+" * <Leader> # 
+nnoremap <Leader>#: gcc
+vnoremap <Leader>#: gcc
 
 " * <Leader> b (buffer)
 
@@ -170,9 +176,6 @@ nnoremap <Leader>fT :Tags<cr>
 nnoremap <Leader>ft :BTags<cr>
 
 " * <Leader> h
-
-" help
-" nnoremap <Leader>h :h<Space>
 
 " * <Leader> p (project)
 
