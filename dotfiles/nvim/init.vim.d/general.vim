@@ -9,8 +9,9 @@ filetype on
 filetype plugin indent on
 
 " Impossible to put it in vim-delve - to debug
-let g:delve_breakpoint_sign = ""
-let g:delve_tracepoint_sign = ""
+" let g:delve_breakpoint_sign = ""
+" let g:delve_tracepoint_sign = ""
+
 " colorscheme
 if has("gui_running")
     "gruvbox themes
@@ -149,21 +150,24 @@ set wildmenu
 set wildmode=list:longest,full
 
 " relative / hybrid line number switch
-set number relativenumber
+set number number
 
 " for vertical pane in git diff tool
 set diffopt+=vertical
 
-augroup numbertoggle
-  autocmd!
+" augroup numbertoggle
+"   autocmd!
   " autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
   " autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
   
   "set number except on nerdtree and taglist
-  let blacklist = ['nerdtree', 'tagbar']
-  autocmd BufEnter,FocusGained,InsertLeave * if index(blacklist, &ft) < 0 | set relativenumber
-  autocmd BufLeave,FocusLost,InsertEnter * if index(blacklist, &ft) < 0 | set norelativenumber
-augroup END
+  " let blacklist = ['nerdtree', 'tagbar']
+  " autocmd BufEnter,FocusGained,InsertLeave * if index(blacklist, &ft) < 0 | set relativenumber
+  " autocmd BufLeave,FocusLost,InsertEnter * if index(blacklist, &ft) < 0 | set norelativenumber
+  if has("nvim")
+    autocmd TermOpen * setlocal nornu nonu
+  endif
+" augroup END
 
 autocmd vimrc FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
@@ -210,24 +214,46 @@ set sessionoptions-=options
 if !has('nvim')
     set termguicolors
     set t_Co=256
+    
+    " gruvbox colors
     let g:terminal_ansi_colors = [
-    \ '#4d5057',
-    \ '#cb817c',
-    \ '#83ac75',
-    \ '#f6e5af',
-    \ '#83afe5',
-    \ '#9a93e1',
-    \ '#80c1ca',
-    \ '#c5c8c6',
-    \ '#4d5057',
-    \ '#da4e4a',
-    \ '#9dcf8d',
-    \ '#ff9a54',
-    \ '#83afe5',
-    \ '#d08ec2',
-    \ '#85def4',
-    \ '#c5c8c6'
-    \ ]
+        \ '#282828',
+        \ '#cc241d',
+        \ '#98971a',
+        \ '#d79921',
+        \ '#458588',
+        \ '#b16286',
+        \ '#689d6a',
+        \ '#a89984',
+        \ '#928374',
+        \ '#fb4934',
+        \ '#b8bb26',
+        \ '#fabd2f',
+        \ '#83a598',
+        \ '#d3869b',
+        \ '#8ec07c',
+        \ '#ebdbb2'
+        \ ]
+
+    " alternative colors
+    " let g:terminal_ansi_colors = [
+    " \ '#4d5057',
+    " \ '#cb817c',
+    " \ '#83ac75',
+    " \ '#f6e5af',
+    " \ '#83afe5',
+    " \ '#9a93e1',
+    " \ '#80c1ca',
+    " \ '#c5c8c6',
+    " \ '#4d5057',
+    " \ '#da4e4a',
+    " \ '#9dcf8d',
+    " \ '#ff9a54',
+    " \ '#83afe5',
+    " \ '#d08ec2',
+    " \ '#85def4',
+    " \ '#c5c8c6'
+    " \ ]
     set t_AB=^[[48;5;%dm
     set t_AF=^[[38;5;%dm
 endif

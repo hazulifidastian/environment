@@ -18,4 +18,8 @@ autocmd vimrc BufWrite *.php,*.js,*.jsx,*.vue,*.twig,*.html,*.sh,*.yaml,*.yml :c
 " Open images with feh
 autocmd vimrc BufEnter *.png,*.jpg,*gif silent! exec "! feh ".expand("%") | :bw
 
+" if has('gui_running')
+"     autocmd vimrc buftype terminal nmap <Esc> <C-w>N
+" endif
+
 " ** EndBlock Command/Autocommand ** "

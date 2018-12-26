@@ -209,8 +209,8 @@ Plug 'Yggdroot/indentLine'
 " multiple cursor
 Plug 'terryma/vim-multiple-cursors'
 
-" dispatch
-Plug 'tpope/vim-dispatch'
+" dispatch use :terminal ...
+" Plug 'tpope/vim-dispatch'
 
 " tests
 Plug 'janko-m/vim-test'

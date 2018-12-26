@@ -27,8 +27,6 @@ let NERDTreeShowLineNumbers=0
 
 " change the arrows
 let NERDTreeDirArrows = 1
-"let g:NERDTreeDirArrowExpandable = ''
-"let g:NERDTreeDirArrowCollapsible = ''
 
 " remapping - see nerdtree.txt and search for "NERDTreeMappings"
 let NERDTreeMapPreview = 'p'

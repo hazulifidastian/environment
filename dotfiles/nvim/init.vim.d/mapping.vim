@@ -44,7 +44,6 @@ nnoremap J mzJ`z
 
 " Esc shortcut
 imap hh <Esc>
-imap ll <Esc>
 
 " Confirm quit
 " cnoremap <silent> q<CR>  :call general#ConfirmQuit(0)<CR>
@@ -151,16 +150,17 @@ nnoremap <Leader>bh :bp<CR>
 nnoremap <Leader>b# :b#<CR>
 nnoremap <Leader>bj :bfirst<CR>
 nnoremap <Leader>bk :blast<CR>
-nmap <Leader>bd :bp<bar>bd #<cr>
-nmap <Leader>b!d :bd!<cr>
-nmap <Leader>bs :update<cr>
-nmap <Leader>b!s :update!<cr>
-nmap <Leader>bD :Ball<cr>
+" nmap <Leader>bd :bp<bar>bd #<cr>
+nmap <Leader>bd :bd<cr>
+nmap <Leader>bD :bd!<cr>
+nmap <Leader>bw :w<cr>
+nmap <Leader>bW :w!<cr>
 nnoremap <Leader>bS :saveas %:h/
+nnoremap <Leader>bi 2<C-g>
 
 "Toggle between absolute -> relative line number
 nnoremap <Leader>bm :let [&nu, &rnu] = [&nu, &nu+&rnu==1]<CR>
-nnoremap <Leader>bM :set nonu nornu<CR>
+nnoremap <Leader>bM :let nonu nornu<CR>
 
 " * <Leader> f  
 
@@ -243,21 +243,27 @@ endif
 
 " * <Leader> w  (window)
 
-nnoremap <silent><Leader>we :NERDTreeToggle<CR>
-nnoremap <silent><Leader>wf :NERDTreeFind<CR>
+" nnoremap <silent><Leader>we :NERDTreeToggle<CR>
+" nnoremap <silent><Leader>wf :NERDTreeFind<CR>
 
 " window
 nnoremap <Leader>ws :sp<CR>
 nnoremap <Leader>wv :vsp<CR>
-nnoremap <Leader>wq :q<CR>
+nnoremap <expr> <Leader>wq &buftype ==# 'terminal' ? ":bd!<Cr>" : "<C-w>q" 
 nnoremap <Leader>wQ :qa<CR>
-nnoremap <Leader>w= <C-w>=
+nnoremap <Leader>we <C-w>=
 
 " focus 
 nnoremap <Leader>wk <C-w>k
 nnoremap <Leader>wj <C-w>j
 nnoremap <Leader>wh <C-w>h
 nnoremap <Leader>wl <C-w>l
+
+" move
+nnoremap <Leader>wK <C-w>K
+nnoremap <Leader>wJ <C-w>J
+nnoremap <Leader>wH <C-w>H
+nnoremap <Leader>wL <C-w>L
 
 nnoremap <Leader>w( :1wincmd w<Cr>
 nnoremap <Leader>w) :2wincmd w<Cr>
@@ -269,6 +275,11 @@ nnoremap <Leader>w[ :7wincmd w<Cr>
 nnoremap <Leader>w! :8wincmd w<Cr>
 nnoremap <Leader>w= :9wincmd w<Cr>
 
+nnoremap <Leader>wu <C-u>
+nnoremap <Leader>wd <C-d>
+nnoremap <Leader>wt <C-b>
+nnoremap <Leader>wb <C-f>
+
 " resize (using winresizer plugin)
 nmap <Leader>wwr <Leader>wwl
 " focus (using winresizer plugin)
@@ -279,9 +290,11 @@ nmap <Leader>wwm <Leader>wwlm
 " maximize
 nmap <Leader>wm <C-w>_<C-w><bar>
 
+" nnoremap <Leader>wq <C-w>_<C-w><bar>
+
 " location & quickfix window
-nnoremap <silent> <Leader>wol :call general#ToggleList("Location List", 'l')<CR>
-nnoremap <silent> <Leader>woc :call general#ToggleList("Quickfix List", 'c')<CR>
+nnoremap <silent> <Leader>wn :call general#ToggleList("Location List", 'l')<CR>
+nnoremap <silent> <Leader>wc :call general#ToggleList("Quickfix List", 'c')<CR>
 
 " * Shortcut * "
 " ------------ "
@@ -290,3 +303,15 @@ nnoremap <Leader>k <C-w>k
 nnoremap <Leader>j <C-w>j
 nnoremap <Leader>h <C-w>h
 nnoremap <Leader>l <C-w>l
+
+
+" On terminal
+if !has("nvim")
+    tmap <Esc> <C-w>N
+    tmap hh <C-w>N
+endif
+
+nnoremap <silent><Leader>e :NERDTreeToggle<CR>
+nnoremap <silent><Leader>E :NERDTreeFind<CR>
+
+nmap <Leader>q <Leader>wq 
