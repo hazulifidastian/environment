@@ -45,6 +45,12 @@ nnoremap J mzJ`z
 " Esc shortcut
 imap hh <Esc>
 
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
 " Confirm quit
 " cnoremap <silent> q<CR>  :call general#ConfirmQuit(0)<CR>
 " cnoremap <silent> x<CR>  :call general#ConfirmQuit(1)<CR>
@@ -142,25 +148,26 @@ vnoremap <Leader>#: gcc
 
 " * <Leader> b (buffer)
 
-" move buffer
-nnoremap <Leader>bn :new<CR>
+nnoremap <Leader>bb :Buffers<Cr>
+nnoremap <Leader>bs :new<CR>
 nnoremap <Leader>bv :vnew<CR>
 nnoremap <Leader>bl :bn<CR>
 nnoremap <Leader>bh :bp<CR>
 nnoremap <Leader>b# :b#<CR>
 nnoremap <Leader>bj :bfirst<CR>
 nnoremap <Leader>bk :blast<CR>
-" nmap <Leader>bd :bp<bar>bd #<cr>
+nmap <Leader>bx :b#<bar>bd#<cr>
 nmap <Leader>bd :bd<cr>
 nmap <Leader>bD :bd!<cr>
 nmap <Leader>bw :w<cr>
 nmap <Leader>bW :w!<cr>
+nmap <Leader>bu :update<cr>
 nnoremap <Leader>bS :saveas %:h/
 nnoremap <Leader>bi 2<C-g>
 
 "Toggle between absolute -> relative line number
-nnoremap <Leader>bm :let [&nu, &rnu] = [&nu, &nu+&rnu==1]<CR>
-nnoremap <Leader>bM :let nonu nornu<CR>
+nnoremap <Leader>bn :let [&l:nu, &l:rnu]=[1, &l:nu+&l:rnu==1]<CR>
+nnoremap <Leader>bN :setlocal nonu nornu<CR>
 
 " * <Leader> f  
 
@@ -213,6 +220,7 @@ nnoremap <Leader>th :tabprevious<CR>
 nnoremap <Leader>tj :tabfirst<CR>
 nnoremap <Leader>tk :tablast<CR>
 nnoremap <Leader>tq :tabclose<CR>
+nnoremap <Leader>tx :tabclose<CR>
 nnoremap <Leader>to :tabonly<CR>
 nnoremap <Leader>tt :tabs<CR>:tabn<Space>
 
@@ -250,7 +258,9 @@ endif
 nnoremap <Leader>ws :sp<CR>
 nnoremap <Leader>wv :vsp<CR>
 nnoremap <expr> <Leader>wq &buftype ==# 'terminal' ? ":bd!<Cr>" : "<C-w>q" 
+nnoremap <expr> <Leader>wx &buftype ==# 'terminal' ? ":bd!<Cr>" : "<C-w>q" 
 nnoremap <Leader>wQ :qa<CR>
+nnoremap <Leader>wX :qa<CR>
 nnoremap <Leader>we <C-w>=
 
 " focus 
@@ -311,7 +321,8 @@ if !has("nvim")
     tmap hh <C-w>N
 endif
 
-nnoremap <silent><Leader>e :NERDTreeToggle<CR>
-nnoremap <silent><Leader>E :NERDTreeFind<CR>
+nnoremap <silent><Leader>E :NERDTreeToggle<CR>
+nnoremap <silent><Leader>F :NERDTreeFind<CR>
 
 nmap <Leader>q <Leader>wq 
+nmap <Leader>x <Leader>wq 

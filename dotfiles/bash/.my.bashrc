@@ -44,13 +44,13 @@ alias einitnvim='e $DOTFILES/nvim/init.vim'
 alias emybashrc='e $DOTFILES/bash/.my.bashrc'
 alias reload='source ~/.my.bashrc'
 
-# alias oldrek='cd $PROJECTS/KementerianPUPR/old.erekomtek.web.dev/src'
+alias oldrek='cd $PROJECTS/KementerianPUPR/old.erekomtek.web.dev/src'
 
 # php
 alias phpunit='./vendor/bin/phpunit'
 
 # tmux functions
-function base() {
+function xbase() {
     if [[ ! -v $TMUX ]]
     then
         tmux has-session -t base &> /dev/null
@@ -63,7 +63,7 @@ function base() {
     fi
 }
 
-function oldrek() {
+function xrek() {
     cd $PROJECTS/KementerianPUPR/old.erekomtek.web.dev/src
 
     tmux has-session -t oldrek &> /dev/null

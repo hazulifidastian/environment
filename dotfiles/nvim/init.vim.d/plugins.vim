@@ -44,7 +44,7 @@ Plug 'machakann/vim-highlightedyank'
 Plug 'machakann/vim-swap'
 
 " add new text object (can delete between comma with di, for example)
-Plug 'wellle/targets.vim'
+" Plug 'wellle/targets.vim'
 
 " camel case motion
 Plug 'chaoren/vim-wordmotion'
@@ -60,7 +60,7 @@ Plug 'airblade/vim-rooter'
 
 " snippets
 Plug 'SirVer/ultisnips'
-" Plug 'honza/vim-snippets'
+Plug 'honza/vim-snippets'
 
 " markdown - writing
 " Plug 'gabrielelana/vim-markdown' " markdown plugin
@@ -78,24 +78,17 @@ Plug 'SirVer/ultisnips'
 " Debugging for multiple language
 " Plug 'joonty/vdebug'
 
-" phython
+" python
 Plug 'davidhalter/jedi-vim', {'for': 'py'}
 
 " php
-Plug 'StanAngeloff/php.vim', {'for': 'php'}
-Plug 'stephpy/vim-php-cs-fixer', {'for': 'php'}
-Plug 'nishigori/vim-php-dictionary', {'for': 'php'}
+" Plug 'stephpy/vim-php-cs-fixer', {'for': 'php'}
+" Plug 'nishigori/vim-php-dictionary', {'for': 'php'}
 
 " php refactoring options
 Plug 'adoy/vim-php-refactoring-toolbox', {'for': 'php'}
 Plug 'phpactor/phpactor', {'do': 'composer install', 'for': 'php'}
 Plug '2072/php-indenting-for-vim', {'for': 'php'}
-
-" php doc autocompletion
-Plug 'tobyS/vmustache' | Plug 'tobyS/pdv', {'for': 'php'}
-
-" dart
-Plug 'dart-lang/dart-vim-plugin', {'for': 'dart'}
 
 " create tags
 Plug 'ludovicchabant/vim-gutentags'
@@ -122,23 +115,6 @@ else
 	Plug 'kristijanhusak/deoplete-phpactor', {'for': 'php'}
 endif
 
-
-" twig
-Plug 'lumiliet/vim-twig', {'for': 'twig'}
-
-" javascript plugins
-Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx']}
-Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx', 'vue'], 'do': 'npm install'}
-
-Plug 'leafgarland/typescript-vim', {'for': 'ts'}
-" Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
-
-" For react
-Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx']}
-
-" For Vue
-Plug 'posva/vim-vue', {'for': 'vue'}
-
 " general quality tools 
 Plug 'w0rp/ale'
 
@@ -146,15 +122,13 @@ Plug 'w0rp/ale'
 Plug 'majutsushi/tagbar'
 
 " collections of filetypeplugins
-" Plug 'sheerun/vim-polyglot'
+Plug 'sheerun/vim-polyglot'
 
 " Nerdtree + modifications 
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind']}
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " Status bar
-" Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
 Plug 'itchyny/lightline.vim'
 
 " undo tree
@@ -187,11 +161,11 @@ Plug 'ap/vim-css-color'
 " easy way to rezise and exchange windows
 Plug 'simeji/winresizer'
 
-" replace f F t T to target easily the motion
-"Plug 'yangmillstheory/vim-snipe'
-
 " Split arrays in PHP / struct in Go
 Plug 'AndrewRadev/splitjoin.vim'
+
+" easy align
+Plug 'junegunn/vim-easy-align'
 
 " CSV plugin
 " Plug 'chrisbra/csv.vim'
@@ -208,9 +182,6 @@ Plug 'Yggdroot/indentLine'
 
 " multiple cursor
 Plug 'terryma/vim-multiple-cursors'
-
-" dispatch use :terminal ...
-" Plug 'tpope/vim-dispatch'
 
 " tests
 Plug 'janko-m/vim-test'

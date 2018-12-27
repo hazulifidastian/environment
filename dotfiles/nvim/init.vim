@@ -43,3 +43,6 @@ source ~/.config/nvim/init.vim.d/plugin.vim
 source ~/.config/nvim/init.vim.d/general.vim
 source ~/.config/nvim/init.vim.d/autocommand.vim
 
+set secure
+
+silent! source .vim
