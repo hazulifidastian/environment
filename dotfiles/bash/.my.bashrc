@@ -35,16 +35,16 @@ alias doco='docker-compose'
 alias doce='doco exec'
 
 # change directory
-alias projects='cd $PROJECTS' 
-alias dotfiles='cd $DOTFILES' 
-alias scripts='cd $PROJECTS/scripts' 
+alias pro='cd $PROJECTS' 
+alias dot='cd $DOTFILES' 
+alias scr='cd $PROJECTS/scripts' 
 
 # edit
 alias einitnvim='e $DOTFILES/nvim/init.vim'
 alias emybashrc='e $DOTFILES/bash/.my.bashrc'
 alias reload='source ~/.my.bashrc'
 
-alias oldrek='cd $PROJECTS/KementerianPUPR/old.erekomtek.web.dev/src'
+alias rek='cd $PROJECTS/KementerianPUPR/old.erekomtek.web.dev/src'
 
 # php
 alias phpunit='./vendor/bin/phpunit'
@@ -66,16 +66,16 @@ function xbase() {
 function xrek() {
     cd $PROJECTS/KementerianPUPR/old.erekomtek.web.dev/src
 
-    tmux has-session -t oldrek &> /dev/null
+    tmux has-session -t rek &> /dev/null
     if [ $? -gt 0 ] 
     then
-        tmux new-session -d -s oldrek
+        tmux new-session -d -s rek
         tmux split-window -h
         tmux select-pane -t 1
         tmux split-window -v
         tmux select-pane -t 0
         tmux attach-session -d
     else
-        tmux attach-session -d -t oldrek
+        tmux attach-session -d -t rek
     fi
 }

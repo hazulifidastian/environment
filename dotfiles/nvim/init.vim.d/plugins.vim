@@ -7,7 +7,8 @@ Plug 'henrik/vim-indexed-search'
 Plug 'brooth/far.vim'
 
 " editor config
-Plug 'editorconfig/editorconfig-vim'
+" Plug 'editorconfig/editorconfig-vim'
+Plug 'sgur/vim-editorconfig'
 
 " automatically add matching tag
 Plug 'jiangmiao/auto-pairs'
@@ -16,7 +17,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-fugitive' | Plug 'mhinz/vim-signify'
 
 " Display commits for project / file
-" Plug 'junegunn/gv.vim'
+Plug 'junegunn/gv.vim'
 
 " surrounding with whatever you want (paranthesis, quotes...)
 Plug 'tpope/vim-surround'
@@ -119,14 +120,23 @@ endif
 Plug 'w0rp/ale'
 
 " outliner
-Plug 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar' 
 
 " collections of filetypeplugins
 Plug 'sheerun/vim-polyglot'
 
 " Nerdtree + modifications 
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind']}
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+augroup nerd_loader
+  autocmd!
+  autocmd VimEnter * silent! autocmd! FileExplorer
+  autocmd BufEnter,BufNew *
+        \  if isdirectory(expand('<amatch>'))
+        \|   call plug#load('nerdtree')
+        \|   execute 'autocmd! nerd_loader'
+        \| endif
+augroup END
+" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " Status bar
 Plug 'itchyny/lightline.vim'
@@ -178,12 +188,16 @@ Plug 'morhetz/gruvbox'
 Plug 'joshdick/onedark.vim'
 
 " Indent line
-Plug 'Yggdroot/indentLine'
+Plug 'Yggdroot/indentLine', { 'on': 'IndentLinesEnable' }
+autocmd! User indentLine doautocmd indentLine Syntax
 
 " multiple cursor
 Plug 'terryma/vim-multiple-cursors'
 
 " tests
 Plug 'janko-m/vim-test'
+
+" workspace (load workspace on current dir, and auto save file)
+Plug 'thaerkh/vim-workspace'
 
 call plug#end()

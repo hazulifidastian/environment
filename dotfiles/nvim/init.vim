@@ -24,6 +24,12 @@ augroup END
 
 source ~/.config/nvim/init.vim.d/plugins.vim
 
+" ------------------ "
+" * General config * "
+" ------------------ "
+
+source ~/.config/nvim/init.vim.d/general.vim
+
 " ------------ "
 " * Mapping * "
 " ------------ "
@@ -37,12 +43,10 @@ source ~/.config/nvim/init.vim.d/mapping.vim
 source ~/.config/nvim/init.vim.d/plugin.vim
 
 " ------------------ "
-" * General config * "
+" * Autocommand    * "
 " ------------------ "
-
-source ~/.config/nvim/init.vim.d/general.vim
 source ~/.config/nvim/init.vim.d/autocommand.vim
 
 set secure
 
-silent! source .vim
+silent! source .vimlocal

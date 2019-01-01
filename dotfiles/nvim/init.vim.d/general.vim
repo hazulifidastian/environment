@@ -1,10 +1,13 @@
 syntax on
 
+let g:config_dir='~/.config/nvim/'
+
 if exists("g:did_load_filetypes")
   filetype off
   filetype plugin indent off
 endif
-set rtp+=~/nvim/godoctor.vim
+" set rtp+=g:config_dir.'godoctor.vim'
+execute 'set rtp+='.g:config_dir.'godoctor.vim'
 filetype on
 filetype plugin indent on
 
@@ -52,6 +55,7 @@ if has("gui_running")
 	set go-=L
 	set go-=l
 	set go-=b
+	set go-=m
 
     " To enable the saving and restoring of screen positions.
     " let g:screen_size_restore_pos = 1
@@ -80,12 +84,17 @@ if has('nvim')
 endif
 
 " set the directory where the swap file will be saved
-set backupdir=~/.config/nvim/backup//
-set directory=~/.config/nvim/swap//
+" set backupdir=g:config_dir.'backup//'
+" set directory=g:config_dir.'swap//'
+execute 'set backupdir='.g:config_dir.'backup//'
+execute 'set directory='.g:config_dir.'swap//'
 
 " save undo trees in files
 set undofile
-set undodir=~/.config/nvim/undo//
+execute 'set undodir='.g:config_dir.'undo//'
+
+" session directory
+let g:sessions_dir=g:config_dir.'sessions/'
 
 " set line number
 set number
@@ -101,23 +110,28 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 
-" break and indent
+" wrapping break and indent
 set breakindent
+set breakindentopt=sbr
+set showbreak=↪
 
+" nowrap and easy horz scrolling
+" set nowrap
+" set sidescroll=1
 
 " when at 3 spaces, and I hit > ... go to 4, not 7
 set shiftround
 
 " number of undo saved in memory
-set undolevels=10000 " How many undos
-set undoreload=10000 " number of lines to save for undo
+set undolevels=1000 " How many undos
+set undoreload=1000 " number of lines to save for undo
 
 " Use case insensitive search, except when using capital letters
 set ignorecase
 set smartcase
 
 " set list
-set list listchars=tab:\┆\ ,trail:·,nbsp:±
+set list listchars=tab:\┆\ ,trail:·,nbsp:±,extends:>,precedes:<
 
 " doesn't prompt a warning when opening a file and the current file was written but not saved 
 set hidden
@@ -202,6 +216,9 @@ autocmd vimrc BufNewFile,BufRead *.twig set filetype=html.twig
 " Yaml
 autocmd vimrc BufNewFile,BufRead *.yml.dist set filetype=yaml.
 
+" vimlocal
+autocmd vimrc BufNewFile,BufRead *.vimlocal set filetype=vim
+
 " setup <C-n> vim-multiple-cursor to work on gvim
 if ("gui_running")
     set selection=inclusive
@@ -260,3 +277,7 @@ endif
 
 " hide enter ...
 set shortmess=a
+
+" hide tabline (tabline had limited capability)
+set showtabline=0
+

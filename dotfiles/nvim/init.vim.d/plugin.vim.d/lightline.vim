@@ -8,18 +8,26 @@ let g:lightline = {
     \   'active': {
     \     'left':[ [ 'mode', 'paste' ],
     \              [ 'readonly', 'relativepath', 'modified', 'tagbar']
-    \     ]
+    \     ],
+    \     'right':[ ['lineinfo', 'populatetab'],
+    \               []
+    \     ],
     \   },
     \   'component': {
     \     'tagbar': '%{tagbar#currenttag("%s", "", "f")}',
-    \     'lineinfo': ' %3l:%-2v',
+    \     'lineinfo': ' %2l:%-1v',
     \     'relativepath': '%<%f',
     \   },
     \   'component_function': {
     \     'readonly': 'LightlineReadonly',
     \     'gitbranch': 'LightlineFugitive',
+    \     'populatetab': 'PopulateTab'
     \   }
     \ }
+
+function! PopulateTab()
+    return '⇄ '.tabpagenr().':'.tabpagenr('$')
+endfunction
 
 function! LightlineReadonly()
     return &readonly ? '' : ''

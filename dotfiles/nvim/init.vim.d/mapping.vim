@@ -146,19 +146,21 @@ map <Leader>? :h<Space>
 nnoremap <Leader>#: gcc
 vnoremap <Leader>#: gcc
 
-" * <Leader> b (buffer)
+" * <Leader> b
 
 nnoremap <Leader>bb :Buffers<Cr>
 nnoremap <Leader>bs :new<CR>
+nnoremap <Leader>b- :new<CR>
 nnoremap <Leader>bv :vnew<CR>
+nnoremap <Leader>b<bar> :vnew<CR>
 nnoremap <Leader>bl :bn<CR>
 nnoremap <Leader>bh :bp<CR>
 nnoremap <Leader>b# :b#<CR>
 nnoremap <Leader>bj :bfirst<CR>
 nnoremap <Leader>bk :blast<CR>
-nmap <Leader>bx :b#<bar>bd#<cr>
-nmap <Leader>bd :bd<cr>
-nmap <Leader>bD :bd!<cr>
+nmap <Leader>bx :Bwipeout<cr>
+nmap <Leader>bd :bwipeout<cr>
+nmap <Leader>bD :bwipeout!<cr>
 nmap <Leader>bw :w<cr>
 nmap <Leader>bW :w!<cr>
 nmap <Leader>bu :update<cr>
@@ -184,26 +186,24 @@ nnoremap <Leader>ft :BTags<cr>
 
 " * <Leader> h
 
-" * <Leader> p (project)
+" * <Leader> p
 
 " project
-nnoremap <Leader>pf :Rooter<Cr>:Files<Cr>
+nnoremap <Leader>pff :Rooter<Cr>:Files<Cr>
 nnoremap <Leader>p/ :Rooter<Cr>:Rgic<Space>
-nnoremap <Leader>p' :Rooter<Cr>:terminal<Cr> 
+nnoremap <Leader>pt :Rooter<Cr>:terminal<Cr> 
 nnoremap <Leader>pR :Rooter<Cr>:pwd<Cr>
+
+" projectionist
 nnoremap <Leader>pA :A<Cr>
 nnoremap <Leader>pas :AS<Cr>
 nnoremap <Leader>pav :AV<Cr>
 
 " current working directory
-nnoremap <Leader>pwd :echo getcwd()<Cr>
+nnoremap <Leader>p. :echo getcwd()<Cr>
 
 " root directory
 nnoremap <Leader>pr :echo FindRootDirectory()<Cr>
-
-" save session on root directory
-nnoremap <Leader>ps :mksession! <C-r>=FindRootDirectory()<Cr>/session.vim "Save session to Project root
-nnoremap <Leader>pS :source <C-r>=FindRootDirectory()<Cr>/session.vim "Load session from Project root
 
 " * <Leader> s 
 
@@ -234,7 +234,10 @@ nnoremap <Leader>t[ 7gt
 nnoremap <Leader>t! 8gt
 nnoremap <Leader>t= 9gt
 
-" * <Leader> v (vim)
+" open terminal
+" nnoremap <Leader>T. :terminal<Cr>
+
+" * <Leader> v
 
 " open nvim config folder, and search for files
 nnoremap <Leader>vc :tabnew<Cr>:lcd ~/Projects/environment/dotfiles/nvim<Cr>:Files<Cr>
@@ -242,21 +245,23 @@ nnoremap <silent><Leader>vC :source $MYVIMRC<Cr>
 
 " save and load session
 if has('gui_running')
-    nnoremap <Leader>vs :mksession! ~/.config/nvim/sessions/gui.vim<Cr>
-    nnoremap <Leader>vS :source ~/.config/nvim/sessions/gui.vim "Load GUI session
+    nnoremap <Leader>vs :mksession! ~/.config/nvim/sessions/gui.vim "SaveSession
+    nnoremap <Leader>vS :source ~/.config/nvim/sessions/gui.vim "LoadGUIsession
 else
     nnoremap <Leader>vs :mksession! ~/.config/nvim/sessions/terminal.vim<Cr>
-    nnoremap <Leader>vS :source ~/.config/nvim/sessions/terminal.vim "Load Terminal session
+    nnoremap <Leader>vS :source ~/.config/nvim/sessions/terminal.vim "LoadTerminalsession
 endif
 
-" * <Leader> w  (window)
+" * <Leader> w
 
 " nnoremap <silent><Leader>we :NERDTreeToggle<CR>
 " nnoremap <silent><Leader>wf :NERDTreeFind<CR>
 
 " window
 nnoremap <Leader>ws :sp<CR>
+nnoremap <Leader>w- :sp<CR>
 nnoremap <Leader>wv :vsp<CR>
+nnoremap <Leader>w<bar> :vsp<CR>
 nnoremap <expr> <Leader>wq &buftype ==# 'terminal' ? ":bd!<Cr>" : "<C-w>q" 
 nnoremap <expr> <Leader>wx &buftype ==# 'terminal' ? ":bd!<Cr>" : "<C-w>q" 
 nnoremap <Leader>wQ :qa<CR>
@@ -315,8 +320,8 @@ nnoremap <Leader>h <C-w>h
 nnoremap <Leader>l <C-w>l
 
 
-" On terminal
 if !has("nvim")
+    " On terminal
     tmap <Esc> <C-w>N
     tmap hh <C-w>N
 endif
@@ -325,4 +330,6 @@ nnoremap <silent><Leader>E :NERDTreeToggle<CR>
 nnoremap <silent><Leader>F :NERDTreeFind<CR>
 
 nmap <Leader>q <Leader>wq 
+nmap <Leader>Q <Leader>wQ
 nmap <Leader>x <Leader>wq 
+nmap <Leader>X <Leader>wQ 
