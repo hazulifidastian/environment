@@ -1,9 +1,3 @@
-if has("gui_running")
-    let g:lightline = { 'colorscheme': 'gruvbox' }
-else
-    let g:lightline = { 'colorscheme': 'gruvbox' }
-endif
-
 let g:lightline = {
     \   'active': {
     \     'left':[ [ 'mode', 'paste' ],
@@ -24,6 +18,13 @@ let g:lightline = {
     \     'populatetab': 'PopulateTab'
     \   }
     \ }
+
+if has("gui_running")
+    let g:lightline.colorscheme = 'gruvbox'
+else
+    let g:lightline.colorscheme = 'gruvbox'
+endif
+
 
 function! PopulateTab()
     return '⇄ '.tabpagenr().':'.tabpagenr('$')

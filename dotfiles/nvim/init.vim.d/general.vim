@@ -17,14 +17,14 @@ filetype plugin indent on
 
 " colorscheme
 if has("gui_running")
-    "gruvbox themes
+    "gui themes
     set background=dark
     let g:gruvbox_italic=1
     let g:gruvbox_contrast_dark="medium"
     let g:gruvbox_termcolors=256
     colorscheme gruvbox
 else
-    "onedark themes
+    "terminal themes
     set background=dark
     let g:gruvbox_italic=1
     let g:gruvbox_contrast_dark="medium"
