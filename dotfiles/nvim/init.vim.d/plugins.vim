@@ -12,6 +12,7 @@ Plug 'sgur/vim-editorconfig'
 
 " automatically add matching tag
 Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-endwise'
 
 " wrapper for git and display git diff in the left gutter
 Plug 'tpope/vim-fugitive' | Plug 'mhinz/vim-signify'
@@ -30,7 +31,8 @@ Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-repeat'
 
 " comment automatically
-Plug 'tpope/vim-commentary'
+" Plug 'tpope/vim-commentary'
+Plug 'scrooloose/nerdcommenter'
 
 " Add sugar on top of Vim
 Plug 'tpope/vim-eunuch'
@@ -81,15 +83,20 @@ Plug 'honza/vim-snippets'
 
 " python
 Plug 'davidhalter/jedi-vim', {'for': 'py'}
+Plug 'tweekmonster/django-plus.vim'
 
 " php
 " Plug 'stephpy/vim-php-cs-fixer', {'for': 'php'}
 " Plug 'nishigori/vim-php-dictionary', {'for': 'php'}
+Plug 'captbaritone/better-indent-support-for-php-with-html'
 
 " php refactoring options
 Plug 'adoy/vim-php-refactoring-toolbox', {'for': 'php'}
 Plug 'phpactor/phpactor', {'do': 'composer install', 'for': 'php'}
 Plug '2072/php-indenting-for-vim', {'for': 'php'}
+
+" rust
+Plug 'racer-rust/vim-racer'
 
 " create tags
 Plug 'ludovicchabant/vim-gutentags'
@@ -103,6 +110,7 @@ if has('nvim')
 	Plug 'ncm2/ncm2-path'
     Plug 'HansPinckaers/ncm2-jedi', {'for': 'py'}
 	Plug 'phpactor/ncm2-phpactor', {'for': 'php'}
+    Plug 'ncm2/ncm2-racer'
 	"Plug 'ncm2/ncm2-go'
 	"Plug 'ncm2/ncm2-tern'
 	"Plug 'ncm2/ncm2-cssomni'
@@ -198,6 +206,6 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'janko-m/vim-test'
 
 " workspace (load workspace on current dir, and auto save file)
-Plug 'thaerkh/vim-workspace'
+" Plug 'thaerkh/vim-workspace'
 
 call plug#end()

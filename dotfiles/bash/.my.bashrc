@@ -15,7 +15,8 @@ export JAVA_HOME=/snap/android-studio/69/android-studio/jre/bin
 export ANDROID_SDK=$HOME/Android/Sdk
 export ANDROID_SDK_TOOLS=$ANDROID_SDK/tools/bin
 export ANDROID_SDK_PLATFORM_TOOLS=$ANDROID_SDK/platform-tools
-export PATH=$JAVA_HOME:$ANDROID_SDK_PLATFORM_TOOLS:$ANDROID_SDK_TOOLS:$PATH
+export RUST=$HOME/.cargo/bin
+export PATH=$JAVA_HOME:$ANDROID_SDK_PLATFORM_TOOLS:$ANDROID_SDK_TOOLS:$RUST:$PATH
 
 # flutter
 export FLUTTER_HOME=$HOME/Applications/flutter/bin
@@ -27,10 +28,10 @@ alias bd='. bd -si'
 
 # app shortcut
 alias e='nvim'
-alias dock='docker'
-alias docke='dock exec'
-alias dockr='dock run'
-alias docki='dock images'
+alias do='docker'
+alias doe='dock exec'
+alias dor='dock run'
+alias doi='dock images'
 alias doco='docker-compose'
 alias doce='doco exec'
 

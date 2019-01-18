@@ -30,17 +30,17 @@ source ~/.config/nvim/init.vim.d/plugins.vim
 
 source ~/.config/nvim/init.vim.d/general.vim
 
-" ------------ "
-" * Mapping * "
-" ------------ "
-
-source ~/.config/nvim/init.vim.d/mapping.vim
-
 " ----------------- "
 " * Plugin config * "
 " ----------------- "
 
 source ~/.config/nvim/init.vim.d/plugin.vim
+
+" ------------ "
+" * Mapping * "
+" ------------ "
+
+source ~/.config/nvim/init.vim.d/mapping.vim
 
 " ------------------ "
 " * Autocommand    * "

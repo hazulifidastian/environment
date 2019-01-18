@@ -198,7 +198,9 @@ inoremap <expr> <c-y> matchstr(getline(line('.')-1), '\%' . virtcol('.') . 'v\%(
 let g:python3_host_prog = '/usr/bin/python3'
 let g:python_host_prog = '/usr/bin/python2'
 
-" highlight the line which is longer than the defined margin (120 character)
+" highlight the line which is longer than the defined margin (100 character)
+set textwidth=99
+set colorcolumn=+1
 highlight ColorColumn ctermbg=red
 
 " split below and right

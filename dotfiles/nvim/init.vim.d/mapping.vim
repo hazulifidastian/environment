@@ -5,8 +5,8 @@ let mapLeader = "\\"
 map <SPACE> <Leader>
 
 " Move tab
-nnoremap <Tab> gt
-nnoremap <S-Tab> gT
+" nnoremap <Tab> gt
+" nnoremap <S-Tab> gT
 
 
 " ** EndBlock Misc ** "
@@ -42,9 +42,6 @@ nmap cinb cib
 " Keep the cursor in place while joining lines
 nnoremap J mzJ`z
 
-" Esc shortcut
-imap hh <Esc>
-
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
 
@@ -59,29 +56,31 @@ nmap ga <Plug>(EasyAlign)
 
 " ** Block Ctrl ** "
 
+imap <C-Space> <Esc>
+
 " Save file
 nnoremap <C-s> :update<CR>
 inoremap <C-s> <Esc>:update<CR>
 
 " override default gc
-vmap gcc gc<Esc>
+" vmap gcc gc<Esc>
 
 " Toggle comment using Ctrl-/
-nmap <C-_> gcc
-vmap <C-_> gcc<Esc>
-imap <C-_> <Esc>gcc i
+" nmap <C-_> gcc
+" vmap <C-_> gcc<Esc>
+" imap <C-_> <Esc>gcc i
 
 " ctrl-hjkl keys move windows
-nnoremap <C-h> <C-w>h<CR>
-nnoremap <C-l> <C-w>l<CR>
-nnoremap <C-k> <C-w>k<CR>
-nnoremap <C-j> <C-w>j<CR>
+" nnoremap <C-h> <C-w>h<CR>
+" nnoremap <C-l> <C-w>l<CR>
+" nnoremap <C-k> <C-w>k<CR>
+" nnoremap <C-j> <C-w>j<CR>
 
 " ctrl-alt-hjkl keys resize windows
-nmap <C-M-h> :vertical resize -5<CR>
-nmap <C-M-l> :vertical resize +5<CR>
-nmap <C-M-k> :resize -5<CR>
-nmap <C-M-j> :resize +5<CR>
+" nmap <C-M-h> :vertical resize -5<CR>
+" nmap <C-M-l> :vertical resize +5<CR>
+" nmap <C-M-k> :resize -5<CR>
+" nmap <C-M-j> :resize +5<CR>
 
 " disable arrow key
 " imap <up> <nop>
@@ -99,7 +98,8 @@ vmap <C-S-Up> [egv
 vmap <C-S-Down> ]egv
 
 " delete character after cursor in insert mode
-inoremap <C-d> <Del>
+inoremap <C-l> <Del>
+
 
 " ** EndBlock Ctrl ** "
 
@@ -159,6 +159,7 @@ nnoremap <Leader>b# :b#<CR>
 nnoremap <Leader>bj :bfirst<CR>
 nnoremap <Leader>bk :blast<CR>
 nmap <Leader>bx :Bwipeout<cr>
+nmap <Leader>bX :Bwipeout!<cr>
 nmap <Leader>bd :bwipeout<cr>
 nmap <Leader>bD :bwipeout!<cr>
 nmap <Leader>bw :w<cr>
@@ -167,8 +168,13 @@ nmap <Leader>bu :update<cr>
 nnoremap <Leader>bS :saveas %:h/
 nnoremap <Leader>bi 2<C-g>
 
+" Show current buffer dir
+nmap <Leader>b. :echo '<C-R>=expand('%:h')<Cr>'<Cr>
+" Change current buffer dir
+nmap <Leader>b! :lcd <C-R>=expand('%:h')<Cr><Cr>
+
 "Toggle between absolute -> relative line number
-nnoremap <Leader>bn :let [&l:nu, &l:rnu]=[1, &l:nu+&l:rnu==1]<CR>
+nnoremap <Leader>bn :let [&l:nu, &l:rnu:]=[1, &l:nu+&l:rnu==1]<CR>
 nnoremap <Leader>bN :setlocal nonu nornu<CR>
 
 " * <Leader> f  
@@ -183,8 +189,8 @@ nnoremap <Leader>f/ :History/<cr>
 nnoremap <Leader>fw :Windows<cr>
 nnoremap <Leader>fT :Tags<cr>
 nnoremap <Leader>ft :BTags<cr>
-
-" * <Leader> h
+" fzf curent file dir
+nnoremap <Leader>f. :Files <C-R>=expand('%:h')<Cr><Cr>
 
 " * <Leader> p
 
@@ -198,9 +204,11 @@ nnoremap <Leader>pR :Rooter<Cr>:pwd<Cr>
 nnoremap <Leader>pA :A<Cr>
 nnoremap <Leader>pas :AS<Cr>
 nnoremap <Leader>pav :AV<Cr>
+nnoremap <Leader>pa- :AS<Cr>
+nnoremap <Leader>pa<bar> :AV<Cr>
 
 " current working directory
-nnoremap <Leader>p. :echo getcwd()<Cr>
+nnoremap <Leader>pwd :echo getcwd()<Cr>
 
 " root directory
 nnoremap <Leader>pr :echo FindRootDirectory()<Cr>
@@ -210,11 +218,13 @@ nnoremap <Leader>pr :echo FindRootDirectory()<Cr>
 nmap <leader>sr <Plug>(FerretAck)
 nmap <leader>swr <Plug>(FerretAckWord)
 nmap <leader>sR <Plug>(FerretAcks)
+nmap <leader>sc :noh<Cr>
 
 " * <Leader> t 
 
 " move tab
 nnoremap <Leader>tn :tabnew<CR>
+nnoremap <Leader>tN :-tabnew<CR>
 nnoremap <Leader>tl :tabnext<CR>
 nnoremap <Leader>th :tabprevious<CR>
 nnoremap <Leader>tj :tabfirst<CR>
@@ -222,7 +232,9 @@ nnoremap <Leader>tk :tablast<CR>
 nnoremap <Leader>tq :tabclose<CR>
 nnoremap <Leader>tx :tabclose<CR>
 nnoremap <Leader>to :tabonly<CR>
-nnoremap <Leader>tt :tabs<CR>:tabn<Space>
+nnoremap <Leader>tt :tabs<CR>:tabn
+nnoremap <Leader>tc :tabs<CR>:tabc
+nnoremap <Leader>tm :tabs<CR>:tabm
 
 nnoremap <Leader>t( 1gt
 nnoremap <Leader>t) 2gt
@@ -233,6 +245,15 @@ nnoremap <Leader>t] 6gt
 nnoremap <Leader>t[ 7gt
 nnoremap <Leader>t! 8gt
 nnoremap <Leader>t= 9gt
+
+" switch to last-active tab
+if !exists('g:lasttab')
+    let g:lasttab = 1
+    let g:lasttab_backup = 1
+endif
+autocmd! TabLeave * let g:lasttab_backup = g:lasttab | let g:lasttab = tabpagenr()
+autocmd! TabClosed * let g:lasttab = g:lasttab_backup
+nmap <Leader>t# :execute "tabn" . g:lasttab<Cr>
 
 " open terminal
 " nnoremap <Leader>T. :terminal<Cr>
@@ -323,7 +344,6 @@ nnoremap <Leader>l <C-w>l
 if !has("nvim")
     " On terminal
     tmap <Esc> <C-w>N
-    tmap hh <C-w>N
 endif
 
 nnoremap <silent><Leader>E :NERDTreeToggle<CR>
@@ -333,3 +353,4 @@ nmap <Leader>q <Leader>wq
 nmap <Leader>Q <Leader>wQ
 nmap <Leader>x <Leader>wq 
 nmap <Leader>X <Leader>wQ 
+nmap <Leader>A <Leader>pA 

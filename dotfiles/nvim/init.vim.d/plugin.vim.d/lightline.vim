@@ -3,7 +3,7 @@ let g:lightline = {
     \     'left':[ [ 'mode', 'paste' ],
     \              [ 'readonly', 'relativepath', 'modified', 'tagbar']
     \     ],
-    \     'right':[ ['lineinfo', 'populatetab'],
+    \     'right':[ ['lineinfo', 'percent', 'populatetab'],
     \               []
     \     ],
     \   },
@@ -24,7 +24,6 @@ if has("gui_running")
 else
     let g:lightline.colorscheme = 'gruvbox'
 endif
-
 
 function! PopulateTab()
     return '⇄ '.tabpagenr().':'.tabpagenr('$')

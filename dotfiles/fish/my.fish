@@ -1,3 +1,4 @@
+#!/usr/bin/fish
 # ** Env Vars ** #
 
 set PROJECTS $HOME/Projects
@@ -14,7 +15,8 @@ set JAVA_HOME /snap/android-studio/69/android-studio/jre/bin
 set ANDROID_SDK $HOME/Android/Sdk
 set ANDROID_SDK_TOOLS $ANDROID_SDK/tools/bin
 set ANDROID_SDK_PLATFORM_TOOLS $ANDROID_SDK/platform-tools
-set PATH $JAVA_HOME $ANDROID_SDK_PLATFORM_TOOLS $ANDROID_SDK_TOOLS $PATH
+set RUST $HOME/.cargo/bin
+set PATH $JAVA_HOME $ANDROID_SDK_PLATFORM_TOOLS $ANDROID_SDK_TOOLS $RUST $PATH
 
 # flutter
 set FLUTTER_HOME $HOME/Applications/flutter/bin
@@ -29,28 +31,39 @@ eval (python -m virtualfish)
 
 # app shortcut
 alias e='nvim'
-alias dock='docker'
-alias docke='dock exec'
-alias dockr='dock run'
-alias docki='dock images'
+alias do='docker'
+alias doe='dock exec'
+alias dor='dock run'
+alias doi='dock images'
 alias doco='docker-compose'
 alias doce='doco exec'
+alias pe='pipenv'
+alias per='pe run'
+alias pes='pe shell'
+alias pep='per python'
+alias peda='per django-admin'
+alias pem='pep manage.py'
+alias xl='tmux ls'
 
 # change directory
-alias projects='cd $PROJECTS' 
-alias dotfiles='cd $DOTFILES' 
-alias scripts='cd $PROJECTS/scripts' 
+alias pro='cd $PROJECTS' 
+alias dot='cd $DOTFILES' 
+alias scr='cd $PROJECTS/scripts' 
+alias tra='cd $PROJECTS/efha.training' 
+alias djv='tra; cd python/DjangoCore/djviews' 
+alias sir='pro; cd KementerianPUPR/sirepersda' 
 
 # edit
 alias einitnvim='e $DOTFILES/nvim/init.vim'
 alias emyfish='e $DOTFILES/fish/my.fish'
+alias reload='omf reload'
 
-# alias oldrek='cd $PROJECTS/KementerianPUPR/old.erekomtek.web.dev/src'
+alias rek='cd $PROJECTS/KementerianPUPR/old.erekomtek.web.dev/src'
 
 # php
 alias phpunit='./vendor/bin/phpunit'
 
-function base
+function xbase
     if not set -q TMUX
         set -g TMUX tmux new-session -d -s base
         
@@ -63,18 +76,58 @@ function base
     end
 end
 
-function oldrek
+function xrek
     cd $PROJECTS/KementerianPUPR/old.erekomtek.web.dev/src
 
-    tmux has-session -t oldrek 2> /dev/null
+    tmux has-session -t rek 2> /dev/null
     if test $status -gt 0
-        tmux new-session -d -s oldrek
+        tmux new-session -d -s rek
         tmux split-window -h
         tmux select-pane -t 1
         tmux split-window -v
         tmux select-pane -t 0
         tmux attach-session -d
     else
-        tmux attach-session -d -t oldrek
+        tmux attach-session -d -t rek
     end
+end
+
+function xdj
+    set name dj
+    tmux has-session -t $name 2> /dev/null
+    if test $status -gt 0
+        tmux new-session -d -s $name 
+        tmux split-window -v
+        tmux select-pane -t 0
+        tmux new-window
+        tmux previous-window
+        tmux attach-session -d
+    else
+        tmux attach-session -d -t $name 
+    end
+end
+
+function xsi
+    set name si
+    tmux has-session -t $name 2> /dev/null
+    if test $status -gt 0
+        tmux new-session -d -s $name 
+        tmux split-window -v
+        tmux send-keys 'sir' Enter
+        tmux send-keys 'cd src' Enter
+        tmux select-pane -t 0
+        tmux resize-pane -D 10
+        tmux send-keys 'sir' Enter
+        tmux send-keys 'pes' Enter
+        tmux new-window
+        tmux send-keys 'sir' Enter
+        tmux previous-window
+        tmux attach-session -d
+    else
+        tmux attach-session -d -t $name 
+    end
+end
+
+function xsix
+    tmux kill-session -t si
 end

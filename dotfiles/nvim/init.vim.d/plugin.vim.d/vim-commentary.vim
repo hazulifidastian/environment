@@ -1,1 +1,1 @@
-autocmd vimrc FileType nvimrc setlocal commentstring="\ %s
+" autocmd vimrc FileType nvimrc setlocal commentstring="\ %s
