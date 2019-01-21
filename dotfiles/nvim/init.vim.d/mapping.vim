@@ -166,6 +166,7 @@ nmap <Leader>bw :w<cr>
 nmap <Leader>bW :w!<cr>
 nmap <Leader>bu :update<cr>
 nnoremap <Leader>bS :saveas %:h/
+nnoremap <Leader>be :e %:h/
 nnoremap <Leader>bi 2<C-g>
 
 " Show current buffer dir
@@ -176,6 +177,11 @@ nmap <Leader>b! :lcd <C-R>=expand('%:h')<Cr><Cr>
 "Toggle between absolute -> relative line number
 nnoremap <Leader>bn :let [&l:nu, &l:rnu:]=[1, &l:nu+&l:rnu==1]<CR>
 nnoremap <Leader>bN :setlocal nonu nornu<CR>
+
+" * <Leader> c
+nnoremap <Leader>Cn :cNext<Cr>
+nnoremap <Leader>Cp :cprevious<Cr>
+nnoremap <Leader>Cr :crewind<Cr>
 
 " * <Leader> f  
 
@@ -191,6 +197,11 @@ nnoremap <Leader>fT :Tags<cr>
 nnoremap <Leader>ft :BTags<cr>
 " fzf curent file dir
 nnoremap <Leader>f. :Files <C-R>=expand('%:h')<Cr><Cr>
+
+" * <Leader> p
+nnoremap <Leader>Ln :lnext<Cr>
+nnoremap <Leader>Lp :lprevious<Cr>
+nnoremap <Leader>Lr :lrewind<Cr>
 
 " * <Leader> p
 
@@ -354,3 +365,4 @@ nmap <Leader>Q <Leader>wQ
 nmap <Leader>x <Leader>wq 
 nmap <Leader>X <Leader>wQ 
 nmap <Leader>A <Leader>pA 
+

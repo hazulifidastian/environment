@@ -111,13 +111,13 @@ set softtabstop=4
 set shiftwidth=4
 
 " wrapping break and indent
-set breakindent
-set breakindentopt=sbr
-set showbreak=↪
+" set breakindent
+" set breakindentopt=sbr
+" set showbreak=↪
 
 " nowrap and easy horz scrolling
-" set nowrap
-" set sidescroll=1
+set nowrap
+set sidescroll=1
 
 " when at 3 spaces, and I hit > ... go to 4, not 7
 set shiftround
@@ -199,9 +199,10 @@ let g:python3_host_prog = '/usr/bin/python3'
 let g:python_host_prog = '/usr/bin/python2'
 
 " highlight the line which is longer than the defined margin (100 character)
-set textwidth=99
-set colorcolumn=+1
-highlight ColorColumn ctermbg=red
+" textwidth automatically break lina, so be carefull
+" set textwidth=99
+" set colorcolumn=+1
+" highlight ColorColumn ctermbg=red
 
 " split below and right
 set splitbelow splitright
@@ -220,6 +221,8 @@ autocmd vimrc BufNewFile,BufRead *.yml.dist set filetype=yaml.
 
 " vimlocal
 autocmd vimrc BufNewFile,BufRead *.vimlocal set filetype=vim
+
+autocmd vimrc BufNewFile,BufRead *.css set filetype=css
 
 " setup <C-n> vim-multiple-cursor to work on gvim
 if ("gui_running")
