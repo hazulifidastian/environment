@@ -1,5 +1,11 @@
+# Window manager, required for vim-autoswap
+sudo apt install wmctrl
+
 # css linter
 sudo npm install -g stylint
+# html linter
+sudo npm install alex --global
+npm install htmlhint -g
 
 # python
 sudo apt install python3-pip

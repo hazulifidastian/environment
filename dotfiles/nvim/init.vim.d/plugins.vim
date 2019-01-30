@@ -1,7 +1,8 @@
 call plug#begin('~/.config/nvim/plugged')
 
 " display the result when searching
-Plug 'henrik/vim-indexed-search'
+" Plug 'henrik/vim-indexed-search'
+Plug 'google/vim-searchindex'
 
 " find and replace
 Plug 'brooth/far.vim'
@@ -148,6 +149,7 @@ augroup END
 
 " Status bar
 Plug 'itchyny/lightline.vim'
+Plug 'maximbaz/lightline-ale'
 
 " undo tree
 Plug 'sjl/gundo.vim'
@@ -208,4 +210,6 @@ Plug 'janko-m/vim-test'
 " workspace (load workspace on current dir, and auto save file)
 " Plug 'thaerkh/vim-workspace'
 
+" Dealing with swap files
+Plug 'gioele/vim-autoswap'
 call plug#end()

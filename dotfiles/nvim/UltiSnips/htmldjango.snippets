@@ -70,7 +70,7 @@ snippet incl "{% inclu.."
 {% include '${0}' %}
 endsnippet
 
-snippet comm "{# .."
+snippet # "{# .."
 {# '${0}' #}
 endsnippet
 
@@ -84,4 +84,23 @@ endsnippet
 
 snippet csrf "{% csrf.."
 {% csrf_token %}
+endsnippet
+
+snippet #b "{% com.."
+{% comment %}
+endsnippet
+
+snippet #e "{% endcom.."
+{% endcomment %}
+endsnippet
+
+snippet bcd "{% bread..dasbor"
+<nav aria-label="Anda berada disini:" role="navigation">
+	<ul class="breadcrumbs">
+	<li><a href=" {% url 'dashboard' %}">Dasbor</a></li>
+	<li>
+		<span class="show-for-sr">Sekarang ini: </span> Permohonan
+	</li>
+	</ul>
+</nav>
 endsnippet

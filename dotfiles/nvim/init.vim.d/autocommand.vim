@@ -18,6 +18,12 @@ autocmd vimrc BufWrite *.php,*.js,*.jsx,*.vue,*.twig,*.html,*.sh,*.yaml,*.yml :c
 " Open images with feh
 autocmd vimrc BufEnter *.png,*.jpg,*gif silent! exec "! feh ".expand("%") | :bw
 
+" Auto wrap on quickfix
+" augroup quickfix
+    " autocmd!
+    " autocmd FileType qf setlocal wrap
+" augroup END
+
 " if has('gui_running')
 "     autocmd vimrc buftype terminal nmap <Esc> <C-w>N
 " endif

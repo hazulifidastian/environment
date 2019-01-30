@@ -63,6 +63,9 @@ alias rek='cd $PROJECTS/KementerianPUPR/old.erekomtek.web.dev/src'
 # php
 alias phpunit='./vendor/bin/phpunit'
 
+# sqlite
+alias sqlite="rlwrap -a -c -i sqlite3"
+
 function xbase
     if not set -q TMUX
         set -g TMUX tmux new-session -d -s base
@@ -74,6 +77,9 @@ function xbase
 
         tmux attach-session -d -t base
     end
+end
+function xbasex
+    tmux kill-session -t base 
 end
 
 function xrek
@@ -91,6 +97,9 @@ function xrek
         tmux attach-session -d -t rek
     end
 end
+function xrex
+    tmux kill-session -t rek 
+end
 
 function xdj
     set name dj
@@ -105,6 +114,9 @@ function xdj
     else
         tmux attach-session -d -t $name 
     end
+end
+function xdjx
+    tmux kill-session -t dj
 end
 
 function xsi

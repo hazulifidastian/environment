@@ -45,17 +45,17 @@ let &t_EI = "\<Esc>[2 q"
 " gvim config
 if has("gui_running")
     set lines=20 columns=120
-	
-	" font
-	set guifont=mplus\ Nerd\ Font\ 12
 
-	" custom border
-	set go-=T
-	set go-=r
-	set go-=L
-	set go-=l
-	set go-=b
-	set go-=m
+    " font
+    set guifont=mplus\ Nerd\ Font\ 12
+
+    " custom border
+    set go-=T
+    set go-=r
+    set go-=L
+    set go-=l
+    set go-=b
+    set go-=m
 
     " To enable the saving and restoring of screen positions.
     " let g:screen_size_restore_pos = 1
@@ -66,10 +66,10 @@ if has("gui_running")
     " let g:screen_size_by_vim_instance = 1
 
     if !exists('g:screen_size_restore_pos')
-        let g:screen_size_restore_pos = 1
+	let g:screen_size_restore_pos = 1
     endif
     if !exists('g:screen_size_by_vim_instance')
-        let g:screen_size_by_vim_instance = 1
+	let g:screen_size_by_vim_instance = 1
     endif
     autocmd VimEnter * if g:screen_size_restore_pos == 1 | call general#ScreenRestore() | endif
     autocmd VimLeavePre * if g:screen_size_restore_pos == 1 | call general#ScreenSave() | endif
@@ -133,7 +133,7 @@ set smartcase
 " set list
 set list listchars=tab:\┆\ ,trail:·,nbsp:±,extends:>,precedes:<
 
-" doesn't prompt a warning when opening a file and the current file was written but not saved 
+" doesn't prompt a warning when opening a file and the current file was written but not saved
 set hidden
 
 " doesn't display the mode status
@@ -156,7 +156,7 @@ set foldtext=general#FoldText()
 
 " Show the substitution LIVE
 if has('nvim')
-	set inccommand=nosplit
+    set inccommand=nosplit
 endif
 
 " Better ex autocompletion
@@ -173,7 +173,7 @@ set diffopt+=vertical
 "   autocmd!
   " autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
   " autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-  
+
   "set number except on nerdtree and taglist
   " let blacklist = ['nerdtree', 'tagbar']
   " autocmd BufEnter,FocusGained,InsertLeave * if index(blacklist, &ft) < 0 | set relativenumber
@@ -194,7 +194,7 @@ set mouse=a
 " hu?
 inoremap <expr> <c-y> matchstr(getline(line('.')-1), '\%' . virtcol('.') . 'v\%(\k\+\\|.\)')
 
-" path to your python 
+" path to your python
 let g:python3_host_prog = '/usr/bin/python3'
 let g:python_host_prog = '/usr/bin/python2'
 
@@ -236,26 +236,26 @@ set sessionoptions-=options
 if !has('nvim')
     set termguicolors
     set t_Co=256
-    
+
     " gruvbox colors
     let g:terminal_ansi_colors = [
-        \ '#282828',
-        \ '#cc241d',
-        \ '#98971a',
-        \ '#d79921',
-        \ '#458588',
-        \ '#b16286',
-        \ '#689d6a',
-        \ '#a89984',
-        \ '#928374',
-        \ '#fb4934',
-        \ '#b8bb26',
-        \ '#fabd2f',
-        \ '#83a598',
-        \ '#d3869b',
-        \ '#8ec07c',
-        \ '#ebdbb2'
-        \ ]
+	\ '#282828',
+	\ '#cc241d',
+	\ '#98971a',
+	\ '#d79921',
+	\ '#458588',
+	\ '#b16286',
+	\ '#689d6a',
+	\ '#a89984',
+	\ '#928374',
+	\ '#fb4934',
+	\ '#b8bb26',
+	\ '#fabd2f',
+	\ '#83a598',
+	\ '#d3869b',
+	\ '#8ec07c',
+	\ '#ebdbb2'
+	\ ]
 
     " alternative colors
     " let g:terminal_ansi_colors = [
@@ -286,3 +286,27 @@ set shortmess=a
 " hide tabline (tabline had limited capability)
 set showtabline=0
 
+" No resizing if any window closed
+set noequalalways
+
+" Show fileinfo on terminal title
+set title titlestring=
+
+" set shell=bash
+
+" Files and folders to ignore
+set wildignore=*/.git/*
+set wildignore+=*/.DS_Store
+set wildignore+=*/vendor
+set wildignore+=*/env/*
+set wildignore+=*.pyc
+set wildignore+=*/__pycache__/
+set wildignore+=*/deps/* " Elixir deps
+set wildignore+=*/_build/* " Elixir builds
+set wildignore+=*/Pods/* " CocoaPods
+set wildignore+=*/node_modules/*
+set wildignore+=*/bower_components/*
+set wildignore+=*/elm-stuff/*
+set wildignore+=*/staticfiles/*
+set wildignore+=*.gch
+set wildignore+=*.o

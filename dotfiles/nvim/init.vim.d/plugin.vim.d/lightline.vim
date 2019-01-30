@@ -4,7 +4,7 @@ let g:lightline = {
     \              [ 'readonly', 'relativepath', 'modified', 'tagbar']
     \     ],
     \     'right':[ ['lineinfo', 'percent', 'populatetab'],
-    \               []
+    \               ['linter_errors', 'linter_warnings' ]
     \     ],
     \   },
     \   'component': {
@@ -15,7 +15,7 @@ let g:lightline = {
     \   'component_function': {
     \     'readonly': 'LightlineReadonly',
     \     'gitbranch': 'LightlineFugitive',
-    \     'populatetab': 'PopulateTab'
+    \     'populatetab': 'PopulateTab',
     \   }
     \ }
 
@@ -40,6 +40,33 @@ function! LightlineFugitive()
     endif
     return ''
 endfunction
+
+function! LinterStatus() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
+
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_non_errors = l:counts.total - l:all_errors
+
+    return l:counts.total == 0 ? 'OK' : printf(
+    \   '%dW %dE',
+    \   all_non_errors,
+    \   all_errors
+    \)
+endfunction
+
+let g:lightline.component_expand = {
+      \  'linter_checking': 'lightline#ale#checking',
+      \  'linter_warnings': 'lightline#ale#warnings',
+      \  'linter_errors': 'lightline#ale#errors',
+      \  'linter_ok': 'lightline#ale#ok',
+      \ }
+
+let g:lightline.component_type = {
+      \     'linter_checking': 'left',
+      \     'linter_warnings': 'warning',
+      \     'linter_errors': 'error',
+      \     'linter_ok': 'left',
+      \ }
 
 let g:lightline.separator = {
     \   'left': '', 'right': ''
