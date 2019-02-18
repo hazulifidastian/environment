@@ -1,13 +1,13 @@
 #!/usr/bin/fish
-# ** Env Vars ** #
+# Env Vars
 
 set PROJECTS $HOME/Projects
 set DOTFILES $PROJECTS/environment/dotfiles 
 
-# ** Virtualenvwrapper ** # 
+# Virtualenvwrapper 
 
-set WORKON_HOME $HOME/.virtualenvs
-set export PROJECT_HOME $HOME/Projects/Python
+# set WORKON_HOME $HOME/.virtualenvs
+# set export PROJECT_HOME $HOME/Projects/Python
 # . /usr/local/bin/virtualenvwrapper.sh
 
 # java
@@ -22,14 +22,24 @@ set PATH $JAVA_HOME $ANDROID_SDK_PLATFORM_TOOLS $ANDROID_SDK_TOOLS $RUST $PATH
 set FLUTTER_HOME $HOME/Applications/flutter/bin
 set PATH $FLUTTER_HOME $PATH
 
-# ** Virtualfish ** #
+# dart
+set DART_HOME /usr/lib/dart
+set DART_PUB_CACHE $HOME/.pub-cache/bin
+set PATH $DART_HOME/bin $DART_PUB_CACHE $PATH
+
+# pyenv
+set PYENV_ROOT $HOME/.pyenv
+set PATH $PYENV_ROOT/bin $PATH
+pyenv init - | source
+
+# Virtualfish
 eval (python -m virtualfish)
 
-# ** Aliases ** #
+# Aliases
 
 # alias bd='. bd -si'
 
-# app shortcut
+## app shortcut
 alias e='nvim'
 alias do='docker'
 alias doe='dock exec'
@@ -45,27 +55,29 @@ alias peda='per django-admin'
 alias pem='pep manage.py'
 alias xl='tmux ls'
 
-# change directory
+## change directory
 alias pro='cd $PROJECTS' 
 alias dot='cd $DOTFILES' 
 alias scr='cd $PROJECTS/scripts' 
 alias tra='cd $PROJECTS/efha.training' 
+alias rus='cd $PROJECTS/efha.training/rust' 
 alias djv='tra; cd python/DjangoCore/djviews' 
 alias sir='pro; cd KementerianPUPR/sirepersda' 
 
-# edit
+## edit
 alias einitnvim='e $DOTFILES/nvim/init.vim'
 alias emyfish='e $DOTFILES/fish/my.fish'
 alias reload='omf reload'
 
 alias rek='cd $PROJECTS/KementerianPUPR/old.erekomtek.web.dev/src'
 
-# php
+## php
 alias phpunit='./vendor/bin/phpunit'
 
-# sqlite
+## sqlite
 alias sqlite="rlwrap -a -c -i sqlite3"
 
+# Functions
 function xbase
     if not set -q TMUX
         set -g TMUX tmux new-session -d -s base

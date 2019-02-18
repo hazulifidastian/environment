@@ -1,8 +1,8 @@
 set runtimepath+=~/.config/nvim/plugged/ultisnips
 let g:UltiSnipsUsePythonVersion = 3
 let g:UltiSnipsExpandTrigger="<C-t>"
-let g:UltiSnipsJumpForwardTrigger="<C-t>l"
-let g:UltiSnipsJumpBackwardTrigger="<C-t>h"
+let g:UltiSnipsJumpForwardTrigger="<C-t>n"
+let g:UltiSnipsJumpBackwardTrigger="<C-t>p"
 
 let g:UltiSnipsEditSplit="context"
 let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/nvim/UltiSnips']

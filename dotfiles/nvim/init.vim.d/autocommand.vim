@@ -28,4 +28,6 @@ autocmd vimrc BufEnter *.png,*.jpg,*gif silent! exec "! feh ".expand("%") | :bw
 "     autocmd vimrc buftype terminal nmap <Esc> <C-w>N
 " endif
 
+autocmd FileType netrw setl bufhidden=wipe
+
 " ** EndBlock Command/Autocommand ** "

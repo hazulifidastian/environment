@@ -1,10 +1,13 @@
 #!/bin/bash
 
 # code formatter
-sudo -H pip3 install yapf
+sudo -H python3 -m pip install yapf
 
 # sort import
-sudo -H pip3 install isort
+sudo -H python3 -m pip install isort
 
 # jedi
-sudo -H pip3 install jedi
+sudo -H python3 -m pip install jedi
+
+# pytest
+sudo -H python3 -m pip install pytests

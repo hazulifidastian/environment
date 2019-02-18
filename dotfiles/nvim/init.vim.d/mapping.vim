@@ -6,9 +6,11 @@
 let mapLeader = "\\"
 map <SPACE> <Leader>
 
-" ------- EndBlock Misc
+" ------------------ "
+" Block Special Char "
+" ------------------ "
 
-" ------- Block SpecialCharacter
+nnoremap <Cr> :nohlsearch<Cr>
 
 " indent without kill the selection in vmode
 vmap < <gv
@@ -16,19 +18,17 @@ vmap > >gv
 
 " Visual mode pressing * or # searches for the current selection
 " Super useful! From an idea by Michael Naumann
-" vnoremap <silent> * :<C-u>call general#VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
-" vnoremap <silent> # :<C-u>call general#VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
+" vnoremap <silent> * :<C-u>call general#VisualSelection('', '')<Cr>/<C-R>=@/<Cr><Cr>
+" vnoremap <silent> # :<C-u>call general#VisualSelection('', '')<Cr>?<C-R>=@/<Cr><Cr>
 
 " Execute a macro for the all selection
-xnoremap @ :<C-u>call general#ExecuteMacroOverVisualRange()<CR>
+xnoremap @ :<C-u>call general#ExecuteMacroOverVisualRange()<Cr>
 
 " Override search keys
 vmap * y/\<<C-r>"\><Cr>
 vmap # y?\<<C-r>"\><Cr>
 vmap g* y/<C-r>"<Cr>
 vmap g# y?<C-r>"<Cr>
-
-" =================================================================
 
 " ---------- "
 " Block Word "
@@ -53,28 +53,34 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 " Search and replace
-nmap S :%s//g<LEFT><LEFT>
+nmap F :%s//g<LEFT><LEFT>
+vmap F :s//g<LEFT><LEFT>
 
 " Search and replace using last search
 nmap <expr> M ':%s/' . @/ . '//g<LEFT><LEFT>'
 vmap <expr> M ":s/" . @/ . '//g<LEFT><LEFT>'
 
-" nnoremap ff :Files<cr>
+nnoremap ff :FuzzyOpen<Cr>
+nnoremap f. :FuzzyOpen <C-R>=expand('%:h')<Cr><Cr>
+
+" Move cursor and respect wrapped line
+nnoremap k gk
+nnoremap j gj
+nnoremap gk k
+nnoremap gj j
 
 " Confirm quit
-" cnoremap <silent> q<CR>  :call general#ConfirmQuit(0)<CR>
-" cnoremap <silent> x<CR>  :call general#ConfirmQuit(1)<CR>
-
-" =================================================================
+" cnoremap <silent> q<Cr>  :call general#ConfirmQuit(0)<Cr>
+" cnoremap <silent> x<Cr>  :call general#ConfirmQuit(1)<Cr>
 
 " ---------- "
 " Block Ctrl "
 " ---------- "
 
 " Save file
-nnoremap <C-s> :update<CR>
-inoremap <C-s> <Esc>:update<CR>
-vnoremap <C-s> <Esc>:update<CR>
+nnoremap <C-s> :update<Cr>
+inoremap <C-s> <Esc>:update<Cr>
+vnoremap <C-s> <Esc>:update<Cr>
 
 " override default gc
 " vmap gcc gc<Esc>
@@ -85,25 +91,25 @@ vnoremap <C-s> <Esc>:update<CR>
 " imap <C-_> <Esc>gcc i
 
 " Alt-arrows keys move windows
-nnoremap <C-Left> :wincmd h<Cr>
-nnoremap <C-Right> :wincmd l<Cr>
-nnoremap <C-Up> :wincmd k<Cr>
-nnoremap <C-Down> :wincmd j<Cr>
+" nnoremap <C-Left> :wincmd h<Cr>
+" nnoremap <C-Right> :wincmd l<Cr>
+" nnoremap <C-Up> :wincmd k<Cr>
+" nnoremap <C-Down> :wincmd j<Cr>
 
 " maximize
 nnoremap <C-w>m <C-w>_<C-w><bar>
 
 " ctrl-alt-hjkl keys resize windows
-" nmap <C-M-h> :vertical resize -5<CR>
-" nmap <C-M-l> :vertical resize +5<CR>
-" nmap <C-M-k> :resize -5<CR>
-" nmap <C-M-j> :resize +5<CR>
+" nmap <C-M-h> :vertical resize -5<Cr>
+" nmap <C-M-l> :vertical resize +5<Cr>
+" nmap <C-M-k> :resize -5<Cr>
+" nmap <C-M-j> :resize +5<Cr>
 
 " disable arrow key
-" imap <up> <nop>
-" imap <down> <nop>
-" imap <left> <nop>
-" imap <right> <nop>
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
 
 " Move text shortcut
 " this using tpop/unimpaired
@@ -119,8 +125,6 @@ inoremap <C-l> <Del>
 
 nnoremap <expr> <C-w>q &buftype ==# 'terminal' ? ":bd!<Cr>" : "<C-w>q"
 
-" =================================================================
-
 " -------- "
 " BlockTab "
 " -------- "
@@ -129,13 +133,9 @@ nnoremap <expr> <C-w>q &buftype ==# 'terminal' ? ":bd!<Cr>" : "<C-w>q"
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-" =================================================================
-
 " ----------------- "
 " BlockFunctionKeys "
 " ----------------- "
-
-" =================================================================
 
 " ------------ "
 " Block Leader "
@@ -146,11 +146,11 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " setup key [1-9] for moving windows, tab, and buffer
 for s:i in range(1, 9)
   " <Leader>[1-9] move to window [1-9]
-  execute 'nnoremap <Leader>w' . s:i . ' :' . s:i . 'wincmd w<CR>'
+  execute 'nnoremap <Leader>w' . s:i . ' :' . s:i . 'wincmd w<Cr>'
   " <Leader><leader>[1-9] move to tab [1-9]
   execute 'nnoremap <Leader>t' . s:i . ' ' . s:i . 'gt'
   " <Leader>b[1-9] move to buffer [1-9]
-  execute 'nnoremap <Leader>b' . s:i . ' :b' . s:i . '<CR>'
+  execute 'nnoremap <Leader>b' . s:i . ' :b' . s:i . '<Cr>'
 endfor
 unlet s:i
 
@@ -164,7 +164,7 @@ vmap <Leader>" S"
 
 " --- <Leader> ?
 
-map <Leader>? :h<Space>
+" map <Leader>? :h<Space>
 
 " --- <Leader> #
 
@@ -191,15 +191,15 @@ nnoremap <Leader>al :ALELast<Cr>
 " --- <Leader> b
 
 nnoremap <Leader>bb :ls<Cr>:b
-" nnoremap <Leader>bs :new<CR>
-" nnoremap <Leader>b- :new<CR>
-" nnoremap <Leader>bv :vnew<CR>
-" nnoremap <Leader>b<bar> :vnew<CR>
-" nnoremap <Leader>bl :bn<CR>
-" nnoremap <Leader>bh :bp<CR>
-nnoremap <Leader>b# :b#<CR>
-" nnoremap <Leader>bj :bfirst<CR>
-" nnoremap <Leader>bk :blast<CR>
+" nnoremap <Leader>bs :new<Cr>
+" nnoremap <Leader>b- :new<Cr>
+" nnoremap <Leader>bv :vnew<Cr>
+" nnoremap <Leader>b<bar> :vnew<Cr>
+" nnoremap <Leader>bl :bn<Cr>
+" nnoremap <Leader>bh :bp<Cr>
+" nnoremap <Leader>b# :b#<Cr>
+" nnoremap <Leader>bj :bfirst<Cr>
+" nnoremap <Leader>bk :blast<Cr>
 nmap <Leader>bx :Bwipeout<cr>
 nmap <Leader>bX :Bwipeout!<cr>
 nmap <Leader>bd :bwipeout<cr>
@@ -219,8 +219,8 @@ nmap <Leader>b. :echo '<C-R>=expand('%:h')<Cr>'<Cr>
 nmap <Leader>b! :lcd <C-R>=expand('%:h')<Cr><Cr>
 
 "Toggle between absolute -> relative line number
-nnoremap <Leader>b=n :let [&l:nu, &l:rnu]=[1, &l:nu+&l:rnu==1]<CR>
-nnoremap <Leader>b=N :setlocal nonu nornu<CR>
+nnoremap <Leader>b=n :let [&l:nu, &l:rnu]=[1, &l:nu+&l:rnu==1]<Cr>
+nnoremap <Leader>b=N :setlocal nonu nornu<Cr>
 
 nnoremap <Leader>b== :setlocal<Space>
 nnoremap <Leader>b=w :setlocal wrap<Cr>
@@ -237,15 +237,17 @@ nnoremap <Leader>cw :call general#DeleteTrailingWS()<Cr>
 
 " --- <Leader> e
 
-nnoremap <silent><Leader>e :NERDTreeToggle<CR>
-nnoremap <silent><Leader>E :NERDTreeFind<CR>
+nnoremap <silent><Leader>e :NERDTreeToggle<Cr>
+nnoremap <silent><Leader>E :NERDTreeFind<Cr>
+" nmap <Leader>e :Vex <C-R>=expand('%:h')<Cr><Cr>
 
 " --- <Leader> f
 
 " fzf
 nnoremap <Leader>fh :History<cr>
 nnoremap <Leader>fb :Buffers<cr>
-nnoremap <Leader>ff :Files<cr>
+" nnoremap <Leader>ff :Files<cr>
+nnoremap <Leader>ff :FuzzyOpen<cr>
 nnoremap <Leader>fc :Commands<cr>
 nnoremap <Leader>f: :History:<cr>
 nnoremap <Leader>f/ :History/<cr>
@@ -253,7 +255,7 @@ nnoremap <Leader>fw :Windows<cr>
 nnoremap <Leader>fT :Tags<cr>
 nnoremap <Leader>ft :BTags<cr>
 " fzf curent file dir
-nnoremap <Leader>f. :Files <C-R>=expand('%:h')<Cr><Cr>
+nnoremap <Leader>f. :FuzzyOpen <C-R>=expand('%:h')<Cr><Cr>
 
 " --- <Leader> L
 nnoremap <Leader>Ln :lnext<Cr>
@@ -263,7 +265,8 @@ nnoremap <Leader>Lr :lrewind<Cr>
 " --- <Leader> p
 
 " project
-nnoremap <Leader>pff :Rooter<Cr>:Files<Cr>
+" nnoremap <Leader>pff :Rooter<Cr>:Files<Cr>
+nnoremap <Leader>pff :Rooter<Cr>:FuzzyOpen<Cr>
 nnoremap <Leader>p/ :Rooter<Cr>:Rgic<Space>
 nnoremap <Leader>pt :Rooter<Cr>:terminal<Cr>
 nnoremap <Leader>pR :Rooter<Cr>:pwd<Cr>
@@ -285,21 +288,20 @@ nnoremap <Leader>pr :echo FindRootDirectory()<Cr>
 
 nmap <leader>swr <Plug>(FerretAckWord)
 nmap <leader>sR <Plug>(FerretAcks)
-nmap <leader>sc :noh<Cr>
-nmap <leader>ss :%///gc<Cr>
+" nmap <leader>sc :noh<Cr>
 
 " --- <Leader> t
 
 " move tab
-nnoremap <Leader>tn :tabnew<CR>
-nnoremap <Leader>tN :-tabnew<CR>
-" nnoremap <Leader>tl :tabnext<CR>
-" nnoremap <Leader>th :tabprevious<CR>
-" nnoremap <Leader>tj :tabfirst<CR>
-" nnoremap <Leader>tk :tablast<CR>
-nnoremap <Leader>tq :tabc<CR>
-" nnoremap <Leader>tx :tabclose<CR>
-" nnoremap <Leader>to :tabonly<CR>
+" nnoremap <Leader>tn :tabnew<Cr>
+" nnoremap <Leader>tN :-tabnew<Cr>
+" nnoremap <Leader>tl :tabnext<Cr>
+" nnoremap <Leader>th :tabprevious<Cr>
+" nnoremap <Leader>tj :tabfirst<Cr>
+" nnoremap <Leader>tk :tablast<Cr>
+" nnoremap <Leader>tq :tabc<Cr>
+" nnoremap <Leader>tx :tabclose<Cr>
+" nnoremap <Leader>to :tabonly<Cr>
 nnoremap <Leader>tc :tabs<Cr>:tabc
 nnoremap <Leader>tm :tabs<Cr>:tabm
 nnoremap <Leader>tt :tabs<Cr>:tab
@@ -329,7 +331,7 @@ nmap <Leader>t# :execute "tabn" . g:lasttab<Cr>
 " --- <Leader> v
 
 " open nvim config folder, and search for files
-nnoremap <Leader>vc :tabnew<Cr>:lcd ~/Projects/environment/dotfiles/nvim<Cr>:Files<Cr>
+nnoremap <Leader>vc :tabnew<Cr>:lcd ~/Projects/environment/dotfiles/nvim<Cr>:FuzzyOpen<Cr>
 nnoremap <silent><Leader>vC :source $MYVIMRC<Cr>
 
 " save and load session
@@ -343,15 +345,15 @@ endif
 
 " --- <Leader> w
 
-" nnoremap <silent><Leader>we :NERDTreeToggle<CR>
-" nnoremap <silent><Leader>wf :NERDTreeFind<CR>
+" nnoremap <silent><Leader>we :NERDTreeToggle<Cr>
+" nnoremap <silent><Leader>wf :NERDTreeFind<Cr>
 
 " window
-" nnoremap <Leader>ws :sp<CR>
-" nnoremap <Leader>w- :sp<CR>
-" nnoremap <Leader>wv :vsp<CR>
-" nnoremap <Leader>w<bar> :vsp<CR>
-" nnoremap <Leader>wQ :qa<CR>
+" nnoremap <Leader>ws :sp<Cr>
+" nnoremap <Leader>w- :sp<Cr>
+" nnoremap <Leader>wv :vsp<Cr>
+" nnoremap <Leader>w<bar> :vsp<Cr>
+" nnoremap <Leader>wQ :qa<Cr>
 " nnoremap <Leader>we <C-w>=
 
 " focus
@@ -391,10 +393,8 @@ nmap <Leader>wwm <Leader>wwlm
 " nnoremap <Leader>wq <C-w>_<C-w><bar>
 
 " location & quickfix window
-nnoremap <silent> <Leader>wc :call general#ToggleList("Location List", 'l')<CR>
-nnoremap <silent> <Leader>wf :call general#ToggleList("Quickfix List", 'c')<CR>
-
-" =================================================================
+nnoremap <silent> <Leader>wc :call general#ToggleList("Location List", 'l')<Cr>
+nnoremap <silent> <Leader>wf :call general#ToggleList("Quickfix List", 'c')<Cr>
 
 " -------- "
 " Shortcut "
@@ -411,11 +411,13 @@ if !has("nvim")
     tmap <Esc> <C-w>N
 endif
 
-nmap <Leader>q :q<Cr>
-nmap <Leader>Q :qa<Cr>
-nmap <Leader>x <nop>
-nmap <Leader>X <nop>
+" nmap <Leader>q :q<Cr>
+" nmap <Leader>Q :qa<Cr>
+" nmap <Leader>x <nop>
+" nmap <Leader>X <nop>
 nmap <Leader>A <Leader>pA
 
-nmap <Leader><Space> :
+nnoremap ; :
+vnoremap ; :
+" nmap <Leader><Space> :
 

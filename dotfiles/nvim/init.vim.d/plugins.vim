@@ -41,6 +41,9 @@ Plug 'tpope/vim-eunuch'
 " Move line
 Plug 'tpope/vim-unimpaired'
 
+" Dispatch
+Plug 'tpope/vim-dispatch'
+
 " Highlight briefly every yank text
 Plug 'machakann/vim-highlightedyank'
 
@@ -97,7 +100,12 @@ Plug 'phpactor/phpactor', {'do': 'composer install', 'for': 'php'}
 Plug '2072/php-indenting-for-vim', {'for': 'php'}
 
 " rust
-Plug 'racer-rust/vim-racer'
+Plug 'racer-rust/vim-racer', {'for': 'rust'}
+
+" Dart
+if has('nvim')
+    Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+endif
 
 " create tags
 Plug 'ludovicchabant/vim-gutentags'
@@ -122,6 +130,7 @@ else
 	Plug 'roxma/nvim-yarp'
 	Plug 'roxma/vim-hug-neovim-rpc'
     Plug 'zchee/deoplete-jedi', {'for': 'py'}
+    Plug 'sebastianmarkow/deoplete-rust'
 	Plug 'kristijanhusak/deoplete-phpactor', {'for': 'php'}
 endif
 
@@ -145,7 +154,9 @@ augroup nerd_loader
         \|   execute 'autocmd! nerd_loader'
         \| endif
 augroup END
-" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+" " Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+
+" Plug 'tpope/vim-vinegar'
 
 " Status bar
 Plug 'itchyny/lightline.vim'
@@ -171,6 +182,8 @@ Plug 'mattn/emmet-vim'
 " fzf - poweful fuzzy finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+
+Plug 'bosr/fzy.vim'
 
 " allow multisearch in current directory / multi replace as well
 Plug 'wincent/ferret'
@@ -212,4 +225,8 @@ Plug 'janko-m/vim-test'
 
 " Dealing with swap files
 Plug 'gioele/vim-autoswap'
+
+" Scratch
+Plug 'duff/vim-scratch'
+
 call plug#end()
