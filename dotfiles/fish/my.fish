@@ -32,8 +32,11 @@ set PYENV_ROOT $HOME/.pyenv
 set PATH $PYENV_ROOT/bin $PATH
 pyenv init - | source
 
+status --is-interactive; and pyenv init - | source
+status --is-interactive; and pyenv virtualenv-init - | source
+
 # Virtualfish
-eval (python -m virtualfish)
+# eval (python -m virtualfish)
 
 # Aliases
 
@@ -41,6 +44,7 @@ eval (python -m virtualfish)
 
 ## app shortcut
 alias e='nvim'
+alias v='nvim'
 alias do='docker'
 alias doe='dock exec'
 alias dor='dock run'

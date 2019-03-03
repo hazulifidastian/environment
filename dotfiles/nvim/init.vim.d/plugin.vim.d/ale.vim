@@ -17,5 +17,6 @@ let g:ale_linters = {
     \ 'css': ['stylelint'],
     \ 'html': ['htmlhint'],
     \ 'htmldjango': ['htmlhint'],
+    \ 'dart': ['language_server'],
     \ }
 let g:ale_python_pylint_options = '-j 0 --max-line-length=100'

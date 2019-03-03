@@ -103,9 +103,11 @@ Plug '2072/php-indenting-for-vim', {'for': 'php'}
 Plug 'racer-rust/vim-racer', {'for': 'rust'}
 
 " Dart
-if has('nvim')
-    Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
-endif
+" if has('nvim')
+"     Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+" endif
+Plug 'natebosch/vim-lsc'
+Plug 'tiagofumo/dart-vim-flutter-layout'
 
 " create tags
 Plug 'ludovicchabant/vim-gutentags'
@@ -119,7 +121,7 @@ if has('nvim')
 	Plug 'ncm2/ncm2-path'
     Plug 'HansPinckaers/ncm2-jedi', {'for': 'py'}
 	Plug 'phpactor/ncm2-phpactor', {'for': 'php'}
-    Plug 'ncm2/ncm2-racer'
+    Plug 'ncm2/ncm2-racer', {'for': 'rust'}
 	"Plug 'ncm2/ncm2-go'
 	"Plug 'ncm2/ncm2-tern'
 	"Plug 'ncm2/ncm2-cssomni'
@@ -130,7 +132,7 @@ else
 	Plug 'roxma/nvim-yarp'
 	Plug 'roxma/vim-hug-neovim-rpc'
     Plug 'zchee/deoplete-jedi', {'for': 'py'}
-    Plug 'sebastianmarkow/deoplete-rust'
+    Plug 'sebastianmarkow/deoplete-rust', {'for': 'rust'}
 	Plug 'kristijanhusak/deoplete-phpactor', {'for': 'php'}
 endif
 
@@ -224,7 +226,7 @@ Plug 'janko-m/vim-test'
 " Plug 'thaerkh/vim-workspace'
 
 " Dealing with swap files
-Plug 'gioele/vim-autoswap'
+" Plug 'gioele/vim-autoswap'
 
 " Scratch
 Plug 'duff/vim-scratch'

@@ -10,7 +10,7 @@ map <SPACE> <Leader>
 " Block Special Char "
 " ------------------ "
 
-nnoremap <Cr> :nohlsearch<Cr>
+nnoremap <Cr> :nohlsearch<Cr><Cr>
 
 " indent without kill the selection in vmode
 vmap < <gv
@@ -98,6 +98,9 @@ vnoremap <C-s> <Esc>:update<Cr>
 
 " maximize
 nnoremap <C-w>m <C-w>_<C-w><bar>
+
+" winresizer plugin
+let g:winresizer_start_key = '<C-w>R'
 
 " ctrl-alt-hjkl keys resize windows
 " nmap <C-M-h> :vertical resize -5<Cr>
@@ -384,11 +387,11 @@ endif
 " nnoremap <Leader>wb <C-f>
 
 " resize (using winresizer plugin)
-nmap <Leader>wwr <Leader>wwl
+" nmap <Leader>wwr <Leader>wwl
 " focus (using winresizer plugin)
-nmap <Leader>wwf <Leader>wwlf
+" nmap <Leader>wwf <Leader>wwlf
 " move (using winresizer plugin)
-nmap <Leader>wwm <Leader>wwlm
+" nmap <Leader>wwm <Leader>wwlm
 
 " nnoremap <Leader>wq <C-w>_<C-w><bar>
 
