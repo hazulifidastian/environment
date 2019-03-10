@@ -280,8 +280,8 @@ if !has('nvim')
     set t_AF=^[[38;5;%dm
 endif
 
-" hide enter ...
-set shortmess=a
+" Shorten message
+set shortmess+=c
 
 " hide tabline (tabline had limited capability)
 set showtabline=0
@@ -318,3 +318,7 @@ let g:netrw_altv = 1
 let g:netrw_winsize = 25
 
 set path+=**
+
+set incsearch
+
+hi NonText guifg=bg

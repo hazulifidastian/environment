@@ -19,7 +19,7 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive' | Plug 'mhinz/vim-signify'
 
 " Display commits for project / file
-Plug 'junegunn/gv.vim'
+" Plug 'junegunn/gv.vim'
 
 " surrounding with whatever you want (paranthesis, quotes...)
 Plug 'tpope/vim-surround'
@@ -54,7 +54,7 @@ Plug 'machakann/vim-swap'
 " Plug 'wellle/targets.vim'
 
 " camel case motion
-Plug 'chaoren/vim-wordmotion'
+" Plug 'chaoren/vim-wordmotion'
 
 " Match more stuff with % (html tag, LaTeX...)
 Plug 'andymass/vim-matchup'
@@ -68,6 +68,10 @@ Plug 'airblade/vim-rooter'
 " snippets
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+
+" Rainbow parentheses
+" Conflict with tiagofumo/dart-vim-flutter-layout plugin
+" Plug 'junegunn/rainbow_parentheses.vim'
 
 " markdown - writing
 " Plug 'gabrielelana/vim-markdown' " markdown plugin
@@ -106,8 +110,8 @@ Plug 'racer-rust/vim-racer', {'for': 'rust'}
 " if has('nvim')
 "     Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
 " endif
+Plug 'tiagofumo/dart-vim-flutter-layout', {'for': 'dart'}
 Plug 'natebosch/vim-lsc'
-Plug 'tiagofumo/dart-vim-flutter-layout'
 
 " create tags
 Plug 'ludovicchabant/vim-gutentags'
@@ -175,9 +179,6 @@ endif
 " close the current buffer
 Plug 'moll/vim-bbye'
 
-" systemd syntax and error
-Plug 'wgwoods/vim-systemd-syntax'
-
 " emmet for html
 Plug 'mattn/emmet-vim'
 
@@ -185,7 +186,7 @@ Plug 'mattn/emmet-vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
-Plug 'bosr/fzy.vim'
+" Plug 'bosr/fzy.vim'
 
 " allow multisearch in current directory / multi replace as well
 Plug 'wincent/ferret'
@@ -197,10 +198,10 @@ Plug 'ap/vim-css-color'
 Plug 'simeji/winresizer'
 
 " Split arrays in PHP / struct in Go
-Plug 'AndrewRadev/splitjoin.vim'
+Plug 'AndrewRadev/splitjoin.vim', {'for': ['php', 'go']}
 
 " easy align
-Plug 'junegunn/vim-easy-align'
+" Plug 'junegunn/vim-easy-align'
 
 " CSV plugin
 " Plug 'chrisbra/csv.vim'
@@ -210,17 +211,17 @@ Plug 'junegunn/vim-easy-align'
 
 " Themes
 Plug 'morhetz/gruvbox'
-Plug 'joshdick/onedark.vim'
+" Plug 'joshdick/onedark.vim'
 
 " Indent line
 Plug 'Yggdroot/indentLine', { 'on': 'IndentLinesEnable' }
 autocmd! User indentLine doautocmd indentLine Syntax
 
 " multiple cursor
-Plug 'terryma/vim-multiple-cursors'
+" Plug 'terryma/vim-multiple-cursors'
 
 " tests
-Plug 'janko-m/vim-test'
+" Plug 'janko-m/vim-test'
 
 " workspace (load workspace on current dir, and auto save file)
 " Plug 'thaerkh/vim-workspace'

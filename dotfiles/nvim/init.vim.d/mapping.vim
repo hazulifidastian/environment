@@ -53,15 +53,12 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 " Search and replace
-nmap F :%s//g<LEFT><LEFT>
-vmap F :s//g<LEFT><LEFT>
+nmap <Leader>m :%s//g<LEFT><LEFT>
+vmap <Leader>m :s//g<LEFT><LEFT>
 
 " Search and replace using last search
-nmap <expr> M ':%s/' . @/ . '//g<LEFT><LEFT>'
-vmap <expr> M ":s/" . @/ . '//g<LEFT><LEFT>'
-
-nnoremap ff :FuzzyOpen<Cr>
-nnoremap f. :FuzzyOpen <C-R>=expand('%:h')<Cr><Cr>
+nmap <expr> <Leader>M ':%s/' . @/ . '//g<LEFT><LEFT>'
+vmap <expr> <Leader>M ":s/" . @/ . '//g<LEFT><LEFT>'
 
 " Move cursor and respect wrapped line
 nnoremap k gk
@@ -250,7 +247,7 @@ nnoremap <silent><Leader>E :NERDTreeFind<Cr>
 nnoremap <Leader>fh :History<cr>
 nnoremap <Leader>fb :Buffers<cr>
 " nnoremap <Leader>ff :Files<cr>
-nnoremap <Leader>ff :FuzzyOpen<cr>
+nnoremap <Leader>ff :Files<cr>
 nnoremap <Leader>fc :Commands<cr>
 nnoremap <Leader>f: :History:<cr>
 nnoremap <Leader>f/ :History/<cr>
@@ -258,7 +255,7 @@ nnoremap <Leader>fw :Windows<cr>
 nnoremap <Leader>fT :Tags<cr>
 nnoremap <Leader>ft :BTags<cr>
 " fzf curent file dir
-nnoremap <Leader>f. :FuzzyOpen <C-R>=expand('%:h')<Cr><Cr>
+nnoremap <Leader>f. :Files <C-R>=expand('%:h')<Cr><Cr>
 
 " --- <Leader> L
 nnoremap <Leader>Ln :lnext<Cr>
@@ -269,7 +266,7 @@ nnoremap <Leader>Lr :lrewind<Cr>
 
 " project
 " nnoremap <Leader>pff :Rooter<Cr>:Files<Cr>
-nnoremap <Leader>pff :Rooter<Cr>:FuzzyOpen<Cr>
+nnoremap <Leader>pff :Rooter<Cr>:Files<Cr>
 nnoremap <Leader>p/ :Rooter<Cr>:Rgic<Space>
 nnoremap <Leader>pt :Rooter<Cr>:terminal<Cr>
 nnoremap <Leader>pR :Rooter<Cr>:pwd<Cr>
@@ -334,16 +331,16 @@ nmap <Leader>t# :execute "tabn" . g:lasttab<Cr>
 " --- <Leader> v
 
 " open nvim config folder, and search for files
-nnoremap <Leader>vc :tabnew<Cr>:lcd ~/Projects/environment/dotfiles/nvim<Cr>:FuzzyOpen<Cr>
+nnoremap <Leader>vc :tabnew<Cr>:lcd ~/Projects/environment/dotfiles/nvim<Cr>:Files<Cr>
 nnoremap <silent><Leader>vC :source $MYVIMRC<Cr>
 
 " save and load session
 if has('gui_running')
     nnoremap <Leader>vs :mksession! ~/.config/nvim/sessions/gui.vim "SaveSession
-    nnoremap <Leader>vS :source ~/.config/nvim/sessions/gui.vim "LoadGUIsession
+    nnoremap <Leader>vS :source ~/.config/nvim/sessions/gui.vim "LoadGUISession
 else
-    nnoremap <Leader>vs :mksession! ~/.config/nvim/sessions/terminal.vim<Cr>
-    nnoremap <Leader>vS :source ~/.config/nvim/sessions/terminal.vim "LoadTerminalsession
+    nnoremap <Leader>vs :mksession! ~/.config/nvim/sessions/terminal.vim "SaveTerminalSession
+    nnoremap <Leader>vS :source ~/.config/nvim/sessions/terminal.vim "LoadTerminalSession
 endif
 
 " --- <Leader> w
@@ -420,7 +417,11 @@ endif
 " nmap <Leader>X <nop>
 nmap <Leader>A <Leader>pA
 
-nnoremap ; :
-vnoremap ; :
-" nmap <Leader><Space> :
+" nnoremap ; :
+" vnoremap ; :
+" Conflict if bind :
+" nnoremap : ;
+" vnoremap : ;
+nmap <Leader><Space> :
+vmap <Leader><Space> :
 

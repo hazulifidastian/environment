@@ -68,12 +68,20 @@ let g:lightline.component_type = {
       \     'linter_ok': 'left',
       \ }
 
+" let g:lightline.separator = {
+    " \   'left': '', 'right': ''
+    " \ }
+
+" let g:lightline.subseparator = {
+	" \   'left': '', 'right': ''
+    " \ }
+
 let g:lightline.separator = {
-    \   'left': '', 'right': ''
+    \   'left': '', 'right': ''
     \ }
 
 let g:lightline.subseparator = {
-	\   'left': '', 'right': '' 
+	\   'left': '', 'right': '' 
     \ }
 
 if !has("gui_running")
