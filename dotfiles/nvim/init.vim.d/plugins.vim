@@ -132,12 +132,13 @@ if has('nvim')
 	Plug 'fgrsnau/ncm2-otherbuf', { 'branch': 'ncm2' }
 	Plug 'ncm2/ncm2-ultisnips'
 else
-	Plug 'Shougo/deoplete.nvim'
-	Plug 'roxma/nvim-yarp'
-	Plug 'roxma/vim-hug-neovim-rpc'
-    Plug 'zchee/deoplete-jedi', {'for': 'py'}
-    Plug 'sebastianmarkow/deoplete-rust', {'for': 'rust'}
-	Plug 'kristijanhusak/deoplete-phpactor', {'for': 'php'}
+    Plug 'Valloric/YouCompleteMe'
+	" Plug 'Shougo/deoplete.nvim'
+	" Plug 'roxma/nvim-yarp'
+	" Plug 'roxma/vim-hug-neovim-rpc'
+    " Plug 'zchee/deoplete-jedi', {'for': 'py'}
+	" Plug 'kristijanhusak/deoplete-phpactor', {'for': 'php'}
+    " Plug 'sebastianmarkow/deoplete-rust', {'for': 'rust'}
 endif
 
 " general quality tools 
@@ -227,9 +228,6 @@ autocmd! User indentLine doautocmd indentLine Syntax
 " Plug 'thaerkh/vim-workspace'
 
 " Dealing with swap files
-" Plug 'gioele/vim-autoswap'
-
-" Scratch
-Plug 'duff/vim-scratch'
+Plug 'gioele/vim-autoswap'
 
 call plug#end()

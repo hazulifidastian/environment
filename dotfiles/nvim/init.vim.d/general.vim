@@ -26,7 +26,8 @@ if has("gui_running")
 else
     "terminal themes
     set background=dark
-    let g:gruvbox_italic=1
+    " Italic not supported by vim
+    " let g:gruvbox_italic=1
     let g:gruvbox_contrast_dark="medium"
     let g:gruvbox_termcolors=256
     colorscheme gruvbox
@@ -50,12 +51,12 @@ if has("gui_running")
     set guifont=mplus\ Nerd\ Font\ 12
 
     " custom border
-    set go-=T
-    set go-=r
-    set go-=L
-    set go-=l
-    set go-=b
-    set go-=m
+    " set go-=T
+    " set go-=r
+    " set go-=L
+    " set go-=l
+    " set go-=b
+    " set go-=m
 
     " To enable the saving and restoring of screen positions.
     " let g:screen_size_restore_pos = 1
@@ -317,8 +318,15 @@ let g:netrw_browse_split = 4
 let g:netrw_altv = 1
 let g:netrw_winsize = 25
 
+" Search file when open with command :e file<Tab>
 set path+=**
 
+" Repeat pattern after search with /<pattern>
 set incsearch
 
+" Hide tilde on blank line
 hi NonText guifg=bg
+
+" Turn off vim, always opening scratch window
+" when press tab on autocomplete
+set completeopt-=preview

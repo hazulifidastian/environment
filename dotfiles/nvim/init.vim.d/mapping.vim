@@ -10,7 +10,7 @@ map <SPACE> <Leader>
 " Block Special Char "
 " ------------------ "
 
-nnoremap <Cr> :nohlsearch<Cr><Cr>
+" nnoremap <Cr> :nohlsearch<Cr><Cr>
 
 " indent without kill the selection in vmode
 vmap < <gv
@@ -60,6 +60,9 @@ vmap <Leader>m :s//g<LEFT><LEFT>
 nmap <expr> <Leader>M ':%s/' . @/ . '//g<LEFT><LEFT>'
 vmap <expr> <Leader>M ":s/" . @/ . '//g<LEFT><LEFT>'
 
+nmap <Leader><C-m> :%S//g<LEFT><LEFT>
+vmap <Leader><C-m> :S//g<LEFT><LEFT>
+
 " Move cursor and respect wrapped line
 nnoremap k gk
 nnoremap j gj
@@ -96,6 +99,11 @@ vnoremap <C-s> <Esc>:update<Cr>
 " maximize
 nnoremap <C-w>m <C-w>_<C-w><bar>
 
+nnoremap <C-w>h :wincmd h<CR><C-w><bar>0
+nnoremap <C-w>l :wincmd l<CR><C-w><bar>0
+nnoremap <C-w>k :wincmd k<CR><C-w>_
+nnoremap <C-w>j :wincmd j<CR><C-w>_
+
 " winresizer plugin
 let g:winresizer_start_key = '<C-w>R'
 
@@ -106,10 +114,10 @@ let g:winresizer_start_key = '<C-w>R'
 " nmap <C-M-j> :resize +5<Cr>
 
 " disable arrow key
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
+" map <up> <nop>
+" map <down> <nop>
+" map <left> <nop>
+" map <right> <nop>
 
 " Move text shortcut
 " this using tpop/unimpaired
@@ -234,6 +242,7 @@ nnoremap <Leader>Cn :cNext<Cr>
 nnoremap <Leader>Cp :cprevious<Cr>
 nnoremap <Leader>Cr :crewind<Cr>
 nnoremap <Leader>cw :call general#DeleteTrailingWS()<Cr>
+nmap <leader>ch :noh<Cr>
 
 " --- <Leader> e
 
@@ -288,7 +297,6 @@ nnoremap <Leader>pr :echo FindRootDirectory()<Cr>
 
 nmap <leader>swr <Plug>(FerretAckWord)
 nmap <leader>sR <Plug>(FerretAcks)
-" nmap <leader>sc :noh<Cr>
 
 " --- <Leader> t
 
@@ -425,3 +433,5 @@ nmap <Leader>A <Leader>pA
 nmap <Leader><Space> :
 vmap <Leader><Space> :
 
+nmap <BS> :
+vmap <BS> :

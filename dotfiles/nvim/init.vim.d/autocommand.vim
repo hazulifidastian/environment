@@ -30,4 +30,11 @@ autocmd vimrc BufEnter *.png,*.jpg,*gif silent! exec "! feh ".expand("%") | :bw
 
 autocmd FileType netrw setl bufhidden=wipe
 
+" Hide highlight search after exit command-line
+augroup vimrc-incsearch-highlight
+    autocmd!
+    autocmd CmdlineEnter /,\? :set hlsearch
+    autocmd CmdlineLeave /,\? :set nohlsearch
+augroup END
+
 " ** EndBlock Command/Autocommand ** "

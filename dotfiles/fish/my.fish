@@ -27,10 +27,14 @@ set DART_HOME /usr/lib/dart
 set DART_PUB_CACHE $HOME/.pub-cache/bin
 set PATH $DART_HOME/bin $DART_PUB_CACHE $PATH
 
+# Disable double env on prompt when using spacefish
+set VIRTUAL_ENV_DISABLE_PROMPT true
+
 # pyenv
 set PYENV_ROOT $HOME/.pyenv
 set PATH $PYENV_ROOT/bin $PATH
 pyenv init - | source
+
 
 status --is-interactive; and pyenv init - | source
 status --is-interactive; and pyenv virtualenv-init - | source
@@ -41,57 +45,72 @@ status --is-interactive; and pyenv virtualenv-init - | source
 # Aliases
 
 # alias bd='. bd -si'
+alias v nvim
+alias n 'nnn -l'
+alias r 'ranger'
+
+# Abbr
 
 ## app shortcut
-alias e='nvim'
-alias v='nvim'
-alias do='docker'
-alias doe='dock exec'
-alias dor='dock run'
-alias doi='dock images'
-alias doco='docker-compose'
-alias doce='doco exec'
-alias pe='pipenv'
-alias per='pe run'
-alias pes='pe shell'
-alias pep='per python'
-alias peda='per django-admin'
-alias pem='pep manage.py'
-alias xl='tmux ls'
+abbr -a -g do docker
+abbr -a -g doe docker exec
+abbr -a -g dor docker run
+abbr -a -g doi docker images
+abbr -a -g doco docker-compose
+abbr -a -g doce docker-compose exec
+abbr -a -g pe pipenv
+abbr -a -g per pipenv run
+abbr -a -g pes pipenv shell
+abbr -a -g pep pipenv run python
+abbr -a -g peda pipenv run django-admin
+abbr -a -g pem pipenv run python manage.py
+abbr -a -g pemr pipenv run python manage.py runserver
+abbr -a -g pemm pipenv run python manage.py makemigrations
+abbr -a -g pemM pipenv run python manage.py migrate
+abbr -a -g pemt pipenv run python manage.py test
 
 ## change directory
-alias pro='cd $PROJECTS' 
-alias dot='cd $DOTFILES' 
-alias scr='cd $PROJECTS/scripts' 
-alias tra='cd $PROJECTS/efha.training' 
-alias rus='cd $PROJECTS/efha.training/rust' 
-alias djv='tra; cd python/DjangoCore/djviews' 
-alias sir='pro; cd KementerianPUPR/sirepersda' 
+abbr -a -g pro cd $PROJECTS
+abbr -a -g dot cd $DOTFILES
+abbr -a -g scr cd $PROJECTS/scripts
+abbr -a -g tra cd $PROJECTS/efha.training
+abbr -a -g rus cd $PROJECTS/efha.training/rust
+abbr -a -g dar cd $PROJECTS/efha.training/dart
+abbr -a -g djv cd $PROJECTS/efha.training/python/DjangoCore/djviews
+abbr -a -g sir cd $PROJECTS/KementerianPUPR/sirepersda
 
 ## edit
-alias einitnvim='e $DOTFILES/nvim/init.vim'
-alias emyfish='e $DOTFILES/fish/my.fish'
-alias reload='omf reload'
+abbr -a -g vmyfish v $DOTFILES/fish/my.fish
+abbr -a -g reload omf reload
 
-alias rek='cd $PROJECTS/KementerianPUPR/old.erekomtek.web.dev/src'
+#
+abbr -a -g rek cd $PROJECTS/KementerianPUPR/old.erekomtek.web.dev/src
 
 ## php
-alias phpunit='./vendor/bin/phpunit'
+abbr -a -g phpunit ./vendor/bin/phpunit
 
 ## sqlite
-alias sqlite="rlwrap -a -c -i sqlite3"
+abbr -a -g sqlite rlwrap -a -c -i sqlite3
+
+## git
+abbr -a -g g git
+abbr -a -g gst git status
+abbr -a -g gad git add
+abbr -a -g gcm git commit -m
+abbr -a -g gpo git push origin
+
+# Spacefish
+set SPACEFISH_GIT_STATUS_DELETED X
 
 # Functions
 function xbase
-    if not set -q TMUX
-        set -g TMUX tmux new-session -d -s base
-        
-        tmux has-session -t base 2> /dev/null
-        if test $status -gt 0
-            eval $TMUX
-        end
-
-        tmux attach-session -d -t base
+    set name base
+    tmux has-session -t $name 2> /dev/null
+    if test $status -gt 0
+        tmux new-session -d -s $name 
+        tmux attach-session -d
+    else
+        tmux attach-session -d -t $name 
     end
 end
 function xbasex
@@ -140,16 +159,16 @@ function xsi
     tmux has-session -t $name 2> /dev/null
     if test $status -gt 0
         tmux new-session -d -s $name 
-        tmux split-window -v
-        tmux send-keys 'sir' Enter
-        tmux send-keys 'cd src' Enter
-        tmux select-pane -t 0
-        tmux resize-pane -D 10
-        tmux send-keys 'sir' Enter
-        tmux send-keys 'pes' Enter
+
+        tmux rename-window 'vim'
+        tmux send-keys 'sir; pes' Enter
+
         tmux new-window
-        tmux send-keys 'sir' Enter
+        tmux rename-window 'services'
+        tmux send-keys 'sir; cd src; pemr' Enter
+
         tmux previous-window
+
         tmux attach-session -d
     else
         tmux attach-session -d -t $name 
@@ -159,3 +178,16 @@ end
 function xsix
     tmux kill-session -t si
 end
+
+# function fish_prompt
+#   set -l blue (set_color blue)
+#   set -l green (set_color green)
+#   set -l red (set_color red)
+#   set -l normal (set_color normal)
+#
+#   set -l arrow $red"λ"
+#   set -l cwd $blue(basename (prompt_pwd))
+#   # set -l cwd $blue(pwd | sed "s:^$HOME:~:")
+#
+#   echo -e -n -s $green(hostname|cut -d . -f 1):$cwd $normal ' ' $arrow ' '
+# end

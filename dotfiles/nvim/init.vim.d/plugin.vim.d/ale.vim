@@ -13,10 +13,14 @@ let g:ale_html_htmlhint_executable = 'htmlhint'
 " let g:ale_python_flake8_options = '--ignore=E129,E501,E302,E265,E241,E305,E402,W503'
 let g:ale_python_flake8_options = '--ignore=E116,E501,E265 --max-line-length=100'
 let g:ale_linters = {
-    \ 'python': ['mypy', 'flake8', 'isort'],
+    \ 'python': ['flake8', 'isort'],
     \ 'css': ['stylelint'],
     \ 'html': ['htmlhint'],
     \ 'htmldjango': ['htmlhint'],
     \ 'dart': ['language_server'],
+    \ 'rust': ['rustc'],
     \ }
+let g:ale_python_auto_pipenv = 1
+" let pipenv_venv_path = system('pipenv --venv')
 let g:ale_python_pylint_options = '-j 0 --max-line-length=100'
+let g:ale_rust_rls_toolchain = 'nightly'
