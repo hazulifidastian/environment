@@ -295,7 +295,7 @@ nnoremap <Leader>pr :echo FindRootDirectory()<Cr>
 
 " --- <Leader> s
 
-nmap <leader>swr <Plug>(FerretAckWord)
+nmap <leader>sr :Ack<Space>
 nmap <leader>sR <Plug>(FerretAcks)
 
 " --- <Leader> t
@@ -401,8 +401,8 @@ endif
 " nnoremap <Leader>wq <C-w>_<C-w><bar>
 
 " location & quickfix window
-nnoremap <silent> <Leader>wc :call general#ToggleList("Location List", 'l')<Cr>
-nnoremap <silent> <Leader>wf :call general#ToggleList("Quickfix List", 'c')<Cr>
+nnoremap <silent> <Leader>wl :call general#ToggleList("Location List", 'l')<Cr>
+nnoremap <silent> <Leader>wq :call general#ToggleList("Quickfix List", 'c')<Cr>
 
 " -------- "
 " Shortcut "
@@ -430,8 +430,11 @@ nmap <Leader>A <Leader>pA
 " Conflict if bind :
 " nnoremap : ;
 " vnoremap : ;
-nmap <Leader><Space> :
-vmap <Leader><Space> :
+" nmap <Leader><Space> :
+" vmap <Leader><Space> :
 
-nmap <BS> :
-vmap <BS> :
+" nmap <BS> :
+" vmap <BS> :
+
+nmap <Tab> :
+vmap <Tab> :

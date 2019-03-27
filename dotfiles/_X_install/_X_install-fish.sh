@@ -1,6 +1,8 @@
 #!/bin/bash
 
 # install fish
+sudo apt-add-repository -y ppa:fish-shell/release-3
+sudo apt update
 sudo apt-install fish
 fish
 
@@ -9,9 +11,6 @@ chsh -s /usr/bin/fish
 
 # install oh-my-fish
 curl -L https://get.oh-my.fish | fish
-
-# install theme
-omf install l
 
 # link custom config
 ln -sf $DOTFILES/fish/my.fish $HOME/.config/fish/conf.d/my.fish

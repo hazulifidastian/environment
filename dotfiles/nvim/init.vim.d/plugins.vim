@@ -132,7 +132,7 @@ if has('nvim')
 	Plug 'fgrsnau/ncm2-otherbuf', { 'branch': 'ncm2' }
 	Plug 'ncm2/ncm2-ultisnips'
 else
-    Plug 'Valloric/YouCompleteMe'
+    " Plug 'Valloric/YouCompleteMe'
 	" Plug 'Shougo/deoplete.nvim'
 	" Plug 'roxma/nvim-yarp'
 	" Plug 'roxma/vim-hug-neovim-rpc'
@@ -229,5 +229,8 @@ autocmd! User indentLine doautocmd indentLine Syntax
 
 " Dealing with swap files
 Plug 'gioele/vim-autoswap'
+
+" Scratch
+Plug 'mtth/scratch.vim'
 
 call plug#end()

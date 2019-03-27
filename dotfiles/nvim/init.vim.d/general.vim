@@ -51,12 +51,12 @@ if has("gui_running")
     set guifont=mplus\ Nerd\ Font\ 12
 
     " custom border
-    " set go-=T
-    " set go-=r
-    " set go-=L
-    " set go-=l
-    " set go-=b
-    " set go-=m
+    set go-=T
+    set go-=r
+    set go-=L
+    set go-=l
+    set go-=b
+    set go-=m
 
     " To enable the saving and restoring of screen positions.
     " let g:screen_size_restore_pos = 1

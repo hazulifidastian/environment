@@ -1,6 +1,3 @@
-#!/bin/bash
-. ./env
-
 sudo apt-get install apt-transport-https
 
 # Fish repo
@@ -39,30 +36,25 @@ sudo apt -y install \
     # Snap
     snap \
 
-    # Tmux
-    tmux \
-
     # Misc
+    rtorrent \
     global
 
 # --------------------------------------------- #
 # Fish                                          #
 # --------------------------------------------- #
 
-# change shell
+## change shell
 chsh -s /usr/bin/fish
 
-# install oh-my-fish
+## install oh-my-fish
 curl -L https://get.oh-my.fish | fish
 
-# link custom config
+## link custom config
 ln -sf $DOTFILES/fish/my.fish $HOME/.config/fish/conf.d/my.fish
 
-# install virtualenv for fish
+## install virtualenv for fish
 sudo -H pip install virtualfish
-
-# Install spacefish
-# ...
 
 # --------------------------------------------- #
 # Composer                                      #
@@ -81,4 +73,3 @@ sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 # .inputrc                                      #
 # --------------------------------------------- #
 ln -sf $DOTFILES/bash/.inputrc $HOME/.inputrc
-
