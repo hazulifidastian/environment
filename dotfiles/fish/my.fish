@@ -1,8 +1,11 @@
 #!/usr/bin/fish
 # Env Vars
 
+set EDITOR nvim
+
 set PROJECTS $HOME/Projects
 set DOTFILES $PROJECTS/environment/dotfiles 
+set NODE_PATH /usr/local/lib 
 
 # Virtualenvwrapper 
 
@@ -35,6 +38,9 @@ set PYENV_ROOT $HOME/.pyenv
 set PATH $PYENV_ROOT/bin $PATH
 pyenv init - | source
 
+# FZF
+# set -g FZF_DEFAULT_COMMAND "fd --type f --hidden --follow --exclude .git"
+# set -g FZF_CTRL_T_COMMAND $FZF_DEFAULT_COMMAND
 
 status --is-interactive; and pyenv init - | source
 status --is-interactive; and pyenv virtualenv-init - | source
@@ -45,19 +51,26 @@ status --is-interactive; and pyenv virtualenv-init - | source
 # Aliases
 
 # alias bd='. bd -si'
-alias v nvim
-alias n 'nnn -l'
-alias r 'ranger'
+alias vim nvim
+alias rr 'ranger'
 
 # Abbr
 
 ## app shortcut
+abbr -a -g c clear
+abbr -a -g l ll
 abbr -a -g do docker
 abbr -a -g doe docker exec
 abbr -a -g dor docker run
 abbr -a -g doi docker images
 abbr -a -g doco docker-compose
 abbr -a -g doce docker-compose exec
+abbr -a -g dose docker service
+abbr -a -g dosel docker service logs
+abbr -a -g doses docker service scale
+abbr -a -g dost docker stack
+abbr -a -g dosts docker stack services
+abbr -a -g dostp docker stack ps
 abbr -a -g pe pipenv
 abbr -a -g per pipenv run
 abbr -a -g pes pipenv shell
@@ -68,6 +81,16 @@ abbr -a -g pemr pipenv run python manage.py runserver
 abbr -a -g pemm pipenv run python manage.py makemigrations
 abbr -a -g pemM pipenv run python manage.py migrate
 abbr -a -g pemt pipenv run python manage.py test
+abbr -a -g m. ./manage.py
+abbr -a -g ms ./manage.py shell -i ipython
+abbr -a -g msp ./manage.py shell_plus --ipython
+abbr -a -g mr ./manage.py runserver
+abbr -a -g mrp ./manage.py runserver_plus
+abbr -a -g mm ./manage.py makemigrations
+abbr -a -g mM ./manage.py migrate
+abbr -a -g mt ./manage.py test
+abbr -a -g msa ./manage.py startapp
+abbr -a -g :qa exit
 
 ## change directory
 abbr -a -g pro cd $PROJECTS
@@ -78,9 +101,10 @@ abbr -a -g rus cd $PROJECTS/efha.training/rust
 abbr -a -g dar cd $PROJECTS/efha.training/dart
 abbr -a -g djv cd $PROJECTS/efha.training/python/DjangoCore/djviews
 abbr -a -g sir cd $PROJECTS/KementerianPUPR/sirepersda
+abbr -a -g app cd $HOME/Applications
 
 ## edit
-abbr -a -g vmyfish v $DOTFILES/fish/my.fish
+abbr -a -g vmyfish vim $DOTFILES/fish/my.fish
 abbr -a -g reload omf reload
 
 #
@@ -99,6 +123,19 @@ abbr -a -g gad git add
 abbr -a -g gcm git commit -m
 abbr -a -g gpo git push origin
 
+## exa
+abbr -a -g ls exa
+abbr -a -g ll exa -l
+abbr -a -g la exa -la
+abbr -a -g lT exa -lT
+
+## internet
+abbr -a -g ly lynx
+abbr -a -g goo /usr/bin/env BROWSER=lynx googler -n 5
+
+## system
+abbr -a -g xo xdg-open
+
 # Spacefish
 set SPACEFISH_GIT_STATUS_DELETED X
 
@@ -115,6 +152,20 @@ function xbase
 end
 function xbasex
     tmux kill-session -t base 
+end
+
+function xtra
+    set name extra
+    tmux has-session -t $name 2> /dev/null
+    if test $status -gt 0
+        tmux new-session -d -s $name 
+        tmux attach-session -d
+    else
+        tmux attach-session -d -t $name 
+    end
+end
+function xtrax
+    tmux kill-session -t extra 
 end
 
 function xrek
@@ -156,6 +207,7 @@ end
 
 function xsi
     set name si
+    cd $PROJECTS/KementerianPUPR/sirepersda
     tmux has-session -t $name 2> /dev/null
     if test $status -gt 0
         tmux new-session -d -s $name 
@@ -165,7 +217,7 @@ function xsi
 
         tmux new-window
         tmux rename-window 'services'
-        tmux send-keys 'sir; cd src; pemr' Enter
+        tmux send-keys 'sir; pes' Enter
 
         tmux previous-window
 

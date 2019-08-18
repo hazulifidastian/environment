@@ -7,7 +7,7 @@ command! -nargs=? DevDocs :call system('type -p open >/dev/null 2>&1 && open htt
 autocmd vimrc FileType python,ruby,rspec,javascript,go,html,php,eruby,coffee,haml nmap <buffer> <Leader>D :exec "DevDocs " . fnameescape(expand('<cword>'))<CR>
 
 " buffer cleanup - delete every buffer except the one open
-command! Ball :silent call general#Bdeleteonly()
+command! Ball :silent! call general#Bdeleteonly()
 
 " restore the position of the last cursor when you open a file
 autocmd vimrc BufReadPost * call general#RestorePosition()
@@ -36,5 +36,16 @@ augroup vimrc-incsearch-highlight
     autocmd CmdlineEnter /,\? :set hlsearch
     autocmd CmdlineLeave /,\? :set nohlsearch
 augroup END
+
+" autocmd BufNewFile,BufRead Justfile set syntax=make
+
+" autocmd vimrc BufWritePre *.py call Isort()
+" function Isort()
+"     execute 'CocCommand python.sortImports'
+"     w
+" endfunction
+
+" Support comment on json
+autocmd FileType json syntax match Comment +\/\/.\+$+
 
 " ** EndBlock Command/Autocommand ** "

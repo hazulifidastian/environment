@@ -7,13 +7,15 @@ let g:gutentags_ctags_exclude = ['*.css', '*.html', '*.js', '*.json', '*.xml',
 \ '*.phar', '*.ini', '*.rst', '*.md','*/vendor/*',
 \ '*vendor/*/test*', '*vendor/*/Test*',
 \ '*vendor/*/fixture*', '*vendor/*/Fixture*',
-\ '*var/cache*', '*var/log*']
+\ '*var/cache*', '*var/log*',
+\ '*.yaml', '*.yml', '*.txt', '*.conf', '*.md', '*docker/*', '*.sh',
+\ '*temp/*', '*Dockerfile', 'env']
 
 " enable gtags module
 let g:gutentags_modules = ['ctags', 'gtags_cscope']
 
 " config project root markers.
-let g:gutentags_project_root = ['.root']
+let g:gutentags_project_root = ['.git']
 
 " generate datebases in my cache directory, prevent gtags files polluting my project
 let g:gutentags_cache_dir = expand('~/.cache/tags')

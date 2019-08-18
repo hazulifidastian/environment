@@ -13,13 +13,13 @@ Plug 'sgur/vim-editorconfig'
 
 " automatically add matching tag
 Plug 'jiangmiao/auto-pairs'
-Plug 'tpope/vim-endwise'
+" Plug 'tpope/vim-endwise'
 
 " wrapper for git and display git diff in the left gutter
 Plug 'tpope/vim-fugitive' | Plug 'mhinz/vim-signify'
 
 " Display commits for project / file
-" Plug 'junegunn/gv.vim'
+Plug 'junegunn/gv.vim'
 
 " surrounding with whatever you want (paranthesis, quotes...)
 Plug 'tpope/vim-surround'
@@ -62,11 +62,11 @@ Plug 'andymass/vim-matchup'
 " vim project for one specific vimrc / project + startify for startup cow
 " Plug 'amiorin/vim-project'
 " Plug 'mhinz/vim-startify'
-Plug 'tpope/vim-projectionist'
+" Plug 'tpope/vim-projectionist'
 Plug 'airblade/vim-rooter'
 
 " snippets
-Plug 'SirVer/ultisnips'
+" Plug 'SirVer/ultisnips'  " replaced by coc-snippet
 Plug 'honza/vim-snippets'
 
 " Rainbow parentheses
@@ -85,6 +85,10 @@ Plug 'honza/vim-snippets'
 " Plug 'rhysd/vim-grammarous', { 'for': 'markdown' } " show grammar mistakes
 " Plug 'reedes/vim-wordy', { 'for': 'markdown' } "veridy quality of writting (see :Wordy)
 " Plug 'reedes/vim-lexical' " dictionnary, thesaurus...
+
+" Rst
+Plug 'Rykka/riv.vim', {'for': 'rst'}
+" Plug 'Rykka/InstantRst', {'for': 'rst'}
 
 " Debugging for multiple language
 " Plug 'joonty/vdebug'
@@ -106,6 +110,10 @@ Plug '2072/php-indenting-for-vim', {'for': 'php'}
 " rust
 Plug 'racer-rust/vim-racer', {'for': 'rust'}
 
+" typescript
+Plug 'HerringtonDarkholme/yats.vim'
+
+
 " Dart
 " if has('nvim')
 "     Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
@@ -118,28 +126,31 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'skywind3000/gutentags_plus'
 
 " autocompletion
-if has('nvim')
-	Plug 'ncm2/ncm2'
-	Plug 'roxma/nvim-yarp'
-	Plug 'ncm2/ncm2-bufword'
-	Plug 'ncm2/ncm2-path'
-    Plug 'HansPinckaers/ncm2-jedi', {'for': 'py'}
-	Plug 'phpactor/ncm2-phpactor', {'for': 'php'}
-    Plug 'ncm2/ncm2-racer', {'for': 'rust'}
-	"Plug 'ncm2/ncm2-go'
-	"Plug 'ncm2/ncm2-tern'
-	"Plug 'ncm2/ncm2-cssomni'
-	Plug 'fgrsnau/ncm2-otherbuf', { 'branch': 'ncm2' }
-	Plug 'ncm2/ncm2-ultisnips'
-else
-    " Plug 'Valloric/YouCompleteMe'
-	" Plug 'Shougo/deoplete.nvim'
-	" Plug 'roxma/nvim-yarp'
-	" Plug 'roxma/vim-hug-neovim-rpc'
-    " Plug 'zchee/deoplete-jedi', {'for': 'py'}
-	" Plug 'kristijanhusak/deoplete-phpactor', {'for': 'php'}
-    " Plug 'sebastianmarkow/deoplete-rust', {'for': 'rust'}
-endif
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" if has('nvim')
+"     Plug 'ncm2/ncm2'
+"     Plug 'roxma/nvim-yarp'
+"     Plug 'ncm2/ncm2-bufword'
+"     Plug 'ncm2/ncm2-path'
+"     Plug 'HansPinckaers/ncm2-jedi', {'for': 'py'}
+"     Plug 'phpactor/ncm2-phpactor', {'for': 'php'}
+"     Plug 'ncm2/ncm2-racer', {'for': 'rust'}
+"     "Plug 'ncm2/ncm2-go'
+"     "Plug 'ncm2/ncm2-tern'
+"     "Plug 'ncm2/ncm2-cssomni'
+"     Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+"     Plug 'fgrsnau/ncm2-otherbuf', { 'branch': 'ncm2' }
+"     Plug 'ncm2/ncm2-ultisnips'
+" else
+"     Plug 'Valloric/YouCompleteMe'
+"     " Plug 'Shougo/deoplete.nvim'
+"     " Plug 'roxma/nvim-yarp'
+"     " Plug 'roxma/vim-hug-neovim-rpc'
+"     " Plug 'zchee/deoplete-jedi', {'for': 'py'}
+"     " Plug 'kristijanhusak/deoplete-phpactor', {'for': 'php'}
+"     " Plug 'sebastianmarkow/deoplete-rust', {'for': 'rust'}
+" endif
 
 " general quality tools 
 Plug 'w0rp/ale'
@@ -172,10 +183,8 @@ Plug 'maximbaz/lightline-ale'
 " undo tree
 Plug 'sjl/gundo.vim'
 
-if has('nvim')
-    " registers
-    Plug 'bfredl/nvim-miniyank'
-endif
+" registers
+Plug 'bfredl/nvim-miniyank'
 
 " close the current buffer
 Plug 'moll/vim-bbye'
@@ -212,6 +221,7 @@ Plug 'AndrewRadev/splitjoin.vim', {'for': ['php', 'go']}
 
 " Themes
 Plug 'morhetz/gruvbox'
+
 " Plug 'joshdick/onedark.vim'
 
 " Indent line
@@ -230,7 +240,10 @@ autocmd! User indentLine doautocmd indentLine Syntax
 " Dealing with swap files
 Plug 'gioele/vim-autoswap'
 
-" Scratch
-Plug 'mtth/scratch.vim'
+" Cheat.sh
+" Plug 'dbeniamine/cheat.sh-vim'
+
+" TabNine
+Plug 'zxqfl/tabnine-vim'
 
 call plug#end()

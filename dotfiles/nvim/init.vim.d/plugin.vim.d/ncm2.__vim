@@ -18,7 +18,7 @@ if has('nvim')
 	" hides the menu. Use this mapping to close the menu and also start a new
 	" line.
     " ! conflict with tpope/endwise, and jiangmiao/auto-pairs
-	" inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+    inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
 
 	" Use <TAB> to select the popup menu:
 	inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"

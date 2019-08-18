@@ -1,6 +1,8 @@
 syntax on
 
 let g:config_dir='~/.config/nvim/'
+let g:pytools_venv_dir=g:config_dir.'pytools/.venv/'
+let g:pytools_venv_bin_dir=g:config_dir.'bin/'
 
 if exists("g:did_load_filetypes")
   filetype off
@@ -16,20 +18,33 @@ filetype plugin indent on
 " let g:delve_tracepoint_sign = ""
 
 " colorscheme
+let g:gruvbox_bold=1
+let g:gruvbox_underline=1
+let g:gruvbox_undercurl=1
+let g:gruvbox_termcolors=256
+let g:gruvbox_contrast_dark="medium"
+let g:gruvbox_contrast_light="medium"
+let g:gruvbox_sign_column = 'dark0'
+let g:gruvbox_color_column="dark0"
+let g:gruvbox_vert_split="dark0"
+let g:gruvbox_invert_selection=0
+let g:gruvbox_invert_signs=0
+let g:gruvbox_invert_indent_guides=0
+let g:gruvbox_invert_tabline=0
+let g:gruvbox_improved_warnings=1
+
 if has("gui_running")
     "gui themes
     set background=dark
     let g:gruvbox_italic=1
-    let g:gruvbox_contrast_dark="medium"
-    let g:gruvbox_termcolors=256
+    let g:gruvbox_italicize_comments=1
+    let g:gruvbox_italicize_strings=1
     colorscheme gruvbox
 else
     "terminal themes
     set background=dark
     " Italic not supported by vim
     " let g:gruvbox_italic=1
-    let g:gruvbox_contrast_dark="medium"
-    let g:gruvbox_termcolors=256
     colorscheme gruvbox
 endif
 
@@ -43,12 +58,18 @@ let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
 
+" Neovim-qt
+if exists('g:GuiLoaded')
+    set guifont=mplus\ Nerd\ Font:h11
+endif
+
 " gvim config
 if has("gui_running")
+    
     set lines=20 columns=120
 
     " font
-    set guifont=mplus\ Nerd\ Font\ 12
+    set guifont=mplus\ Nerd\ Font:h13
 
     " custom border
     set go-=T
@@ -293,7 +314,7 @@ set noequalalways
 " Show fileinfo on terminal title
 set title titlestring=
 
-" set shell=bash
+set shell=/usr/bin/fish
 
 " Files and folders to ignore
 set wildignore=*/.git/*
@@ -329,4 +350,17 @@ hi NonText guifg=bg
 
 " Turn off vim, always opening scratch window
 " when press tab on autocomplete
-set completeopt-=preview
+" set completeopt-=preview
+
+" Colum coloring
+set colorcolumn=88
+
+" let g:gutentags_trace = 1
+
+set updatetime=300
+
+" always show signcolumns
+set signcolumn=yes
+
+" command height
+" set cmdheight=2

@@ -1,28 +1,8 @@
 #!/bin/bash
 . ./env
 
-sudo apt-get install apt-transport-https
-
-# Fish repo
-sudo apt-add-repository -y ppa:fish-shell/release-3
-
-# Dart repo
-sudo sh -c 'curl https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -'
-sudo sh -c 'curl https://storage.googleapis.com/download.dartlang.org/linux/debian/dart_stable.list > /etc/apt/sources.list.d/dart_stable.list'
-
-sudo apt update
-
 sudo apt -y install \
-    # Shell
-    fish \
     curl \
-
-    # PHP
-    php-cli \
-    php-mbstring \
-
-    # Dart
-    dart \
 
     # Git
     git \
@@ -32,6 +12,7 @@ sudo apt -y install \
     unzip \
     extract \
     ranger \
+    apt-transport-https \
 
     # Entertainment
     cmus \
@@ -39,15 +20,19 @@ sudo apt -y install \
     # Snap
     snap \
 
-    # Tmux
-    tmux \
-
     # Misc
     global
 
 # --------------------------------------------- #
 # Fish                                          #
+# OhMyFish                                      #
+# Spacefish                                     #
 # --------------------------------------------- #
+
+# Fish repo
+sudo apt-add-repository -y ppa:fish-shell/release-3
+
+sudo apt -y install fish
 
 # change shell
 chsh -s /usr/bin/fish
@@ -65,11 +50,25 @@ sudo -H pip install virtualfish
 # ...
 
 # --------------------------------------------- #
+# PHP                                           #
 # Composer                                      #
 # --------------------------------------------- #
 
+sudo apt -y install \
+    php-cli \
+    php-mbstring \
+
 curl -sS https://getcomposer.org/installer -o composer-setup.php
 sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+
+
+# --------------------------------------------- #
+# Tmux                                          #
+# --------------------------------------------- #
+
+sudo apt install -y tmux
+
+ln -sf $DOTFILES/.tmux.conf ~/.tmux.conf
 
 # --------------------------------------------- #
 # Fonts                                         #
@@ -78,7 +77,26 @@ sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 # ...
 
 # --------------------------------------------- #
-# .inputrc                                      #
+# Dart                                          #
+# Fluttter                                      #
 # --------------------------------------------- #
-ln -sf $DOTFILES/bash/.inputrc $HOME/.inputrc
+
+# Dart repo
+sudo sh -c 'curl https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -'
+sudo sh -c 'curl https://storage.googleapis.com/download.dartlang.org/linux/debian/dart_stable.list > /etc/apt/sources.list.d/dart_stable.list'
+
+sudo apt update
+
+sudo apt -y install dart
+
+# --------------------------------------------- #
+# Rust tools                                    #
+# --------------------------------------------- #
+
+cargo install exa
+cargo install tin-summer
+cargo install tokei
+cargo install ripgrep
+cargo install fd-find
+cargo install just
 

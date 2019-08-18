@@ -105,7 +105,7 @@ nnoremap <C-w>k :wincmd k<CR><C-w>_
 nnoremap <C-w>j :wincmd j<CR><C-w>_
 
 " winresizer plugin
-let g:winresizer_start_key = '<C-w>R'
+let g:winresizer_start_key = '<Leader>wr'
 
 " ctrl-alt-hjkl keys resize windows
 " nmap <C-M-h> :vertical resize -5<Cr>
@@ -128,10 +128,9 @@ nmap <C-S-Down> ]e
 vmap <C-S-Up> [egv
 vmap <C-S-Down> ]egv
 
-" delete character after cursor in insert mode
-inoremap <C-l> <Del>
-
 nnoremap <expr> <C-w>q &buftype ==# 'terminal' ? ":bd!<Cr>" : "<C-w>q"
+
+imap <C-c> <Esc><C-c>
 
 " -------- "
 " BlockTab "
@@ -208,8 +207,10 @@ nnoremap <Leader>bb :ls<Cr>:b
 " nnoremap <Leader>b# :b#<Cr>
 " nnoremap <Leader>bj :bfirst<Cr>
 " nnoremap <Leader>bk :blast<Cr>
-nmap <Leader>bx :Bwipeout<cr>
-nmap <Leader>bX :Bwipeout!<cr>
+" nmap <Leader>bx :Bwipeout<cr>
+" nmap <Leader>bX :Bwipeout!<cr>
+nmap <Leader>bq :q<cr>
+nmap <Leader>bQ :qa<cr>
 nmap <Leader>bd :bwipeout<cr>
 nmap <Leader>bD :bwipeout!<cr>
 " nmap <Leader>bw :w<cr>
@@ -234,7 +235,8 @@ nnoremap <Leader>b== :setlocal<Space>
 nnoremap <Leader>b=w :setlocal wrap<Cr>
 nnoremap <Leader>b=W :setlocal nowrap<Cr>
 
-nnoremap <Leader>bC :silent! Ball<Cr>
+nnoremap <Leader>bco :Ball<Cr>
+nnoremap <Leader>bca :Ball<Cr>:bd<Cr>
 
 " --- <Leader> c
 
@@ -266,6 +268,10 @@ nnoremap <Leader>ft :BTags<cr>
 " fzf curent file dir
 nnoremap <Leader>f. :Files <C-R>=expand('%:h')<Cr><Cr>
 
+" --- <Leader> I
+nnoremap <Leader>I :CocCommand python.sortImports<Cr>
+
+
 " --- <Leader> L
 nnoremap <Leader>Ln :lnext<Cr>
 nnoremap <Leader>Lp :lprevious<Cr>
@@ -280,6 +286,8 @@ nnoremap <Leader>p/ :Rooter<Cr>:Rgic<Space>
 nnoremap <Leader>pt :Rooter<Cr>:terminal<Cr>
 nnoremap <Leader>pR :Rooter<Cr>:pwd<Cr>
 
+" --- <Leader> y
+
 " projectionist
 nnoremap <Leader>pA :A<Cr>
 nnoremap <Leader>pas :AS<Cr>
@@ -293,6 +301,13 @@ nnoremap <Leader>pwd :echo getcwd()<Cr>
 " root directory
 nnoremap <Leader>pr :echo FindRootDirectory()<Cr>
 
+" Paste yanked text on selected text
+" the delete selected text to blackhole register
+vnoremap <Leader>p "_dP
+
+" --- <Leader> r
+
+
 " --- <Leader> s
 
 nmap <leader>sr :Ack<Space>
@@ -301,8 +316,8 @@ nmap <leader>sR <Plug>(FerretAcks)
 " --- <Leader> t
 
 " move tab
-" nnoremap <Leader>tn :tabnew<Cr>
-" nnoremap <Leader>tN :-tabnew<Cr>
+nnoremap <Leader>tn :tabnew<Cr>
+nnoremap <Leader>tN :-tabnew<Cr>
 " nnoremap <Leader>tl :tabnext<Cr>
 " nnoremap <Leader>th :tabprevious<Cr>
 " nnoremap <Leader>tj :tabfirst<Cr>
@@ -310,8 +325,7 @@ nmap <leader>sR <Plug>(FerretAcks)
 " nnoremap <Leader>tq :tabc<Cr>
 " nnoremap <Leader>tx :tabclose<Cr>
 " nnoremap <Leader>to :tabonly<Cr>
-nnoremap <Leader>tc :tabs<Cr>:tabc
-nnoremap <Leader>tm :tabs<Cr>:tabm
+nnoremap <Leader>tc :tabc<Cr>
 nnoremap <Leader>tt :tabs<Cr>:tab
 
 " nnoremap <Leader>t( 1gt
@@ -436,5 +450,8 @@ nmap <Leader>A <Leader>pA
 " nmap <BS> :
 " vmap <BS> :
 
-nmap <Tab> :
-vmap <Tab> :
+" nmap <Tab> :
+" vmap <Tab> :
+
+" Exit terminal
+tnoremap <Esc> <C-\><C-n>
